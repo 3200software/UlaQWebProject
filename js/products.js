@@ -1,7 +1,31 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
-import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-storage.js";
-import { getFirestore, collection, addDoc, doc, query, where, orderBy, limit, getDocs, updateDoc } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut
+} from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
+import {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL
+} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-storage.js";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  doc,
+  query,
+  where,
+  orderBy,
+  limit,
+  getDocs,
+  updateDoc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
 
 const firebaseapp = initializeApp({
 
@@ -76,12 +100,15 @@ const image4Input = document.getElementById("image4Input");
 const image5Input = document.getElementById("image5Input");
 const videoInput = document.getElementById("videoInput");
 
+const img1Preview = document.getElementById("img1Preview");
+const img2Preview = document.getElementById("img2Prewiev");
+
 
 
 
 const products = document.querySelector(".productCard")
 
-function createProductsArray([ds, proimg, proModelNo, proCategory]) {
+function createProductsArray([proDocId, proimg, proModelNo, proCategory, ]) {
 
   let proCode = `
   <div class="card m-2 d-flex" id="productCardMain" style="width: 10rem;">
@@ -89,7 +116,7 @@ function createProductsArray([ds, proimg, proModelNo, proCategory]) {
   <div class="card-body">
    <h6 class="card-title">${proModelNo}</h5>
    <p class="card-text">${proCategory}</p>
-   <a data-key="${ds}" href="#" class="btn btn-danger editBtn" id="producEditBtn">Düzenle</a>
+   <a data-key="${proDocId}" href="#" class="btn btn-danger editBtn" id="producEditBtn">Düzenle</a>
  </div>
 </div>
 
@@ -98,7 +125,7 @@ function createProductsArray([ds, proimg, proModelNo, proCategory]) {
 
 
 
-    ;
+  ;
 
   products.innerHTML += proCode;
 
@@ -106,25 +133,86 @@ function createProductsArray([ds, proimg, proModelNo, proCategory]) {
 };
 
 
-$("body").on("click", ".editBtn", function () {
+$("body").on("click", ".editBtn", async function () {
 
- 
 
   var $key = $(this).data("key");
 
-  
-
-
   if (addEditActivityContainer.style.display === "none") {
+
+    addEditActivityContainer.style.display = ""
+    mainActivityContainer.style.display = "none"
+    btnProductAdd.style.visibility = "hidden"
+
+  }
+
+  const docRef = doc(db, "Product", $key);
+  const docs = await getDoc(docRef);
+
+  if (docs.exists()) {
+
+    const firebaseDocId = docs.id;
+    const firebaseProductModelNo = docs.data().productModelNo;
+    const firebaseProductCategory = docs.data().productCategory;
+    const firebaseProductSubCategory = docs.data().productSubCategory;
+    const firebaseProductSizeCategory = docs.data().productSizeCategory;
+    const firebaseProductWidth = docs.data().productWidth;
+    const firebaseProductHeight = docs.data().productHeight;
+    const firebaseProductColorCategory = docs.data().productColorCategory;
+    const firebaseProductEnvelope = docs.data().productEnvelope;
+    const firebaseProductTradeMark = docs.data().productTradeMark;
+    const firebaseProductFoilPrintInvitation = docs.data().productFoilPrintInvitation;
+    const firebaseProductFoilPrintTag = docs.data().productFoilPrintTag;
+    const firebaseProductSalesQuantity = docs.data().productSalesQuantity;
+    const firebaseProductDeliveryTime = docs.data().productDeliveryTime;
+    const firebaseProductStock = docs.data().productStock;
+    const firebaseProductFavorites = docs.data().productFavorites;
+    const firebaseProductAddDate = docs.data().productAddDate;
+    const firebaseProductAddUser = docs.data().productAddUser;
+
+    const firebaseProductPrice = docs.data().productPrice;
+    const firebaseProductImgUrl1 = docs.data().productImgUrl1;
 
     
 
-    addEditActivityContainer.style.display = ""
-    btnProductAdd.style.visibility = "hidden"
+    productModelNoTextInput.value = firebaseProductModelNo;
+    productCategorySelectInput.value = firebaseProductCategory;
+    productSubCategorySelectInput.value = firebaseProductSubCategory;
+    productSizeCategorySelectInput.value = firebaseProductSizeCategory;
+    productSizeWidthTextInput.value = firebaseProductWidth;
+    productSizeHeightTextInput.value = firebaseProductHeight;
+    productColorCategorySelectInput.value = firebaseProductColorCategory;
+    productEnvelopeSelectInput.value = firebaseProductEnvelope;
+    productTradeMarkSelectInput.value = firebaseProductTradeMark;
+    productFoilPrintInvitationSelectInput.value = firebaseProductFoilPrintInvitation;
+    productFoilPrintTagSelectInput.value = firebaseProductFoilPrintTag;
+    productPriceInput.value = firebaseProductPrice;
 
-    alert($key + "sad");
+    img1Preview.src = firebaseProductImgUrl1;
 
+   
+
+  } else {
+    // doc.data() will be undefined in this case
+    console.log("No such document!");
   }
+
+
+
+  const queryImg1 = query(collection(db,"Product" , $key , "img") ,  where("no", "==", 2));
+
+  const snapshotimg1 = await getDocs(queryImg1);
+
+  snapshotimg1.forEach((doc) => {
+
+    console.log(doc.data());
+
+    img2Preview.src = doc.data().productImgUrl;
+
+
+  })
+
+ 
  
 
 
@@ -134,18 +222,17 @@ $("body").on("click", ".editBtn", function () {
 
 
 
-const q = query(collection(db, "Product"),);
+const getData = query(collection(db, "Product"), );
 
-const querySnapshot = await getDocs(q);
+const querySnapshot = await getDocs(getData);
 querySnapshot.forEach((doc) => {
 
   const firebaseDocId = doc.id;
-  const firebaseimg = doc.data().productImgUrl1;
-  const firebaseModelNo = doc.data().productModelNo;
-  const firebaseCategory = doc.data().productCategory;
+  const firebaseProductModelNo = doc.data().productModelNo;
+  const firebaseProductCategory = doc.data().productCategory;
+  const firebaseProductImgUrl1 = doc.data().productImgUrl1;
 
-  let productItem = [firebaseDocId, firebaseimg, firebaseModelNo, firebaseCategory];
-
+  let productItem = [firebaseDocId, firebaseProductImgUrl1, firebaseProductModelNo, firebaseProductCategory, ];
 
 
   createProductsArray(productItem);
@@ -174,23 +261,7 @@ querySnapshot.forEach((doc) => {
 
 activityCategoryFormSelect.onchange = function(){
 
-  var categoryValue = activityCategoryFormSelect.value;
 
-   if (categoryValue === "1" || categoryValue === "2") {
-
-    console.log(categoryValue);
-
-    activityDateContainer.style.display = "";
-    activityBeginDateContainer.style.display = "none";
-    activityEndDateContainer.style.display = "none";
-  
-  } else if (categoryValue === "3") {
-  
-    activityDateContainer.style.display = "none";
-    activityBeginDateContainer.style.display = "";
-    activityEndDateContainer.style.display = "";
-  
-  }
 
 };
 
@@ -198,151 +269,12 @@ activityTicketFormSelect.onchange = function(){
 
   var ticketValue = activityTicketFormSelect.value;
 
-   if (ticketValue === "1") {
-
-    console.log("asasda");
-    activtyTicketName1TextView.style.display = "none";
-    activityTicketPrice1TextView.style.display = "none"; 
-    activtyTicketName2TextView.style.display = "none";
-    activityTicketPrice2TextView.style.display = "none";
-    activtyTicketName3TextView.style.display = "none";
-    activityTicketPrice3TextView.style.display = "none";
-    activtyTicketName4TextView.style.display = "none";
-    activityTicketPrice4TextView.style.display = "none";
-   
-  
-  } else if (ticketValue === "2") {
-  
-    console.log("tyty");
-    ticketContainer1.style.display = "none"  
-    activtyTicketName2TextView.style.display = "none";
-    activityTicketPrice2TextView.style.display = "none";
-    activtyTicketName3TextView.style.display = "none";
-    activityTicketPrice3TextView.style.display = "none";
-    activtyTicketName4TextView.style.display = "none";
-    activityTicketPrice4TextView.style.display = "none";
-    
-  
-  } else if (ticketValue === "3") {
-  
-    console.log("qwqwq");
-    activtyTicketName1TextView.style.display = "";
-    activityTicketPrice1TextView.style.display = ""; 
-    activtyTicketName2TextView.style.display = "";
-    activityTicketPrice2TextView.style.display = "";
-    activtyTicketName3TextView.style.display = "none";
-    activityTicketPrice3TextView.style.display = "none";
-    activtyTicketName4TextView.style.display = "none";
-    activityTicketPrice4TextView.style.display = "none";
-
-    activtyTicketName1TextView.value =  "Tam Bilet";
-    activtyTicketName1TextView.disabled = true;
-
-    activtyTicketName2TextView.value = "Öğrenci Bilet";
-    activtyTicketName2TextView.disabled= true;
-
-    
-    
-  
-  } else if (ticketValue === "4") {
-  
-    console.log("qwqwq");
-    activtyTicketName1TextView.style.display = "";
-    activityTicketPrice1TextView.style.display = ""; 
-    activtyTicketName2TextView.style.display = "none";
-    activityTicketPrice2TextView.style.display = "none";
-    activtyTicketName3TextView.style.display = "none";
-    activityTicketPrice3TextView.style.display = "none";
-    activtyTicketName4TextView.style.display = "none";
-    activityTicketPrice4TextView.style.display = "none";
-
-    activtyTicketName1TextView.value = "";
-    activtyTicketName1TextView.disabled = false;
-    activtyTicketName1TextView.placeholder =  "Bilet Adı";
-    
-  } else if (ticketValue === "5") {
-  
-    console.log("qwqwq");
-    activtyTicketName1TextView.style.display = "";
-    activityTicketPrice1TextView.style.display = ""; 
-    activtyTicketName2TextView.style.display = "";
-    activityTicketPrice2TextView.style.display = "";
-    activtyTicketName3TextView.style.display = "none";
-    activityTicketPrice3TextView.style.display = "none";
-    activtyTicketName4TextView.style.display = "none";
-    activityTicketPrice4TextView.style.display = "none";
-
-    activtyTicketName1TextView.value = "";
-    activtyTicketName1TextView.disabled = false;
-
-    activtyTicketName2TextView.value = "";
-    activtyTicketName2TextView.disabled = false;
-
-    activtyTicketName1TextView.placeholder =  "Bilet Adı";
-    activtyTicketName2TextView.placeholder =  "Bilet Adı";
-
-    
-  } else if (ticketValue === "6") {
-  
-    console.log("qwqwq");
-    activtyTicketName1TextView.style.display = "";
-    activityTicketPrice1TextView.style.display = ""; 
-    activtyTicketName2TextView.style.display = "";
-    activityTicketPrice2TextView.style.display = "";
-    activtyTicketName3TextView.style.display = "";
-    activityTicketPrice3TextView.style.display = "";
-    activtyTicketName4TextView.style.display = "none";
-    activityTicketPrice4TextView.style.display = "none";
-
-    activtyTicketName1TextView.value = "";
-    activtyTicketName1TextView.disabled = false;
-
-    activtyTicketName2TextView.value = "";
-    activtyTicketName2TextView.disabled = false;
-    activtyTicketName1TextView.placeholder =  "Bilet Adı";
-    activtyTicketName2TextView.placeholder =  "Bilet Adı";
-    activtyTicketName3TextView.placeholder =  "Bilet Adı";
-    
-  } else if (ticketValue === "7") {
-  
-    console.log("qwqwq");
-    activtyTicketName1TextView.style.display = "";
-    activityTicketPrice1TextView.style.display = ""; 
-    activtyTicketName2TextView.style.display = "";
-    activityTicketPrice2TextView.style.display = "";
-    activtyTicketName3TextView.style.display = "";
-    activityTicketPrice3TextView.style.display = "";
-    activtyTicketName4TextView.style.display = "";
-    activityTicketPrice4TextView.style.display = "";
-
-    activtyTicketName1TextView.value = "";
-    activtyTicketName1TextView.disabled = false;
-
-    activtyTicketName2TextView.value = "";
-    activtyTicketName2TextView.disabled = false;
-    activtyTicketName1TextView.placeholder =  "Bilet Adı";
-    activtyTicketName2TextView.placeholder =  "Bilet Adı";
-    activtyTicketName3TextView.placeholder =  "Bilet Adı";
-    activtyTicketName4TextView.placeholder =  "Bilet Adı";
-    
-  }
 
 };
 
 activityProtocolCheckBox.addEventListener("change", (event) => {
 
-  if (event.currentTarget.checked) {
 
-  
-    activityProtocolSeatTextView.style.display = "";
-
-
-  } else {
-
-    activityProtocolSeatTextView.style.display = "none";
-
-
-  }
 
 
 
@@ -359,7 +291,7 @@ btnProductAdd.addEventListener("click", () => {
 
 
     addEditActivityContainer.style.display = ""
-    mainActivityContainer.style.display =   "none"
+    mainActivityContainer.style.display = "none"
     btnProductAdd.style.visibility = "hidden"
 
 
@@ -383,7 +315,12 @@ btnAddProductSuccess.addEventListener("click", async () => {
   var imageFileName5 = productModelNoTextInput.value + "-image5";
   var videoFileName1 = productModelNoTextInput.value + "-video1"
 
-  var image1Url; var image2Url; var image3Url; var image4Url; var image5Url; var videoUrl1;
+  var image1Url;
+  var image2Url;
+  var image3Url;
+  var image4Url;
+  var image5Url;
+  var videoUrl1;
 
 
   console.log(productModelNoTextInput.value, productCategorySelectInput.value, productEnvelopeSelectInput.value)
@@ -431,7 +368,7 @@ btnAddProductSuccess.addEventListener("click", async () => {
               productDeliveryTime: 0,
               productStock: 0,
               productFavorites: 0,
-              productAddDate: Date.date,
+              productAddDate: new Date(),
               productAddUser: auth.currentUser.email,
 
               productPrice: productPriceInput.value,
@@ -448,7 +385,7 @@ btnAddProductSuccess.addEventListener("click", async () => {
 
               await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
 
-                productImgUrl1: image1Url,
+                productImgUrl: image1Url,
                 no: 1,
 
               });
@@ -475,7 +412,7 @@ btnAddProductSuccess.addEventListener("click", async () => {
 
                   await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
 
-                    productImgUrl2: image2Url,
+                    productImgUrl: image2Url,
                     no: 2,
 
 
@@ -509,7 +446,7 @@ btnAddProductSuccess.addEventListener("click", async () => {
 
                   await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
 
-                    productImgUrl3: image3Url,
+                    productImgUrl: image3Url,
                     no: 3,
 
                   });
@@ -545,7 +482,7 @@ btnAddProductSuccess.addEventListener("click", async () => {
                   await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
 
 
-                    productImgUrl4: image4Url,
+                    productImgUrl: image4Url,
                     no: 4,
 
                   });
@@ -582,7 +519,7 @@ btnAddProductSuccess.addEventListener("click", async () => {
                   await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
 
 
-                    productImgUrl5: image5Url,
+                    productImgUrl: image5Url,
                     no: 5,
 
 
@@ -619,7 +556,7 @@ btnAddProductSuccess.addEventListener("click", async () => {
 
                   await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
 
-                    productvideoUrl1: videoUrl1,
+                    productImgUrl: videoUrl1,
                     no: 6,
 
                   });
@@ -682,7 +619,7 @@ btnProductAddCancel.addEventListener("click", () => {
 
 btnLogout.addEventListener("click", () => {
 
-const auth = getAuth();
+  const auth = getAuth();
   signOut(auth).then(() => {
     window.location.href = "index.html"
   }).catch((error) => {

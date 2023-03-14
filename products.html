@@ -6,7 +6,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ürünler</title>
-
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <script type="module" src="js/products.js"></script>
@@ -17,20 +16,15 @@
 
 <body>
 
-
   <div class="offcanvas offcanvas-danger offcanvas-start show" data-bs-backdrop="false" id="managemetntSideMenu"
     style="width: 20%;">
 
-
     <div class="offcanvas-header d-flex justify-content-start" style="margin-top: 2%;">
-
 
       <div> <img src="assets/274348852_320609883437173_4953649348556891409_n.jpg" alt="profilResmi" width="50px"
           height="50px" style="border-radius: 50px;"> </div>
 
-      <div class="offcanvas-title text-primary ms-4 h4"> UlaQ Management</div>
-
-
+      <div class="offcanvas-title text-primary ms-4 h4">UlaQ Management</div>
 
     </div>
 
@@ -43,12 +37,12 @@
 
       </div>
 
+
       <div class="list-group mb-auto p2 mt-4 ">
 
         <a href="orderTracking.html" class="list-group-item list-group-item-action">Sipariş Takip</a>
 
         <a href="products.html" class="list-group-item list-group-item-action active">Ürünler</a>
-
 
       </div>
 
@@ -68,7 +62,6 @@
 
 
   <div class="container" id="mainContainer" style="margin-left: 22%; margin-top: 1%;">
-
 
     <div class="containerTitle d-flex justify-content-between border-bottom border-primary ">
 
@@ -123,6 +116,7 @@
 
     </div>
 
+
     <div class="container">
 
       <div class="row m-0 mt-2">
@@ -130,15 +124,15 @@
         <div class="col">
 
           <input type="text" class="form-control" id="prodcutModelNoTextInput" placeholder="Model No">
-  
-          
-  
+
+
+
         </div>
 
         <div class="col">
 
           <input type="number" min="0" max="10000" step="1" class="form-control" id="productInvitationPrice"
-          placeholder="Fiyat">
+            placeholder="Fiyat">
 
         </div>
 
@@ -147,7 +141,7 @@
 
       </div>
 
-      
+
 
       <div class="row ms-0 me-0 mt-2">
 
@@ -260,11 +254,11 @@
           <option value="2">Yok</option>
 
         </select>
-        
+
 
       </div>
 
-     
+
 
       <div class="border rounded-2 mt-2 ">
 
@@ -274,50 +268,145 @@
 
             <div class="col">
 
-              <label class="fs-6 fw-light text">Vitrin Fotoğrafı</label>
+              <div class="ms-3">
 
-              <input class="form-control mb-1" type="file" id="image1Input" accept="image/png, image/gif, image/jpeg">
+                <label class="fs-6 fw-light text">Vitrin Fotoğrafı</label>
 
-              <img src="assets/274348852_320609883437173_4953649348556891409_n.jpg" alt="" width="300" height="200">
+              </div>
+
+              <div class="container d-flex">
+
+                <input class="form-control mb-1" type="file" id="image1Input" accept="image/png, image/gif, image/jpeg">
+
+                <img src="" alt="" width="150" height="100" id="img1Preview">
+
+              </div>
+
+
 
             </div>
 
             <div class="col">
 
-              <label class="fs-6 fw-light text">1. Fotoğraf</label>
+              <div class="ms-3">
 
-              <input class="form-control mb-1" type="file" id="image2Input" accept="image/png, image/gif, image/jpeg">
+                <label class="fs-6 fw-light text">1. Fotoğraf</label>
 
-              <img class="border border-radius" src="assets/274348852_320609883437173_4953649348556891409_n.jpg" alt=""
-                width="300" height="200">
+              </div>
+
+              <div class="container d-flex">
+
+                <input class="form-control mb-1" type="file" id="image2Input" accept="image/png, image/gif, image/jpeg">
+
+                <img class="border border-radius" src="" alt="" width="150" height="100" id="img2Prewiev">
+
+              </div>
+
+
+
 
             </div>
 
             <div class="col">
 
-              <label class="fs-6 fw-light text">2. Fotoğraf</label>
+              <div class="ms-3">
 
-              <input class="form-control mb-1" type="file" id="image3Input" accept="image/png, image/gif, image/jpeg">
+                <label class="fs-6 fw-light text">2. Fotoğraf</label>
 
-              <img class="border border-radius" src="assets/274348852_320609883437173_4953649348556891409_n.jpg" alt=""
-              width="300" height="200">
+              </div>
+
+              <div class="container d-flex">
+
+                <input class="form-control mb-1" type="file" id="image3Input" accept="image/png, image/gif, image/jpeg">
+
+                <img class="border border-radius" src="" id="image3Preview"
+                  alt="" width="150" height="100">
+
+              </div>
+
+
 
             </div>
+
+            <div class="col">
+
+              <div class="ms-3">
+
+                <label class="fs-6 fw-light text">3. Fotoğraf</label>
+
+              </div>
+
+              <div class="container d-flex">
+
+                <input class="form-control mb-1" type="file" id="image4Input" accept="image/png, image/gif, image/jpeg">
+
+                <img class="border border-radius" src="" id="image4Preview"
+                  alt="" width="150" height="100">
+
+
+              </div>
+
+
+
+            </div>
+
+            <div class="col">
+
+              <div class="ms-3">
+
+                <label class="fs-6 fw-light text">4. Fotoğraf</label>
+
+              </div>
+
+              <div class="container d-flex">
+
+                <input class="form-control mb-1" type="file" id="image5Input" accept="image/png, image/gif, image/jpeg">
+
+                <img class="border border-radius" src="" id="image5Preview"
+                  alt="" width="150" height="100">
+
+
+              </div>
+
+
+            </div>
+
+            <div class="col">
+
+              <div class="ms-3">
+
+                <label class="fs-4 fw-light text">Video</label>
+
+              </div>
+
+              <div class="container d-flex">
+
+                <input class="form-control mb-1" type="file" id="videoInput">
+
+                <video class="border border-radius" src="" id="videoPreview"
+                  alt="" width="150" height="100">
+
+              </div>
+
+
+
+
+
+            </div>
+
 
           </div>
 
 
 
 
-        </div>
-
-        <div class="container mt-2">
 
 
 
-        </div>
 
-        <div class="container mt-2">
+
+
+
 
 
 
@@ -325,25 +414,13 @@
 
         <div class="container mt-2">
 
-          <label class="fs-6 fw-light text">3. Fotoğraf</label>
 
-          <input class="form-control mb-1" type="file" id="image4Input" accept="image/png, image/gif, image/jpeg">
 
         </div>
 
         <div class="container mt-2">
 
-          <label class="fs-6 fw-light text">4. Fotoğraf</label>
 
-          <input class="form-control mb-1" type="file" id="image5Input" accept="image/png, image/gif, image/jpeg">
-
-        </div>
-
-        <div class="container mt-2">
-
-          <label class="fs-6 fw-light text">Video</label>
-
-          <input class="form-control mb-1" type="file" id="videoInput">
 
         </div>
 
