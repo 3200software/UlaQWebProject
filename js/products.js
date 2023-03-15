@@ -78,7 +78,10 @@ let addEditActivityContainer = document.getElementById('addEditContainer');
 
 const btnProductAdd = document.getElementById("productAddButton");
 const btnProductAddCancel = document.getElementById("productAddCancelButton");
-const btnAddProductSuccess = document.getElementById("productAddSuccessButton");
+const btnAddEditProductSuccess = document.getElementById("productAddSuccessButton");
+
+let btnAddEditStatus = String;
+let updateDocumentId = String;
 
 
 const productModelNoTextInput = document.getElementById("prodcutModelNoTextInput");
@@ -101,7 +104,13 @@ const image5Input = document.getElementById("image5Input");
 const videoInput = document.getElementById("videoInput");
 
 const img1Preview = document.getElementById("img1Preview");
-const img2Preview = document.getElementById("img2Prewiev");
+const img2Preview = document.getElementById("img2Preview");
+const img3Preview = document.getElementById("img3Preview");
+const img4Preview = document.getElementById("img4Preview");
+const img5Preview = document.getElementById("img5Preview");
+const videoPreview = document.getElementById("videoPreview");
+
+let firebaseProductImgUrl1 = String;
 
 
 
@@ -111,10 +120,10 @@ const products = document.querySelector(".productCard")
 function createProductsArray([proDocId, proimg, proModelNo, proCategory, ]) {
 
   let proCode = `
-  <div class="card m-2 d-flex" id="productCardMain" style="width: 10rem;">
-  <img class="card-img-top" src=${proimg} alt="${proModelNo}">
+  <div class="card m-2 d-flex col-3" id="productCardMain" style="width: 10rem;">
+  <img class="card-img-top" src=${proimg} alt="${proModelNo}" style="width: 150px; height: 113px;">
   <div class="card-body">
-   <h6 class="card-title">${proModelNo}</h5>
+   <h6 class="card-title">${proModelNo}</h6>
    <p class="card-text">${proCategory}</p>
    <a data-key="${proDocId}" href="#" class="btn btn-danger editBtn" id="producEditBtn">Düzenle</a>
  </div>
@@ -138,6 +147,10 @@ $("body").on("click", ".editBtn", async function () {
 
   var $key = $(this).data("key");
 
+  updateDocumentId = $key;
+
+  btnAddEditStatus = "EditProduct"
+
   if (addEditActivityContainer.style.display === "none") {
 
     addEditActivityContainer.style.display = ""
@@ -145,6 +158,8 @@ $("body").on("click", ".editBtn", async function () {
     btnProductAdd.style.visibility = "hidden"
 
   }
+
+
 
   const docRef = doc(db, "Product", $key);
   const docs = await getDoc(docRef);
@@ -171,9 +186,9 @@ $("body").on("click", ".editBtn", async function () {
     const firebaseProductAddUser = docs.data().productAddUser;
 
     const firebaseProductPrice = docs.data().productPrice;
-    const firebaseProductImgUrl1 = docs.data().productImgUrl1;
+    firebaseProductImgUrl1 = docs.data().productImgUrl1;
 
-    
+
 
     productModelNoTextInput.value = firebaseProductModelNo;
     productCategorySelectInput.value = firebaseProductCategory;
@@ -187,10 +202,9 @@ $("body").on("click", ".editBtn", async function () {
     productFoilPrintInvitationSelectInput.value = firebaseProductFoilPrintInvitation;
     productFoilPrintTagSelectInput.value = firebaseProductFoilPrintTag;
     productPriceInput.value = firebaseProductPrice;
-
     img1Preview.src = firebaseProductImgUrl1;
 
-   
+
 
   } else {
     // doc.data() will be undefined in this case
@@ -199,11 +213,25 @@ $("body").on("click", ".editBtn", async function () {
 
 
 
-  const queryImg1 = query(collection(db,"Product" , $key , "img") ,  where("no", "==", 2));
+  const queryImg1 = query(collection(db, "Product", $key, "img"), where("no", "==", 1));
 
   const snapshotimg1 = await getDocs(queryImg1);
 
   snapshotimg1.forEach((doc) => {
+
+    console.log(doc.data());
+
+    img1Preview.src = doc.data().productImgUrl;
+
+
+  })
+
+
+  const queryImg2 = query(collection(db, "Product", $key, "img"), where("no", "==", 2));
+
+  const snapshotimg2 = await getDocs(queryImg2);
+
+  snapshotimg2.forEach((doc) => {
 
     console.log(doc.data());
 
@@ -212,8 +240,58 @@ $("body").on("click", ".editBtn", async function () {
 
   })
 
- 
- 
+  const queryImg3 = query(collection(db, "Product", $key, "img"), where("no", "==", 3));
+
+  const snapshotimg3 = await getDocs(queryImg3);
+
+  snapshotimg3.forEach((doc) => {
+
+    console.log(doc.data());
+
+    img3Preview.src = doc.data().productImgUrl;
+
+
+  })
+
+
+  const queryImg4 = query(collection(db, "Product", $key, "img"), where("no", "==", 4));
+
+  const snapshotimg4 = await getDocs(queryImg4);
+
+  snapshotimg4.forEach((doc) => {
+
+    console.log(doc.data());
+
+    img4Preview.src = doc.data().productImgUrl;
+
+
+  })
+
+  const queryImg5 = query(collection(db, "Product", $key, "img"), where("no", "==", 5));
+
+  const snapshotimg5 = await getDocs(queryImg5);
+
+  snapshotimg5.forEach((doc) => {
+
+    console.log(doc.data());
+
+    img5Preview.src = doc.data().productImgUrl;
+
+
+  })
+
+  const queryVideo = query(collection(db, "Product", $key, "img"), where("no", "==", 6));
+
+  const snapshotVideo = await getDocs(queryVideo);
+
+  snapshotVideo.forEach((doc) => {
+
+    console.log(doc.data());
+
+    videoPreview.src = doc.data().productImgUrl;
+
+
+  })
 
 
 
@@ -237,7 +315,7 @@ querySnapshot.forEach((doc) => {
 
   createProductsArray(productItem);
 
-
+  
 
 });
 
@@ -294,12 +372,23 @@ btnProductAdd.addEventListener("click", () => {
     mainActivityContainer.style.display = "none"
     btnProductAdd.style.visibility = "hidden"
 
+    img1Preview.style.display = "none"
+    img2Preview.style.display = "none"
+    img3Preview.style.display = "none"
+    img4Preview.style.display = "none"
+    img5Preview.style.display = "none"
+    videoPreview.style.display = "none"
+
+    btnAddEditStatus = "AddProduct"
+
 
 
   }
 })
 
-btnAddProductSuccess.addEventListener("click", async () => {
+btnAddEditProductSuccess.addEventListener("click", async () => {
+
+  console.log(btnAddEditStatus);
 
   var imageFiles1 = image1Input.files[0];
   var imageFiles2 = image2Input.files[0];
@@ -323,22 +412,306 @@ btnAddProductSuccess.addEventListener("click", async () => {
   var videoUrl1;
 
 
-  console.log(productModelNoTextInput.value, productCategorySelectInput.value, productEnvelopeSelectInput.value)
-
-  if (productModelNoTextInput.value == "" || productCategorySelectInput.value == "0" || productSubCategorySelectInput.value == "0" ||
-    productSizeCategorySelectInput.value == "0" || productColorCategorySelectInput == "0" || productEnvelopeSelectInput.value == 0 ||
-    productTradeMarkSelectInput.value == 0 || productFoilPrintInvitationSelectInput.value == 0 || productFoilPrintTagSelectInput.value == 0 ||
-    productPriceInput.value == 0) {
-
-    alert("Lütfen bütün kutucukları doldurunuz! Boyut kutucukları boş kalabilir!")
+  if (btnAddEditStatus == "AddProduct") {
 
 
-  } else {
+
+    console.log(productModelNoTextInput.value, productCategorySelectInput.value, productEnvelopeSelectInput.value)
+
+    if (productModelNoTextInput.value == "" || productCategorySelectInput.value == "0" || productSubCategorySelectInput.value == "0" ||
+      productSizeCategorySelectInput.value == "0" || productColorCategorySelectInput == "0" || productEnvelopeSelectInput.value == 0 ||
+      productTradeMarkSelectInput.value == 0 || productFoilPrintInvitationSelectInput.value == 0 || productFoilPrintTagSelectInput.value == 0 ||
+      productPriceInput.value == 0) {
+
+      alert("Lütfen bütün kutucukları doldurunuz! Boyut kutucukları boş kalabilir!")
 
 
-    if (imageFiles1 == null || imageFiles2 == null) {
+    } else {
 
-      alert("Lütfen vitrin fotoğrafını ve ürüne ait en az 1 fotoğraf ekleyin.");
+
+      if (imageFiles1 == null || imageFiles2 == null) {
+
+        alert("Lütfen vitrin fotoğrafını ve ürüne ait en az 1 fotoğraf ekleyin.");
+
+      } else {
+
+        let storageRef1 = ref(storage, "productImages/" + imageFileName1);
+        uploadBytes(storageRef1, imageFiles1).then((snapshot) => {
+
+          getDownloadURL(ref(storage, "productImages/" + imageFileName1)).then(async (url) => {
+
+            image1Url = url;
+
+            try {
+
+              const docRef = await addDoc(collection(db, "Product"), {
+
+                productModelNo: productModelNoTextInput.value,
+                productCategory: productCategorySelectInput.value,
+                productSubCategory: productSubCategorySelectInput.value,
+                productSizeCategory: productSizeCategorySelectInput.value,
+                productWidth: productSizeWidthTextInput.value,
+                productHeight: productSizeHeightTextInput.value,
+                productColorCategory: productColorCategorySelectInput.value,
+                productEnvelope: productEnvelopeSelectInput.value,
+                productTradeMark: productTradeMarkSelectInput.value,
+                productFoilPrintInvitation: productFoilPrintInvitationSelectInput.value,
+                productFoilPrintTag: productFoilPrintTagSelectInput.value,
+                productSalesQuantity: 0,
+                productDeliveryTime: 0,
+                productStock: 0,
+                productFavorites: 0,
+                productAddDate: new Date(),
+                productAddUser: auth.currentUser.email,
+
+                productPrice: productPriceInput.value,
+
+                productImgUrl1: image1Url,
+
+
+
+              });
+
+              console.log("Document written with ID: ", docRef.id);
+
+              try {
+
+                await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
+
+                  productImgUrl: image1Url,
+                  no: 1,
+
+                });
+
+                console.log("Document written with ID: ", imageFileName1);
+
+                let storageRef2 = ref(storage, "productImages/" + imageFileName2);
+                uploadBytes(storageRef2, imageFiles2).then((snapshot) => {
+
+                  getDownloadURL(ref(storage, "productImages/" + imageFileName2)).then(async (url) => {
+
+                    image2Url = url;
+
+                    try {
+
+                      await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
+
+                        productImgUrl: image2Url,
+                        no: 2,
+
+
+                      });
+
+                      console.log("Document written with ID: ", imageFileName2);
+
+                      let storageRef3 = ref(storage, "productImages/" + imageFileName3);
+                      uploadBytes(storageRef3, imageFiles3).then((snapshot) => {
+
+                        getDownloadURL(ref(storage, "productImages/" + imageFileName3)).then(async (url) => {
+
+                          image3Url = url;
+
+                          try {
+
+                            await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
+
+                              productImgUrl: image3Url,
+                              no: 3,
+
+                            });
+
+                            console.log("Document written with ID: ", imageFileName3);
+
+                            let storageRef4 = ref(storage, "productImages/" + imageFileName4);
+                            uploadBytes(storageRef4, imageFiles4).then((snapshot) => {
+
+                              getDownloadURL(ref(storage, "productImages/" + imageFileName4)).then(async (url) => {
+
+                                image4Url = url;
+
+                                try {
+
+                                  await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
+
+
+                                    productImgUrl: image4Url,
+                                    no: 4,
+
+                                  });
+
+                                  console.log("Document written with ID: ", imageFileName4);
+
+
+                                  let storageRef5 = ref(storage, "productImages/" + imageFileName5);
+                                  uploadBytes(storageRef5, imageFiles5).then((snapshot) => {
+
+                                    getDownloadURL(ref(storage, "productImages/" + imageFileName5)).then(async (url) => {
+
+                                      image5Url = url;
+
+
+                                      try {
+
+                                        await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
+
+
+                                          productImgUrl: image5Url,
+                                          no: 5,
+
+
+                                        });
+
+                                        console.log("Document written with ID: ", imageFileName5);
+
+                                        let storageRef6 = ref(storage, "productImages/" + videoFileName1);
+                                        uploadBytes(storageRef6, videoFiles1).then((snapshot) => {
+                          
+                                          getDownloadURL(ref(storage, "productImages/" + videoFileName1)).then(async (url) => {
+                          
+                                            videoUrl1 = url;
+                          
+                                            try {
+                          
+                                              await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
+                          
+                                                productImgUrl: videoUrl1,
+                                                no: 6,
+                          
+                                              });
+                          
+                                              console.log("Document written with ID: ", videoFileName1);
+
+                                              window.location.href ="products.html"
+                                              
+                                              
+                          
+                                            } catch (e) {
+                          
+                                              console.error("Error adding document: ", e);
+                          
+                          
+                                            }
+                          
+                                          })
+                          
+                                        });
+
+
+                                      } catch (e) {
+
+                                        console.error("Error adding document: ", e);
+
+
+                                      }
+
+                                    })
+
+                                  });
+
+
+                                } catch (e) {
+
+                                  console.error("Error adding document: ", e);
+
+
+                                }
+
+
+
+                              })
+
+                            });
+
+
+                          } catch (e) {
+
+                            console.error("Error adding document: ", e);
+
+
+                          }
+
+
+
+                        })
+
+                      });
+
+
+                    } catch (e) {
+
+                      console.error("Error adding document: ", e);
+
+
+                    }
+
+
+                  })
+
+                });
+
+
+              } catch (e) {
+
+                console.error("Error adding document: ", e);
+
+
+              }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+            } catch (e) {
+
+              console.error("Error adding document: ", e);
+
+            }
+
+
+
+          })
+
+        });
+
+      }
+
+
+    }
+
+
+
+
+  } else if (btnAddEditStatus == "EditProduct") {
+
+    let imgUrl = String;
+
+    if (imageFiles1 == null) {
+
+      imgUrl = firebaseProductImgUrl1;
 
     } else {
 
@@ -347,46 +720,59 @@ btnAddProductSuccess.addEventListener("click", async () => {
 
         getDownloadURL(ref(storage, "productImages/" + imageFileName1)).then(async (url) => {
 
-          image1Url = url;
+          imgUrl = url;
 
-          try {
+        })
 
-            const docRef = await addDoc(collection(db, "Product"), {
+      });
 
-              productModelNo: productModelNoTextInput.value,
-              productCategory: productCategorySelectInput.value,
-              productSubCategory: productSubCategorySelectInput.value,
-              productSizeCategory: productSizeCategorySelectInput.value,
-              productWidth: productSizeWidthTextInput.value,
-              productHeight: productSizeHeightTextInput.value,
-              productColorCategory: productColorCategorySelectInput.value,
-              productEnvelope: productEnvelopeSelectInput.value,
-              productTradeMark: productTradeMarkSelectInput.value,
-              productFoilPrintInvitation: productFoilPrintInvitationSelectInput.value,
-              productFoilPrintTag: productFoilPrintTagSelectInput.value,
-              productSalesQuantity: 0,
-              productDeliveryTime: 0,
-              productStock: 0,
-              productFavorites: 0,
-              productAddDate: new Date(),
-              productAddUser: auth.currentUser.email,
+    }
 
-              productPrice: productPriceInput.value,
+    try {
 
-              productImgUrl1: image1Url,
+      const updateRef = doc(db, "Product", updateDocumentId);
 
+      // Set the "capital" field of the city 'DC'
+      await updateDoc(updateRef, {
 
+        productModelNo: productModelNoTextInput.value,
+        productCategory: productCategorySelectInput.value,
+        productSubCategory: productSubCategorySelectInput.value,
+        productSizeCategory: productSizeCategorySelectInput.value,
+        productWidth: productSizeWidthTextInput.value,
+        productHeight: productSizeHeightTextInput.value,
+        productColorCategory: productColorCategorySelectInput.value,
+        productEnvelope: productEnvelopeSelectInput.value,
+        productTradeMark: productTradeMarkSelectInput.value,
+        productFoilPrintInvitation: productFoilPrintInvitationSelectInput.value,
+        productFoilPrintTag: productFoilPrintTagSelectInput.value,
 
-            });
+        productPrice: productPriceInput.value,
 
-            console.log("Document written with ID: ", docRef.id);
+        productImgUrl1: imgUrl,
+
+      });
+
+      if (imageFiles1 != null) {
+
+        let storageRef1 = ref(storage, "productImages/" + imageFileName1);
+        uploadBytes(storageRef1, imageFiles1).then((snapshot) => {
+
+          getDownloadURL(ref(storage, "productImages/" + imageFileName1)).then(async (url) => {
+
+            image1Url = url;
+
 
             try {
 
-              await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
+              const updateRef = doc(collection(db, "Product", updateDocumentId, "img"), where("no", "==", 4));
+
+              await updateDoc(updateRef, {
+
 
                 productImgUrl: image1Url,
-                no: 1,
+
+
 
               });
 
@@ -401,200 +787,232 @@ btnAddProductSuccess.addEventListener("click", async () => {
             }
 
 
-            let storageRef2 = ref(storage, "productImages/" + imageFileName2);
-            uploadBytes(storageRef2, imageFiles2).then((snapshot) => {
 
-              getDownloadURL(ref(storage, "productImages/" + imageFileName2)).then(async (url) => {
+          })
 
-                image2Url = url;
+        });
 
-                try {
+      }
 
-                  await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
 
-                    productImgUrl: image2Url,
-                    no: 2,
+      if (imageFiles2 != null) {
 
+        let storageRef2 = ref(storage, "productImages/" + imageFileName2);
+        uploadBytes(storageRef2, imageFiles2).then((snapshot) => {
 
-                  });
+          getDownloadURL(ref(storage, "productImages/" + imageFileName2)).then(async (url) => {
 
-                  console.log("Document written with ID: ", docRef.id);
+            image2Url = url;
 
 
-                } catch (e) {
+            try {
 
-                  console.error("Error adding document: ", e);
+              const updateRef = doc(db, "Product", updateDocumentId, "img", where("no", "==", 2));
 
+              await updateDoc(updateRef, {
 
-                }
 
+                productImgUrl: image2Url,
 
-              })
 
-            });
 
+              });
 
+              console.log("Document written with ID: ", docRef.id);
 
-            let storageRef3 = ref(storage, "productImages/" + imageFileName3);
-            uploadBytes(storageRef3, imageFiles3).then((snapshot) => {
 
-              getDownloadURL(ref(storage, "productImages/" + imageFileName3)).then(async (url) => {
+            } catch (e) {
 
-                image3Url = url;
+              console.error("Error adding document: ", e);
 
-                try {
 
-                  await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
+            }
 
-                    productImgUrl: image3Url,
-                    no: 3,
 
-                  });
 
-                  console.log("Document written with ID: ", docRef.id);
+          })
 
+        });
 
-                } catch (e) {
+      }
 
-                  console.error("Error adding document: ", e);
+      if (imageFiles3 != null) {
 
+        let storageRef3 = ref(storage, "productImages/" + imageFileName3);
+        uploadBytes(storageRef3, imageFiles3).then((snapshot) => {
 
-                }
+          getDownloadURL(ref(storage, "productImages/" + imageFileName3)).then(async (url) => {
 
+            image3Url = url;
 
 
-              })
+            try {
 
-            });
+              const updateRef = doc(db, "Product", updateDocumentId, "img", where("no", "==", 3));
 
+              await updateDoc(updateRef, {
 
 
+                productImgUrl: image3Url,
 
-            let storageRef4 = ref(storage, "productImages/" + imageFileName4);
-            uploadBytes(storageRef4, imageFiles4).then((snapshot) => {
 
-              getDownloadURL(ref(storage, "productImages/" + imageFileName4)).then(async (url) => {
 
-                image4Url = url;
+              });
 
-                try {
+              console.log("Document written with ID: ", docRef.id);
 
-                  await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
 
+            } catch (e) {
 
-                    productImgUrl: image4Url,
-                    no: 4,
+              console.error("Error adding document: ", e);
 
-                  });
 
-                  console.log("Document written with ID: ", docRef.id);
+            }
 
 
-                } catch (e) {
 
-                  console.error("Error adding document: ", e);
+          })
 
+        });
 
-                }
+      }
 
+      if (imageFiles4 != null) {
 
+        let storageRef4 = ref(storage, "productImages/" + imageFileName4);
+        uploadBytes(storageRef4, imageFiles4).then((snapshot) => {
 
-              })
+          getDownloadURL(ref(storage, "productImages/" + imageFileName4)).then(async (url) => {
 
-            });
+            image4Url = url;
 
 
+            try {
 
+              const updateRef = doc(collection(db, "Product", updateDocumentId, "img"), where("no", "==", 4));
 
-            let storageRef5 = ref(storage, "productImages/" + imageFileName5);
-            uploadBytes(storageRef5, imageFiles5).then((snapshot) => {
+              await updateDoc(updateRef, {
 
-              getDownloadURL(ref(storage, "productImages/" + imageFileName5)).then(async (url) => {
 
-                image5Url = url;
+                productImgUrl: image4Url,
 
 
-                try {
 
-                  await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
+              });
 
+              console.log("Document written with ID: ", docRef.id);
 
-                    productImgUrl: image5Url,
-                    no: 5,
 
+            } catch (e) {
 
-                  });
+              console.error("Error adding document: ", e);
 
-                  console.log("Document written with ID: ", docRef.id);
 
+            }
 
-                } catch (e) {
 
-                  console.error("Error adding document: ", e);
 
+          })
 
-                }
+        });
 
+      }
 
+      if (imageFiles5 != null) {
 
-              })
+        let storageRef5 = ref(storage, "productImages/" + imageFileName5);
+        uploadBytes(storageRef5, imageFiles5).then((snapshot) => {
 
-            });
+          getDownloadURL(ref(storage, "productImages/" + imageFileName5)).then(async (url) => {
 
+            image5Url = url;
 
 
+            try {
 
+              const updateRef = doc(db, "Product", updateDocumentId, "img", where("no", "==", 5));
 
-            let storageRef6 = ref(storage, "productImages/" + videoFileName1);
-            uploadBytes(storageRef6, videoFiles1).then((snapshot) => {
+              await updateDoc(updateRef, {
 
-              getDownloadURL(ref(storage, "productImages/" + videoFileName1)).then(async (url) => {
 
-                videoUrl1 = url;
+                productImgUrl: image5Url,
 
-                try {
 
-                  await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
 
-                    productImgUrl: videoUrl1,
-                    no: 6,
+              });
 
-                  });
+              console.log("Document written with ID: ", docRef.id);
 
-                  console.log("Document written with ID: ", docRef.id);
 
+            } catch (e) {
 
-                } catch (e) {
+              console.error("Error adding document: ", e);
 
-                  console.error("Error adding document: ", e);
 
+            }
 
-                }
 
-              })
 
-            });
+          })
 
+        });
 
+      }
 
+      if (videoFiles1 != null) {
 
+        let storageRef6 = ref(storage, "productImages/" + videoFileName1);
+        uploadBytes(storageRef6, videoFiles1).then((snapshot) => {
 
+          getDownloadURL(ref(storage, "productImages/" + videoFileName1)).then(async (url) => {
 
+            videoUrl1 = url;
 
 
-          } catch (e) {
+            try {
 
-            console.error("Error adding document: ", e);
+              const updateRef = doc(db, "Product", updateDocumentId, "img", where("no", "==", 1));
 
-          }
+              await updateDoc(updateRef, {
 
 
+                productImgUrl: videoUrl1,
 
-        })
 
-      });
+
+              });
+
+              console.log("Document written with ID: ", docRef.id);
+
+
+            } catch (e) {
+
+              console.error("Error adding document: ", e);
+
+
+            }
+
+
+
+          })
+
+        });
+
+      }
+
+
+
+
+    } catch (e) {
+
+      console.error("Error adding document: ", e);
+
 
     }
+
+
+
+
 
 
   }
