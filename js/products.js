@@ -120,13 +120,13 @@ const products = document.querySelector(".productCard")
 function createProductsArray([proDocId, proimg, proModelNo, proCategory, ]) {
 
   let proCode = `
-  <div class="card m-2 d-flex col-3" id="productCardMain" style="width: 10rem;">
-  <img class="card-img-top" src=${proimg} alt="${proModelNo}" style="width: 150px; height: 113px;">
-  <div class="card-body">
-   <h6 class="card-title">${proModelNo}</h6>
-   <p class="card-text">${proCategory}</p>
-   <a data-key="${proDocId}" href="#" class="btn btn-danger editBtn" id="producEditBtn">Düzenle</a>
- </div>
+
+  <div class="d-flex justify-content-between border rounded-2 m-1"> 
+        
+  <h6 class="m-2 p-1" style="padding: 1%;">${proModelNo}</h6>
+
+  <button type="button" class="btn btn-primary editBtn m-2">Düzenle</button>
+
 </div>
 
 `
@@ -140,6 +140,8 @@ function createProductsArray([proDocId, proimg, proModelNo, proCategory, ]) {
 
 
 };
+
+
 
 
 $("body").on("click", ".editBtn", async function () {

@@ -71,39 +71,40 @@
 
     </div>
 
-    <div class="row">
 
-      <div class="col-9" id="mainContainerBody" >
 
-        <div class="productCard row">
+    <div class="d-flex mt-3 border border-primary rounded-2" id="filterContainer">
 
-        </div>
+      <div class="h4 m-2 p-1">Filtrele</div>
 
-      </div>
+      <input type="number" class="form-control col ms-3 mt-2 mb-2" id="filterModelNoInput" placeholder="Model No">
 
-      <div class="col-3 mt-2 border-start" id="filterContainer">
+      <select class="col m-2  form-select" id="filterModelNoFormSelect" aria-label="Default select example">
 
-        <div class="h4">Filtrele</div>
+        <option value="0" selected>Kategori</option>
 
-        <input type="number" class="form-control col  mt-2 mb-2" id="filterModelNoInput" placeholder="Model No">
+        <option value="1">Düğün</option>
 
-        <select class="col mt-2 mb-2  form-select" id="filterModelNoFormSelect" aria-label="Default select example">
+        <option value="2">Sünnet</option>
 
-          <option value="0" selected>Kategori</option>
+        <option value="3">Nişan</option>
 
-          <option value="1">Düğün</option>
+        <option value="3">Kına</option>
 
-          <option value="2">Sünnet</option>
+      </select>
 
-          <option value="3">Nişan</option>
+    </div>
 
-          <option value="3">Kına</option>
+    <div class="container mt-3" id="mainContainerBody" >
 
-        </select>
+      <div class="productCard row">
+
 
       </div>
 
     </div>
+
+
 
   </div>
 
@@ -319,8 +320,7 @@
 
                 <input class="form-control mb-1" type="file" id="image3Input" accept="image/png, image/gif, image/jpeg">
 
-                <img class="border border-radius" src="" id="img3Preview"
-                  alt="" width="150" height="100">
+                <img class="border border-radius" src="" id="img3Preview" alt="" width="150" height="100">
 
               </div>
 
@@ -340,8 +340,7 @@
 
                 <input class="form-control mb-1" type="file" id="image4Input" accept="image/png, image/gif, image/jpeg">
 
-                <img class="border border-radius" src="" id="img4Preview"
-                  alt="" width="150" height="100">
+                <img class="border border-radius" src="" id="img4Preview" alt="" width="150" height="100">
 
 
               </div>
@@ -362,8 +361,7 @@
 
                 <input class="form-control mb-1" type="file" id="image5Input" accept="image/png, image/gif, image/jpeg">
 
-                <img class="border border-radius" src="" id="img5Preview"
-                  alt="" width="150" height="100">
+                <img class="border border-radius" src="" id="img5Preview" alt="" width="150" height="100">
 
 
               </div>
@@ -383,8 +381,7 @@
 
                 <input class="form-control mb-1" type="file" id="videoInput">
 
-                <video class="border border-radius" src="" id="videoPreview"
-                  alt="" width="150" height="100">
+                <video class="border border-radius" src="" id="videoPreview" alt="" width="150" height="100">
 
               </div>
 
