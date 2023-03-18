@@ -24,7 +24,8 @@ import {
   limit,
   getDocs,
   updateDoc,
-  getDoc
+  getDoc,
+  Timestamp
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
 
 const firebaseapp = initializeApp({
@@ -125,7 +126,7 @@ function createProductsArray([proDocId, proimg, proModelNo, proCategory, ]) {
         
   <h6 class="m-2 p-1" style="padding: 1%;">${proModelNo}</h6>
 
-  <button type="button" class="btn btn-primary editBtn m-2">Düzenle</button>
+  <button type="button" data-key=${proDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
 
 </div>
 
@@ -153,6 +154,8 @@ $("body").on("click", ".editBtn", async function () {
 
   btnAddEditStatus = "EditProduct"
 
+  
+
   if (addEditActivityContainer.style.display === "none") {
 
     addEditActivityContainer.style.display = ""
@@ -163,7 +166,7 @@ $("body").on("click", ".editBtn", async function () {
 
 
 
-  const docRef = doc(db, "Product", $key);
+  const docRef = doc(db, "Product", updateDocumentId);
   const docs = await getDoc(docRef);
 
   if (docs.exists()) {
@@ -190,7 +193,8 @@ $("body").on("click", ".editBtn", async function () {
     const firebaseProductPrice = docs.data().productPrice;
     firebaseProductImgUrl1 = docs.data().productImgUrl1;
 
-
+    
+    
 
     productModelNoTextInput.value = firebaseProductModelNo;
     productCategorySelectInput.value = firebaseProductCategory;
@@ -444,6 +448,10 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
 
             image1Url = url;
 
+            var date = new Date();
+
+            var priceDouble = parseFloat(productPriceInput.value)
+
             try {
 
               const docRef = await addDoc(collection(db, "Product"), {
@@ -463,10 +471,10 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
                 productDeliveryTime: 0,
                 productStock: 0,
                 productFavorites: 0,
-                productAddDate: new Date(),
+                productAddDate: Timestamp.fromDate(new Date(date)),
                 productAddUser: auth.currentUser.email,
 
-                productPrice: productPriceInput.value,
+                productPrice: priceDouble,
 
                 productImgUrl1: image1Url,
 
@@ -511,7 +519,15 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
 
                         getDownloadURL(ref(storage, "productImages/" + imageFileName3)).then(async (url) => {
 
-                          image3Url = url;
+                          if (imageFiles3 == null) {
+
+                            image3Url = "";
+
+                          } else {
+
+                            image3Url = url;
+
+                          }
 
                           try {
 
@@ -529,7 +545,15 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
 
                               getDownloadURL(ref(storage, "productImages/" + imageFileName4)).then(async (url) => {
 
-                                image4Url = url;
+                                if (imageFiles4 == null) {
+
+                                  image4Url = "";
+      
+                                } else {
+      
+                                  image4Url = url;
+      
+                                }
 
                                 try {
 
@@ -549,8 +573,16 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
 
                                     getDownloadURL(ref(storage, "productImages/" + imageFileName5)).then(async (url) => {
 
-                                      image5Url = url;
 
+                                      if (imageFiles5 == null) {
+
+                                        image5Url = "";
+            
+                                      } else {
+            
+                                        image5Url = url;
+            
+                                      }
 
                                       try {
 
@@ -570,7 +602,15 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
                           
                                           getDownloadURL(ref(storage, "productImages/" + videoFileName1)).then(async (url) => {
                           
-                                            videoUrl1 = url;
+                                            if (videoFiles1 == null) {
+
+                                              videoUrl1 = "";
+                  
+                                            } else {
+                  
+                                              videoUrl1 = url;
+                  
+                                            }
                           
                                             try {
                           
@@ -656,35 +696,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
 
                 console.error("Error adding document: ", e);
 
-
               }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
-
-
-
-
-
 
 
             } catch (e) {
