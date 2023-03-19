@@ -127,8 +127,14 @@ $("body").on("click", ".editBtn", async function () {
   if (docs.exists()) {
 
     const firebaseOrdersDocId = doc.id;
+
     const firebaseOrdersUserEmail = doc.data().userEmail;
-    const firebaseOrdersAnonymousUser = doc.data().anonymousUserId;
+    const firebaseOrdersAnonymousUser = doc.data().anonymousDeviceId;
+    const firebaseOrdersOrderID = doc.data().orderID;
+    const firebaseOrdersInvitationCode = doc.data().invitationCode;
+    const firebaseOrdersInvitationPiece = doc.data().invitationPiece;
+    const firebaseOrdersInvitationPrice = doc.data().invitationPrice;
+    
     const firebaseOrdersQrCode = doc.data().QRCode;
     const firebaseOrdersQrCodeImageUrl = doc.data().QRCodeImage;
     const firebaseOrdersVideoUrl = doc.data().videoUrl;
@@ -138,12 +144,14 @@ $("body").on("click", ".editBtn", async function () {
     const firebaseOrdersGroomFamily = doc.data().groomFamily;
     const firebaseOrdersGroomName = doc.data().groomName;
     const firebaseOrdersGroomSurName = doc.data().groomSurName;
-    const firebaseOrdersInvitationCode = doc.data().invitationCode;
-    const firebaseOrdersInvitationPiece = doc.data().invitationPiece;
-    const firebaseOrdersInvitationPrice = doc.data().invitationPrice;
     const firebaseOrdersInvitationWriting = doc.data().invitationWriting;
-    const firebaseOrdersOrderID = doc.data().orderID;
     const firebaseOrdersOrderPhase = doc.data().orderPhase;
+
+    const firebaseInvitationFoilPrint = doc.data().invitationFoilPrint;
+    const firebaseEnvelopeFoilPrint = doc.data().envelopeFoilPrint;
+    const firebaseFoilPrintType = doc.data().foilPrintType;
+    const firebaseEnvelopment = doc.data().invitationEnvelopement;
+    const firebaseInvitationGuestName = doc.data().invitationGuestName;
 
 
 
