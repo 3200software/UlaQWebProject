@@ -94,8 +94,11 @@ const productSizeHeightTextInput = document.getElementById("productSizeHeightTex
 const productColorCategorySelectInput = document.getElementById("productColorCategorySelectInput");
 const productEnvelopeSelectInput = document.getElementById("productEnvelopeSelectInput");
 const productTradeMarkSelectInput = document.getElementById("productTradeMarkSelectInput");
-const productFoilPrintInvitationSelectInput = document.getElementById("productFoilPrintInvitationSelectInput");
-const productFoilPrintTagSelectInput = document.getElementById("productFoilPrintTagSelectInput");
+const productFoilPrintInvitationSelectInput = document.getElementById("productPrintTypeInvitationSelectInput");
+const productFoilPrintTagSelectInput = document.getElementById("productPrintTypeTagSelectInput");
+const productTradeMarkModelNo = document.getElementById("tradeMarkModelNoTextInput");
+const productTardeMarkSubModel = document.getElementById("tradeMarkSubModel");
+const productClassSelectInput = document.getElementById("productClassSelectInput");
 const productPriceInput = document.getElementById("productInvitationPrice");
 const image1Input = document.getElementById("image1Input");
 const image2Input = document.getElementById("image2Input");
@@ -154,7 +157,7 @@ $("body").on("click", ".editBtn", async function () {
 
   btnAddEditStatus = "EditProduct"
 
-  
+
 
   if (addEditActivityContainer.style.display === "none") {
 
@@ -183,6 +186,9 @@ $("body").on("click", ".editBtn", async function () {
     const firebaseProductTradeMark = docs.data().productTradeMark;
     const firebaseProductFoilPrintInvitation = docs.data().productFoilPrintInvitation;
     const firebaseProductFoilPrintTag = docs.data().productFoilPrintTag;
+    const firebaseProductTrademarkModelNo = docs.data().productTradeMarkModelNo;
+    const firebaseTradeMarkSubModel = docs.data().productTradeMarkSubModel;
+    const firebaseProductClass = docs.data().productClass;
     const firebaseProductSalesQuantity = docs.data().productSalesQuantity;
     const firebaseProductDeliveryTime = docs.data().productDeliveryTime;
     const firebaseProductStock = docs.data().productStock;
@@ -193,8 +199,8 @@ $("body").on("click", ".editBtn", async function () {
     const firebaseProductPrice = docs.data().productPrice;
     firebaseProductImgUrl1 = docs.data().productImgUrl1;
 
-    
-    
+
+
 
     productModelNoTextInput.value = firebaseProductModelNo;
     productCategorySelectInput.value = firebaseProductCategory;
@@ -209,6 +215,9 @@ $("body").on("click", ".editBtn", async function () {
     productFoilPrintTagSelectInput.value = firebaseProductFoilPrintTag;
     productPriceInput.value = firebaseProductPrice;
     img1Preview.src = firebaseProductImgUrl1;
+    productTradeMarkModelNo.value = firebaseProductTrademarkModelNo;
+    productTardeMarkSubModel.value = firebaseTradeMarkSubModel;
+    productClassSelectInput.value = firebaseProductClass;
 
 
 
@@ -321,7 +330,7 @@ querySnapshot.forEach((doc) => {
 
   createProductsArray(productItem);
 
-  
+
 
 });
 
@@ -427,7 +436,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
     if (productModelNoTextInput.value == "" || productCategorySelectInput.value == "0" || productSubCategorySelectInput.value == "0" ||
       productSizeCategorySelectInput.value == "0" || productColorCategorySelectInput == "0" || productEnvelopeSelectInput.value == 0 ||
       productTradeMarkSelectInput.value == 0 || productFoilPrintInvitationSelectInput.value == 0 || productFoilPrintTagSelectInput.value == 0 ||
-      productPriceInput.value == 0) {
+      productPriceInput.value == 0 || productTardeMarkSubModel.value == 0 || productClassSelectInput.value == 0 || productTradeMarkModelNo.value == "") {
 
       alert("Lütfen bütün kutucukları doldurunuz! Boyut kutucukları boş kalabilir!")
 
@@ -457,8 +466,11 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
               const docRef = await addDoc(collection(db, "Product"), {
 
                 productModelNo: productModelNoTextInput.value,
+                productTradeMarkModelNo: productTradeMarkModelNo.value,
                 productCategory: productCategorySelectInput.value,
                 productSubCategory: productSubCategorySelectInput.value,
+                productTradeMarkSubModel: productTardeMarkSubModel.value,
+                productClass: productClassSelectInput.value,
                 productSizeCategory: productSizeCategorySelectInput.value,
                 productWidth: productSizeWidthTextInput.value,
                 productHeight: productSizeHeightTextInput.value,
@@ -548,11 +560,11 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
                                 if (imageFiles4 == null) {
 
                                   image4Url = "";
-      
+
                                 } else {
-      
+
                                   image4Url = url;
-      
+
                                 }
 
                                 try {
@@ -577,11 +589,11 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
                                       if (imageFiles5 == null) {
 
                                         image5Url = "";
-            
+
                                       } else {
-            
+
                                         image5Url = url;
-            
+
                                       }
 
                                       try {
@@ -599,43 +611,43 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
 
                                         let storageRef6 = ref(storage, "productImages/" + videoFileName1);
                                         uploadBytes(storageRef6, videoFiles1).then((snapshot) => {
-                          
+
                                           getDownloadURL(ref(storage, "productImages/" + videoFileName1)).then(async (url) => {
-                          
+
                                             if (videoFiles1 == null) {
 
                                               videoUrl1 = "";
-                  
+
                                             } else {
-                  
+
                                               videoUrl1 = url;
-                  
+
                                             }
-                          
+
                                             try {
-                          
+
                                               await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
-                          
+
                                                 productImgUrl: videoUrl1,
                                                 no: 6,
-                          
+
                                               });
-                          
+
                                               console.log("Document written with ID: ", videoFileName1);
 
-                                              window.location.href ="products.html"
-                                              
-                                              
-                          
+                                              window.location.href = "products.html"
+
+
+
                                             } catch (e) {
-                          
+
                                               console.error("Error adding document: ", e);
-                          
-                          
+
+
                                             }
-                          
+
                                           })
-                          
+
                                         });
 
 
@@ -750,9 +762,12 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
       await updateDoc(updateRef, {
 
         productModelNo: productModelNoTextInput.value,
+        productTradeMarkModelNo: productTradeMarkModelNo.value,
         productCategory: productCategorySelectInput.value,
         productSubCategory: productSubCategorySelectInput.value,
         productSizeCategory: productSizeCategorySelectInput.value,
+        productTradeMarkSubModel: productTardeMarkSubModel.value,
+        productClass: productClassSelectInput.value,
         productWidth: productSizeWidthTextInput.value,
         productHeight: productSizeHeightTextInput.value,
         productColorCategory: productColorCategorySelectInput.value,

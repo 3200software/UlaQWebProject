@@ -95,7 +95,7 @@
 
     </div>
 
-    <div class="container mt-3" id="mainContainerBody" >
+    <div class="container mt-3" id="mainContainerBody">
 
       <div class="productCard row">
 
@@ -124,20 +124,42 @@
 
         <div class="col">
 
-          <input type="text" class="form-control" id="prodcutModelNoTextInput" placeholder="Model No">
+          <input type="text" class="form-control ms-0" id="prodcutModelNoTextInput" placeholder="UlaQ Model No">
 
+        </div>
 
+        <div class="col">
+
+          <input type="text" class="form-control" id="tradeMarkModelNoTextInput" placeholder="Firma Model No">
+
+        </div>
+
+        <div class="col">
+
+          <select class="form-select col ms-1" id="productTradeMarkSelectInput" aria-label="Default select example">
+
+            <option value="0" selected>Marka</option>
+
+            <option value="1">İklim</option>
+
+            <option value="2">Sedef</option>
+
+          </select>
+
+        </div>
+
+        <div class="col">
+
+          <input type="text" class="form-control" id="tradeMarkSubModel" placeholder="Firma Alt Kategori">
 
         </div>
 
         <div class="col">
 
           <input type="number" min="0" max="10000" step="1" class="form-control" id="productInvitationPrice"
-            placeholder="Fiyat">
+          placeholder="Fiyat">
 
         </div>
-
-
 
 
       </div>
@@ -159,6 +181,21 @@
           <option value="4">Kına</option>
 
         </select>
+
+        <select class="col me-1 form-select" id="productClassSelectInput" aria-label="Default select example">
+
+          <option value="0" selected>Sınıf</option>
+
+          <option value="1">Premium</option>
+
+          <option value="2">Ekonomik</option>
+
+          <option value="3">sasa</option>
+
+          <option value="4">sasdaa</option>
+
+        </select>
+        
 
         <select class="col ms-1 form-select" id="productSubCategorySelectInput" aria-label="Default select example">
 
@@ -221,38 +258,33 @@
 
         </select>
 
-        <select class="form-select col ms-1" id="productTradeMarkSelectInput" aria-label="Default select example">
-
-          <option value="0" selected>Marka</option>
-
-          <option value="1">İklim</option>
-
-          <option value="2">Sedef</option>
-
-        </select>
 
       </div>
 
       <div class="row ms-0 me-0 mt-2">
 
-        <select class="form-select col me-1" id="productFoilPrintInvitationSelectInput"
+        <select class="form-select col me-1" id="productPrintTypeInvitationSelectInput"
           aria-label="Default select example">
 
-          <option value="0" selected>Varak Baskı(Davetiye)</option>
+          <option value="0" selected>Baskı Tipi(Davetiye)</option>
 
-          <option value="1">Var</option>
+          <option value="1">Normal Baskı</option>
 
-          <option value="2">Yok</option>
+          <option value="2">Varak Baskı</option>
+
+          <option value="3">Varak Baskı & Normal Baskı</option>
 
         </select>
 
-        <select class="form-select col ms-1" id="productFoilPrintTagSelectInput" aria-label="Default select example">
+        <select class="form-select col ms-1" id="productPrintTypeTagSelectInput" aria-label="Default select example">
 
-          <option value="0" selected>Varak Baskı(İsimlik)</option>
+          <option value="0" selected>Baskı Tipi(Zarf)</option>
 
-          <option value="1">Var</option>
+          <option value="1">Normal Baskı</option>
 
-          <option value="2">Yok</option>
+          <option value="2">Varak Baskı</option>
+
+          <option value="3">Varak Baskı & Normal Baskı</option>
 
         </select>
 

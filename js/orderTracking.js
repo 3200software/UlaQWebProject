@@ -131,7 +131,7 @@ $("body").on("click", ".editBtn", async function () {
     const firebaseOrdersUserEmail = doc.data().userEmail;
     const firebaseOrdersAnonymousUser = doc.data().anonymousDeviceId;
     const firebaseOrdersOrderID = doc.data().orderID;
-    const firebaseOrdersInvitationCode = doc.data().invitationCode;
+    const firebaseOrdersInvitationCode = doc.data().invitationModelNo;
     const firebaseOrdersInvitationPiece = doc.data().invitationPiece;
     const firebaseOrdersInvitationPrice = doc.data().invitationPrice;
     
