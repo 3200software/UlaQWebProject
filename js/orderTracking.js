@@ -134,7 +134,7 @@ $("body").on("click", ".editBtn", async function () {
     const firebaseOrdersInvitationCode = doc.data().invitationModelNo;
     const firebaseOrdersInvitationPiece = doc.data().invitationPiece;
     const firebaseOrdersInvitationPrice = doc.data().invitationPrice;
-    
+
     const firebaseOrdersQrCode = doc.data().QRCode;
     const firebaseOrdersQrCodeImageUrl = doc.data().QRCodeImage;
     const firebaseOrdersVideoUrl = doc.data().videoUrl;
