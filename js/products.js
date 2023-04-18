@@ -480,7 +480,6 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
                 productFoilPrintInvitation: productFoilPrintInvitationSelectInput.value,
                 productFoilPrintTag: productFoilPrintTagSelectInput.value,
                 productSalesQuantity: 0,
-                productDeliveryTime: 0,
                 productStock: 0,
                 productFavorites: 0,
                 productAddDate: Timestamp.fromDate(new Date(date)),
