@@ -479,6 +479,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
                 productTradeMark: productTradeMarkSelectInput.value,
                 productFoilPrintInvitation: productFoilPrintInvitationSelectInput.value,
                 productFoilPrintTag: productFoilPrintTagSelectInput.value,
+                productCampaignCode:0, 
                 productSalesQuantity: 0,
                 productStock: 0,
                 productFavorites: 0,
