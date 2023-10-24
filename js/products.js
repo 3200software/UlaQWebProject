@@ -470,7 +470,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
                 productCategory: productCategorySelectInput.value,
                 productSubCategory: productSubCategorySelectInput.value,
                 productTradeMarkSubModel: productTardeMarkSubModel.value,
-                productClass: productClassSelectInput.value,
+                productCampaignCode: productClassSelectInput.value,
                 productSizeCategory: productSizeCategorySelectInput.value,
                 productWidth: productSizeWidthTextInput.value,
                 productHeight: productSizeHeightTextInput.value,
@@ -479,7 +479,6 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
                 productTradeMark: productTradeMarkSelectInput.value,
                 productFoilPrintInvitation: productFoilPrintInvitationSelectInput.value,
                 productFoilPrintTag: productFoilPrintTagSelectInput.value,
-                productCampaignCode:0, 
                 productSalesQuantity: 0,
                 productStock: 0,
                 productFavorites: 0,
@@ -761,13 +760,13 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
       // Set the "capital" field of the city 'DC'
       await updateDoc(updateRef, {
 
-        productModelNo: productModelNoTextInput.value,
+        productModelNo: productModelNoTextInput.value, 
         productTradeMarkModelNo: productTradeMarkModelNo.value,
         productCategory: productCategorySelectInput.value,
         productSubCategory: productSubCategorySelectInput.value,
         productSizeCategory: productSizeCategorySelectInput.value,
         productTradeMarkSubModel: productTardeMarkSubModel.value,
-        productClass: productClassSelectInput.value,
+        productCampaignCode: productClassSelectInput.value,
         productWidth: productSizeWidthTextInput.value,
         productHeight: productSizeHeightTextInput.value,
         productColorCategory: productColorCategorySelectInput.value,
