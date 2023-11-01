@@ -98,7 +98,7 @@ const productFoilPrintInvitationSelectInput = document.getElementById("productPr
 const productFoilPrintTagSelectInput = document.getElementById("productPrintTypeTagSelectInput");
 const productTradeMarkModelNo = document.getElementById("tradeMarkModelNoTextInput");
 const productTardeMarkSubModel = document.getElementById("tradeMarkSubModel");
-const productClassSelectInput = document.getElementById("productClassSelectInput");
+const productCampaignCodeTextInput = document.getElementById("productCampaignCodeTextInput");
 const productPriceInput = document.getElementById("productInvitationPrice");
 const image1Input = document.getElementById("image1Input");
 const image2Input = document.getElementById("image2Input");
@@ -188,7 +188,7 @@ $("body").on("click", ".editBtn", async function () {
     const firebaseProductFoilPrintTag = docs.data().productFoilPrintTag;
     const firebaseProductTrademarkModelNo = docs.data().productTradeMarkModelNo;
     const firebaseTradeMarkSubModel = docs.data().productTradeMarkSubModel;
-    const firebaseProductClass = docs.data().productClass;
+    const firebaseProductCampaignCode = docs.data().productCampaignCode;
     const firebaseProductSalesQuantity = docs.data().productSalesQuantity;
     const firebaseProductDeliveryTime = docs.data().productDeliveryTime;
     const firebaseProductStock = docs.data().productStock;
@@ -217,7 +217,7 @@ $("body").on("click", ".editBtn", async function () {
     img1Preview.src = firebaseProductImgUrl1;
     productTradeMarkModelNo.value = firebaseProductTrademarkModelNo;
     productTardeMarkSubModel.value = firebaseTradeMarkSubModel;
-    productClassSelectInput.value = firebaseProductClass;
+    productCampaignCodeTextInput.value = firebaseProductCampaignCode;
 
 
 
@@ -436,7 +436,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
     if (productModelNoTextInput.value == "" || productCategorySelectInput.value == "0" || productSubCategorySelectInput.value == "0" ||
       productSizeCategorySelectInput.value == "0" || productColorCategorySelectInput == "0" || productEnvelopeSelectInput.value == 0 ||
       productTradeMarkSelectInput.value == 0 || productFoilPrintInvitationSelectInput.value == 0 || productFoilPrintTagSelectInput.value == 0 ||
-      productPriceInput.value == 0 || productTardeMarkSubModel.value == 0 || productClassSelectInput.value == 0 || productTradeMarkModelNo.value == "") {
+      productPriceInput.value == 0 || productTardeMarkSubModel.value == 0 || productCampaignCodeTextInput.value == 0 || productTradeMarkModelNo.value == "") {
 
       alert("Lütfen bütün kutucukları doldurunuz! Boyut kutucukları boş kalabilir!")
 
@@ -470,7 +470,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
                 productCategory: productCategorySelectInput.value,
                 productSubCategory: productSubCategorySelectInput.value,
                 productTradeMarkSubModel: productTardeMarkSubModel.value,
-                productCampaignCode: productClassSelectInput.value,
+                productCampaignCode: productCampaignCodeTextInput.value,
                 productSizeCategory: productSizeCategorySelectInput.value,
                 productWidth: productSizeWidthTextInput.value,
                 productHeight: productSizeHeightTextInput.value,
@@ -766,7 +766,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
         productSubCategory: productSubCategorySelectInput.value,
         productSizeCategory: productSizeCategorySelectInput.value,
         productTradeMarkSubModel: productTardeMarkSubModel.value,
-        productCampaignCode: productClassSelectInput.value,
+        productCampaignCode: productCampaignCodeTextInput.value,
         productWidth: productSizeWidthTextInput.value,
         productHeight: productSizeHeightTextInput.value,
         productColorCategory: productColorCategorySelectInput.value,
