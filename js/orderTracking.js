@@ -84,7 +84,7 @@ function createOrderssArray([firebaseOrdersDocId, firebaseOrdersBrideName, fireb
 
   <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrdersBrideName} & ${firebaseOrdersGroomName}</h6>
 
-  <button type="button" class="btn btn-primary editBtn m-2">Düzenle</button>
+  <button type="button" data-key=' " + ${firebaseOrdersDocId}+ "' class="btn btn-primary editBtn m-2">Düzenle</button>
 
 </div>
 
@@ -103,15 +103,18 @@ function createOrderssArray([firebaseOrdersDocId, firebaseOrdersBrideName, fireb
 
 
 $("body").on("click", ".editBtn", async function () {
-
-
+  
   var $key = $(this).data("key");
+
+  console.log("heyyyy" + $key)
 
   updateDocumentId = $key;
 
   btnAddEditStatus = "EditProduct"
 
   if (addEditActivityContainer.style.display === "none") {
+
+    
 
     addEditActivityContainer.style.display = ""
     mainActivityContainer.style.display = "none"
@@ -213,7 +216,6 @@ querySnapshot.forEach((doc) => {
 
 
   let ordersItem = [firebaseOrdersDocId, firebaseOrdersBrideName, firebaseOrdersGroomName, firebaseOrdersOrderID, firebaseOrdersOrderPhase];
-
 
   createOrderssArray(ordersItem);
 
