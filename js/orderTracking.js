@@ -59,6 +59,8 @@ onAuthStateChanged(auth, user => {
 });
 
 const btnLogout = document.getElementById("logoutButton");
+const orderDetailContainer = document.getElementById("orderDetailContainer");
+const orderMainContainer = document.getElementById("orderMainContainer");
 
 
 btnLogout.addEventListener("click", () => {
@@ -104,20 +106,20 @@ function createOrderssArray([firebaseOrdersDocId, firebaseOrdersBrideName, fireb
 
 $("body").on("click", ".editBtn", async function () {
   
-  var $key = $(this).data("key");
+  //var $key = $(this).data("key");
 
-  console.log("heyyyy" + $key)
+  console.log("heyyyy")
 
-  updateDocumentId = $key;
+  //updateDocumentId = $key;
 
-  btnAddEditStatus = "EditProduct"
+  //btnAddEditStatus = "EditProduct"
 
-  if (addEditActivityContainer.style.display === "none") {
+  if (orderDetailContainer.style.display === "none") {
 
     
 
-    addEditActivityContainer.style.display = ""
-    mainActivityContainer.style.display = "none"
+    orderDetailContainer.style.display = ""
+    orderMainContainer.style.display = "none"
     btnProductAdd.style.visibility = "hidden"
 
   }

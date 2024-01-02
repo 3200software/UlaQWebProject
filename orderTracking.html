@@ -62,7 +62,7 @@
   </div>
 
 
-  <div class="container" id="mainContainer" style="margin-left: 22%; margin-top: 1%;">
+  <div class="container" id="orderMainContainer" style="margin-left: 22%; margin-top: 1%;">
 
     <div class="containerTitle d-flex justify-content-between border-bottom border-primary ">
 
@@ -113,7 +113,7 @@
 
   </div>
 
-  <div class="container height" id="orderDetailContainer" style=" margin-left: 1% ; margin-top: 1%; display: none;" >
+  <div class="container" id="orderDetailContainer" style=" margin-left: 22% ; margin-top: 1%; display: none;" >
 
     <div class="containerTitle d-flex justify-content-between  border-bottom border-primary bg-white">
 
@@ -126,25 +126,62 @@
 
       <div class="row m-0 mt-2">
 
+      <div class="col">
+
+        
+        <div class="h6 text-primary mt-3 mb-1 flex-fill"> Sipariş Kodu </div>
+
+
+        
+
+          <input type="text" class="form-control" id="orderCodeTextInput" placeholder="Sipariş Kodu">
+        
+        </div>
+      
+      
         <div class="col">
 
-          <input type="text" class="form-control" id="prodcutModelNoTextInput" placeholder="Model No">
+             <div class="h6 text-primary mt-3 mb-1 flex-fill"> Sipariş Model No </div>
 
+             <input type="text" class="form-control" id="orderModelNo" placeholder="Sipariş Model No">
 
+            </div>
 
-        </div>
+            <div class="col">
+
+              <div class="h6 text-primary mt-3 mb-1 flex-fill"> Sipariş Adedi </div>
+
+              <input type="text" class="form-control" id="orderPiece" placeholder="Sipariş Adedi">
+  
+            </div>
+
 
         <div class="col">
 
-          <input type="number" min="0" max="10000" step="1" class="form-control" id="productInvitationPrice"
-            placeholder="Fiyat">
+          <div class="h6 text-primary mt-3 mb-1 pb-0 flex-fill"> Sipariş Durumu </div>
 
-        </div>
+      <select class="col   form-select" id="filterModelNoFormSelect" aria-label="Default select example">
+
+        <option value="0" selected>Sipariş Durumu</option>
+        <option value="1">Beklemede</option>
+        <option value="2">Onaylandı</option>
+        <option value="3">Tasarlandı</option>
+        <option value="4">Tasamrım Onayı Bekleniyor</option>
+        <option value="5">Tasarım Onaylandı</option>
+        <option value="6">Baskıda</option>
+        <option value="7">Üretimde</option>
+        <option value="8">Sevkiyat Bekliyor</option>
+        <option value="9">Kargolandı</option>
+        <option value="10">Teslim Edildi</option>
+        <option value="11">İptal Edildi</option>
 
 
+      </select>
 
+    </div>
+  
 
-      </div>
+      
 
 
 
@@ -409,7 +446,7 @@
 
       </div>
 
-      <div class="containeren ms-3 me-3 mt-2">
+      <div class="container ms-3 me-3 mt-2">
 
         <div class="row">
 
