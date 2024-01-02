@@ -118,8 +118,7 @@
     <div class="containerTitle d-flex justify-content-between  border-bottom border-primary bg-white">
 
       
-      <input type="text" class="h2 text-primary" id="orderTrackingTitle" title="Sipariş Detay">
-      
+      <h3 class="h2 text-primary" id="orderTrackingTitle">Sipariş Detay</h3>
 
     </div>
 
@@ -128,15 +127,15 @@
 
       <div class="row m-0 mt-2">
 
-      <div class="col">
+      
+      
+      
+        <div class="col">
 
         
         <div class="h6 text-primary mt-3 mb-1 flex-fill"> Sipariş Kodu </div>
-
-
         
-
-          <input type="text" class="form-control" id="orderCodeTextInput" placeholder="Sipariş Kodu">
+        <input type="text" class="form-control" id="orderCodeTextInput" placeholder="Sipariş Kodu">
         
         </div>
       
@@ -149,71 +148,171 @@
 
             </div>
 
-            <div class="col">
+          <div class="col">
 
               <div class="h6 text-primary mt-3 mb-1 flex-fill"> Sipariş Adedi </div>
 
               <input type="text" class="form-control" id="orderPiece" placeholder="Sipariş Adedi">
   
             </div>
-
-
         <div class="col">
 
           <div class="h6 text-primary mt-3 mb-1 pb-0 flex-fill"> Sipariş Durumu </div>
 
-      <select class="col   form-select" id="filterModelNoFormSelect" aria-label="Default select example">
+          <select class="col   form-select" id="filterModelNoFormSelect" aria-label="Default select example">
 
-        <option value="0" selected>Sipariş Durumu</option>
-        <option value="1">Beklemede</option>
-        <option value="2">Onaylandı</option>
-        <option value="3">Tasarlandı</option>
-        <option value="4">Tasamrım Onayı Bekleniyor</option>
-        <option value="5">Tasarım Onaylandı</option>
-        <option value="6">Baskıda</option>
-        <option value="7">Üretimde</option>
-        <option value="8">Sevkiyat Bekliyor</option>
-        <option value="9">Kargolandı</option>
-        <option value="10">Teslim Edildi</option>
-        <option value="11">İptal Edildi</option>
+           <option value="0" selected>Sipariş Durumu</option>
+           <option value="1">Beklemede</option>
+           <option value="2">Onaylandı</option>
+           <option value="3">Tasarlandı</option>
+           <option value="4">Tasamrım Onayı Bekleniyor</option>
+           <option value="5">Tasarım Onaylandı</option>
+           <option value="6">Baskıda</option>
+           <option value="7">Üretimde</option>
+           <option value="8">Sevkiyat Bekliyor</option>
+           <option value="9">Kargolandı</option>
+           <option value="10">Teslim Edildi</option>
+           <option value="11">İptal Edildi</option>
 
 
-      </select>
+          </select>
 
-    </div>
+         </div>
+
+         
+
+
+
+
+         
+       
+       
+       
+       
+         
+         
+    
+         <h5 class="h5  m-3 text-primary" id="orderTrackingTitle">Gelin Damat Bilgileri</h5>
   
 
+         <div class="row ms-0 me-0 mt-2">
+
+
+          <div class="col">
+
+          <div class="h6 text-primary mt-3 mb-1 flex-fill"> Gelin Adı </div>
+
+          <input type="text" class="form-control" id="orderPiece" placeholder="Gelin Adı">
+        
+        
+        </div>
+
+        <div class="col">
+
+          <div class="h6 text-primary mt-3 mb-1 flex-fill"> Gelin Soyadı </div>
+
+          <input type="text" class="form-control" id="orderPiece" placeholder="Gelin Soyadı">
+
+        </div>
+
+        <div class="col">
+
+          <div class="h6 text-primary mt-3 mb-1 flex-fill"> Damat Adı </div>
+
+          <input type="text" class="form-control" id="orderPiece" placeholder="Damat Adı">
+
+        </div>
+
+        <div class="col">
+
+          <div class="h6 text-primary mt-3 mb-1 flex-fill"> Damat Soyadı </div>
+
+          <input type="text" class="form-control" id="orderPiece" placeholder="Damat Soyadı">
+
+        </div>
+
+        <div class="row ms-0 me-0 mt-2">
+
+          <div class="row">
+
+            <div class="col" >
+
+            <div class="h6 text-primary mt-3 mb-1 flex-fill"> Gelini Ailesi </div>
+  
+            <input type="text" class="form-control" id="orderPiece" placeholder="Gelin Ailesi">
+
+          </div>
+
+            <div class="col">
+            
+            <div class="h6 text-primary mt-3 mb-1 flex-fill"> Damat Ailesi </div>
+  
+            <input type="text" class="form-control" id="orderPiece" placeholder="Damat Ailesi">
+  
+            </div>
+          
+          </div>
+
+          <div class="col">
+
+            <div class="h6 text-primary mt-3 mb-1 flex-fill"> Davetiye Yazısı </div>
+  
+            <input type="text" class="form-control" id="orderPiece" placeholder="Davetiye Yazısı">
+  
+          </div>
+
+          <div class="row">
+
+            <div class="col">
+
+              <div class="h6 text-primary mt-3 mb-1 flex-fill">Dijital Kod</div>
+    
+              <input type="text" class="form-control" id="orderPiece" placeholder="Dijital Kod">
+    
+            </div>
+
+            <div class="col">
+
+              <div class="h6 text-primary mt-3 mb-1 flex-fill">QR Kod</div>
+    
+              <input type="text" class="form-control" id="orderPiece" placeholder="QR Kod">
+    
+            </div>
+
+
+            <div class="col m-2">
+
+                <img src="assets/274348852_320609883437173_4953649348556891409_n.jpg" alt="" style="width: 150px; height: 150px;">
+              
+              </div>
+
+            </div>
+
+            <div class="row">
+
+              <div class="col">
+
+                <div class="h6 text-primary mt-3 mb-1 flex-fill">Save The Date Video URL </div>
       
+                <input type="text" class="form-control" id="orderPiece" placeholder="Save The Date Video URL">
+      
+              </div>
+
+            </div>
 
 
 
-      <div class="row ms-0 me-0 mt-2">
+       
 
-        <select class="col me-1 form-select" id="productCategorySelectInput" aria-label="Default select example">
 
-          <option value="0" selected>Kategori</option>
+        
 
-          <option value="1">Düğün</option>
 
-          <option value="2">Sünnet</option>
 
-          <option value="3">Nişan</option>
+        </div>
 
-          <option value="4">Kına</option>
 
-        </select>
 
-        <select class="col ms-1 form-select" id="productSubCategorySelectInput" aria-label="Default select example">
-
-          <option value="0" selected>Alt kategori</option>
-
-          <option value="1">İpli</option>
-
-          <option value="2">Dikişli</option>
-
-          <option value="3">Sürgülü</option>
-
-        </select>
 
       </div>
 
