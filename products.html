@@ -120,23 +120,14 @@
 
     <div class="container">
 
-      <div class="row m-0 mt-2">
+  
+      <div class="row mt-2 mb-2">
 
-        <div class="col">
+          <input type="text" class=" col form-control me-1" id="prodcutModelNoTextInput" placeholder="UlaQ Model No">
 
-          <input type="text" class="form-control ms-0" id="prodcutModelNoTextInput" placeholder="UlaQ Model No">
+          <input type="text" class="col form-control ms-1 me-1" id="tradeMarkModelNoTextInput" placeholder="Firma Model No">
 
-        </div>
-
-        <div class="col">
-
-          <input type="text" class="form-control" id="tradeMarkModelNoTextInput" placeholder="Firma Model No">
-
-        </div>
-
-        <div class="col">
-
-          <select class="form-select col ms-1" id="productTradeMarkSelectInput" aria-label="Default select example">
+          <select class="form-select col ms-1 me-1" id="productTradeMarkSelectInput" aria-label="Default select example">
 
             <option value="0" selected>Marka</option>
 
@@ -146,27 +137,13 @@
 
           </select>
 
-        </div>
-
-        <div class="col">
-
-          <input type="text" class="form-control" id="tradeMarkSubModel" placeholder="Firma Alt Kategori">
-
-        </div>
-
-        <div class="col">
-
-          <input type="number" min="0" max="10000" step="1" class="form-control" id="productInvitationPrice"
-            placeholder="Fiyat">
-
+          <input  type="text" class="col ms-1 form-control" id="tradeMarkSubModel" placeholder="Marka Alt Kategori">
+        
         </div>
 
 
-      </div>
 
-
-
-      <div class="row ms-0 me-0 mt-2">
+      <div class="row mt-2 mb-2">
 
         <select class="col me-1 form-select" id="productCategorySelectInput" aria-label="Default select example">
 
@@ -174,38 +151,72 @@
 
           <option value="1">Düğün</option>
 
-          <option value="2">Sünnet</option>
+          <option value="1">Nikah</option>
 
           <option value="3">Nişan</option>
 
           <option value="4">Kına</option>
 
+          <option value="5">Sünnet</option>
+
+          <option value="6">Baby Shower</option>
+
+          <option value="7">Doğum Günü</option>
+
+          <option value="8">Parti</option>
+
+          <option value="9">Kurumsal/Açılış</option>
+
+          <option value="10">Dernek</option>
+
+          <option value="11">Öğrenci Kulüpleri</option>
+        
         </select>
 
-        <select class="col ms-1 form-select" id="productSubCategorySelectInput" aria-label="Default select example">
+        <select class="col ms-1 me-1 form-select" id="productSubCategorySelectInput" aria-label="Default select example">
 
-          <option value="0" selected>Alt kategori</option>
+          <option value="0" selected>Tema</option>
 
-          <option value="1">İpli</option>
+          <option value="1">Minimal</option>
 
-          <option value="2">Dikişli</option>
+          <option value="2">Dini</option>
 
-          <option value="3">Sürgülü</option>
+          <option value="3">Çiçekli</option>
+
+          <option value="4">İlginç</option>
+
+          <option value="5">Nostalji/Retro</option>
+
+
 
         </select>
 
 
 
 
-        <input class="col me-1 form-control" type="text" id="productCampaignCodeTextInput" placeholder="Kampanya Kodu"  aria-label="Default select example">
+        <input class="col ms-1 me-1 form-control" type="text" id="productCampaignCodeTextInput" placeholder="Kampanya Kodu"  aria-label="Default select example">
       
-        </input>
+      
+
+        <input class="col ms-1 form-control" type="number" min="0" max="10000" step="1" class="form-control" id="productInvitationPrice"
+            placeholder="Fiyat">
+
+       
+
+        
 
 
         
       </div>
 
-      <div class="row ms-0 me-0 mt-2">
+
+    
+
+      
+
+     
+
+      <div class="row">
 
         <select class="form-select col me-1 " id="productSizeCategorySelectInput" aria-label="Default select example">
 
@@ -228,7 +239,9 @@
 
       </div>
 
-      <div class="row ms-0 me-0 mt-2">
+    
+
+      <div class="row mt-2 mb-2">
 
         <select class="form-select col me-1 " id="productColorCategorySelectInput" aria-label="Default select example">
 
@@ -242,7 +255,7 @@
 
         </select>
 
-        <select class="form-select col ms-1 me-1 " id="productEnvelopeSelectInput" aria-label="Default select example">
+        <select class="form-select col ms-1" id="productEnvelopeSelectInput" aria-label="Default select example">
 
           <option value="0" selected>Zarf</option>
 
@@ -255,7 +268,7 @@
 
       </div>
 
-      <div class="row ms-0 me-0 mt-2">
+      <div class="row mt-2 mb-2">
 
         <select class="form-select col me-1" id="productPrintTypeInvitationSelectInput"
           aria-label="Default select example">
@@ -297,9 +310,127 @@
 
       </div>
 
+      <div class="row border p-1 mt-2 mb-2 rounded-2">
+
+        <h5 class="text-primary border-bottom border-primary pb-1">Özellikler</h5>
+
+        <div class="row">
+
+          <div class="form-check ms-2 col">
+            <input class="form-check-input" type="checkbox" value="" id="checkNormalKagit" onclick="checkNormalKagitclick()">
+            <label class="form-check-label" for="checkNormalKagit">
+              Normal Kağıt
+            </label>
+          </div>
+
+          <div class="form-check ms-2 col">
+            <input class="form-check-input" type="checkbox" value="" id="checkKraftKagit">
+            <label class="form-check-label" for="checkKraftKagit">
+              Kraft Kağıt
+            </label>
+          </div>
+
+          <div class="form-check ms-2 col">
+            <input class="form-check-input" type="checkbox" value="" id="checkLazerKesim" >
+            <label class="form-check-label" for="checkLazerKesim">
+              Lazer Kesim
+            </label>
+          </div>
+       
+          <div class="form-check ms-2 col">
+            <input class="form-check-input" type="checkbox" value="" id="checkPlexi" >
+            <label class="form-check-label" for="checkPlexi">
+              Plexi
+            </label>
+          </div>
+
+          <div class="form-check ms-2 col">
+            <input class="form-check-input" type="checkbox" value="" id="checkSeffaf">
+            <label class="form-check-label" for="checkSeffaf">
+              Şeffaf
+            </label>
+          </div>
+
+          <div class="form-check ms-2 col">
+            <input class="form-check-input" type="checkbox" value="" id="checkAhsap" >
+            <label class="form-check-label" for="checkAhsap">
+              Ahşap
+            </label>
+          </div>
+  
+         
+   </div>
+
+        <div class="row">
 
 
-      <div class="border rounded-2 mt-2 ">
+          <div class="form-check ms-2 col">
+            <input class="form-check-input" type="checkbox" value="" id="checkMuhurlu" >
+            <label class="form-check-label" for="checkMuhurlu">
+              Mühürlü
+            </label>
+          </div>
+
+
+          
+
+
+          <div class="form-check ms-2 col">
+            <input class="form-check-input" type="checkbox" value="" id="checkKadife">
+            <label class="form-check-label" for="checkKadife">
+              Kadife
+            </label>
+          </div>
+       
+          <div class="form-check ms-2 col">
+            <input class="form-check-input" type="checkbox" value="" id="checkKutulu" >
+            <label class="form-check-label" for="checkKutulu">
+              Kutulu
+            </label>
+          </div>
+  
+          <div class="form-check ms-2 col">
+            <input class="form-check-input" type="checkbox" value="" id="checkKarikatür" >
+            <label class="form-check-label" for="checkKarikatür">
+              Karikatürlü
+            </label>
+          </div>
+
+          <div class="form-check ms-2 col">
+            <input class="form-check-input" type="checkbox" value="" id="checkTarihi" >
+            <label class="form-check-label" for="checkTarihi">
+              Tarihi
+            </label>
+          </div>
+
+          <div class="form-check ms-2 col">
+            <input class="form-check-input" type="checkbox" value="" id="checkTakvim" >
+            <label class="form-check-label" for="checkTakvim">
+              Takvimli
+            </label>
+          </div>
+  
+
+
+
+        </div>
+
+
+
+
+
+
+
+      </div>
+
+
+
+
+      <div class=" row border rounded-2  mt-2 mb-2 p-1">
+
+
+        <h5 class="text-primary border-bottom border-primary pb-1">Fotoğraflar</h5>
+
 
         <div class="container mt-2">
 
@@ -443,7 +574,7 @@
 
       </div>
 
-      <div class="containeren ms-3 me-3 mt-2">
+      <div class="containeren  mt-2 mb-2">
 
         <div class="row">
 

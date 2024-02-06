@@ -114,7 +114,37 @@ const img4Preview = document.getElementById("img4Preview");
 const img5Preview = document.getElementById("img5Preview");
 const videoPreview = document.getElementById("videoPreview");
 
+
+const checkKraftKagit = document.getElementById("checkKraftKagit");
+const checkLazerKesim = document.getElementById("checkLazerKesim");
+const checkPlexi = document.getElementById("checkPlexi");
+const checkSeffaf = document.getElementById("checkSeffaf");
+const checkAhsap = document.getElementById("checkAhsap");
+const checkMuhurlu = document.getElementById("checkMuhurlu");
+const checkKadife = document.getElementById("checkKadife");
+const checkKutulu = document.getElementById("checkKutulu");
+const checkKarikatür = document.getElementById("checkKarikatür");
+const checkTarihi = document.getElementById("checkTarihi");
+const checkTakvim = document.getElementById("checkTakvim");
+
+var checkArrayList = []
+
+
 let firebaseProductImgUrl1 = String;
+
+
+function checkNormalKagitclick() {
+  var checkNormalKagit = document.getElementById("checkNormalKagit");
+    
+  if (checkNormalKagit.checked == true) {
+    alert("Checkbox seçildi!");
+    // Checkbox seçiliyse yapılacak işlemler buraya gelir
+  } else {
+    alert("Checkbox seçili değil!");
+    // Checkbox seçili değilse yapılacak işlemler buraya gelir
+  }
+}
+
 
 
 
@@ -166,6 +196,9 @@ $("body").on("click", ".editBtn", async function () {
     btnProductAdd.style.visibility = "hidden"
 
   }
+
+
+ 
 
 
 
@@ -335,21 +368,6 @@ querySnapshot.forEach((doc) => {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*
 
 activityCategoryFormSelect.onchange = function(){
@@ -425,6 +443,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
   var image4Url;
   var image5Url;
   var videoUrl1;
+
 
 
   if (btnAddEditStatus == "AddProduct") {
