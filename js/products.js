@@ -794,6 +794,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
                 productFavorites: 0,
                 productProperties: checkProductPropertiesArrayList,
                 productAddDate: Timestamp.fromDate(new Date(date)),
+                productUpdateDate: Timestamp.fromDate(new Date(date)),
                 productAddUser: auth.currentUser.email,
 
                 productPrice: priceDouble,
@@ -1086,6 +1087,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
         productFoilPrintInvitation: productFoilPrintInvitationSelectInput.value,
         productFoilPrintTag: productFoilPrintTagSelectInput.value,
         productProperties: checkProductPropertiesArrayList,
+        productUpdateDate: Timestamp.fromDate(new Date(date)),
 
         productPrice: productPriceInput.value,
 
