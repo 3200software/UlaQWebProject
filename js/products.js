@@ -87,7 +87,7 @@ let updateDocumentId = String;
 
 const productModelNoTextInput = document.getElementById("prodcutModelNoTextInput");
 const productCategorySelectInput = document.getElementById("productCategorySelectInput");
-const productSubCategorySelectInput = document.getElementById("productSubCategorySelectInput");
+const productThemeSelectInput = document.getElementById("productThemeSelectInput");
 const productSizeCategorySelectInput = document.getElementById("productSizeCategorySelectInput");
 const productSizeWidthTextInput = document.getElementById("productSizeWidthTextInput");
 const productSizeHeightTextInput = document.getElementById("productSizeHeightTextInput");
@@ -114,37 +114,250 @@ const img4Preview = document.getElementById("img4Preview");
 const img5Preview = document.getElementById("img5Preview");
 const videoPreview = document.getElementById("videoPreview");
 
-
+const checkekonomik = document.getElementById("checkEkonomik");
+const checkVip = document.getElementById("checkVip");
 const checkKraftKagit = document.getElementById("checkKraftKagit");
 const checkLazerKesim = document.getElementById("checkLazerKesim");
 const checkPlexi = document.getElementById("checkPlexi");
-const checkSeffaf = document.getElementById("checkSeffaf");
 const checkAhsap = document.getElementById("checkAhsap");
+const checkKabartma = document.getElementById("checkKabartma");
 const checkMuhurlu = document.getElementById("checkMuhurlu");
 const checkKadife = document.getElementById("checkKadife");
 const checkKutulu = document.getElementById("checkKutulu");
-const checkKarikatür = document.getElementById("checkKarikatür");
-const checkTarihi = document.getElementById("checkTarihi");
-const checkTakvim = document.getElementById("checkTakvim");
+const checkIkili = document.getElementById("checkIkili");
+const checkİpli = document.getElementById("checkİpli");
 
-var checkArrayList = []
+var checkProductPropertiesArrayList = []
 
 
 let firebaseProductImgUrl1 = String;
 
 
-function checkNormalKagitclick() {
-  var checkNormalKagit = document.getElementById("checkNormalKagit");
+
+
+checkekonomik.onclick = function() {
+
+  if (checkekonomik.checked == true) {
     
-  if (checkNormalKagit.checked == true) {
-    alert("Checkbox seçildi!");
-    // Checkbox seçiliyse yapılacak işlemler buraya gelir
+    checkProductPropertiesArrayList.push("1");
+
   } else {
-    alert("Checkbox seçili değil!");
-    // Checkbox seçili değilse yapılacak işlemler buraya gelir
+  
+    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function(item) {
+  
+      return item !== "1";
+  
+    });
+  
+ 
   }
+
 }
 
+
+checkVip.onclick = function() {
+
+  if (checkVip.checked == true) {
+    
+    checkProductPropertiesArrayList.push("2");
+  
+  } else {
+  
+    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function(item) {
+  
+      return item !== "2";
+  
+    });
+  
+ 
+  }
+
+}
+
+
+checkKraftKagit.onclick = function() {
+
+  if (checkKraftKagit.checked == true) {
+    
+    checkProductPropertiesArrayList.push("3");
+
+  } else {
+    
+    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function(item) {
+    
+      return item !== "3";
+    
+    });
+     
+  }
+
+}
+
+checkLazerKesim.onclick = function() {
+
+  if (checkLazerKesim.checked == true) {
+    
+    checkProductPropertiesArrayList.push("4");
+
+  } else {
+    
+    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function(item) {
+    
+      return item !== "4";
+    
+    });
+  
+  }
+
+}
+
+checkPlexi.onclick = function() {
+
+  if (checkPlexi.checked == true) {
+    
+    checkProductPropertiesArrayList.push("5");
+
+  } else {
+ 
+    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function(item) {
+ 
+      return item !== "5";
+ 
+    });
+ 
+  }
+
+}
+
+checkAhsap.onclick = function() {
+
+  if (checkAhsap.checked == true) {
+    
+    checkProductPropertiesArrayList.push("6");
+
+  } else {
+
+    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function(item) {
+
+      return item !== "6";
+
+    });
+ 
+  }
+
+}
+
+checkKabartma.onclick = function() {
+
+  if (checkKabartma.checked == true) {
+    
+    checkProductPropertiesArrayList.push("7");
+
+  } else {
+   
+    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function(item) {
+   
+      return item !== "7";
+   
+    });
+   
+  }
+
+}
+
+checkMuhurlu.onclick = function() {
+
+  if (checkMuhurlu.checked == true) {
+    
+    checkProductPropertiesArrayList.push("8");
+
+  } else {
+
+    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function(item) {
+    
+      return item !== "8";
+    
+    });
+     
+  }
+
+}
+
+checkKadife.onclick = function() {
+
+  if (checkKadife.checked == true) {
+    
+    checkProductPropertiesArrayList.push("9");
+
+  } else {
+  
+    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function(item) {
+
+      return item !== "9";
+
+    });
+
+  }
+
+}
+
+checkKutulu.onclick = function() {
+
+  if (checkKutulu.checked == true) {
+    
+    checkProductPropertiesArrayList.push("10");
+
+  } else {
+   
+    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function(item) {
+   
+      return item !== "10";
+   
+    });
+   
+ 
+  }
+
+}
+
+checkIkili.onclick = function() {
+
+  if (checkIkili.checked == true) {
+    
+    checkProductPropertiesArrayList.push("11");
+
+  } else {
+    
+    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function(item) {
+    
+      return item !== "11";
+    
+    });
+  
+  }
+
+}
+
+checkIpli.onclick = function() {
+
+  if (checkIpli.checked == true) {
+    
+    checkProductPropertiesArrayList.push("12");
+
+    console.log(checkProductPropertiesArrayList)
+
+  } else {
+   
+    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function(item) {
+   
+      return item !== "12";
+   
+    });
+    console.log(checkProductPropertiesArrayList)
+ 
+  }
+
+}
 
 
 
@@ -165,10 +378,7 @@ function createProductsArray([proDocId, proimg, proModelNo, proCategory, ]) {
 
 `
 
-
-
-
-  ;
+;
 
   products.innerHTML += proCode;
 
@@ -207,10 +417,12 @@ $("body").on("click", ".editBtn", async function () {
 
   if (docs.exists()) {
 
+    
+
     const firebaseDocId = docs.id;
     const firebaseProductModelNo = docs.data().productModelNo;
     const firebaseProductCategory = docs.data().productCategory;
-    const firebaseProductSubCategory = docs.data().productSubCategory;
+    const firebaseProductThemeSelect = docs.data().productTheme;
     const firebaseProductSizeCategory = docs.data().productSizeCategory;
     const firebaseProductWidth = docs.data().productWidth;
     const firebaseProductHeight = docs.data().productHeight;
@@ -228,16 +440,19 @@ $("body").on("click", ".editBtn", async function () {
     const firebaseProductFavorites = docs.data().productFavorites;
     const firebaseProductAddDate = docs.data().productAddDate;
     const firebaseProductAddUser = docs.data().productAddUser;
+    checkProductPropertiesArrayList = docs.data().productProperties;
+
+    console.log(checkProductPropertiesArrayList)
 
     const firebaseProductPrice = docs.data().productPrice;
     firebaseProductImgUrl1 = docs.data().productImgUrl1;
 
-
+    
 
 
     productModelNoTextInput.value = firebaseProductModelNo;
     productCategorySelectInput.value = firebaseProductCategory;
-    productSubCategorySelectInput.value = firebaseProductSubCategory;
+    productThemeSelectInput.value = firebaseProductThemeSelect;
     productSizeCategorySelectInput.value = firebaseProductSizeCategory;
     productSizeWidthTextInput.value = firebaseProductWidth;
     productSizeHeightTextInput.value = firebaseProductHeight;
@@ -251,6 +466,82 @@ $("body").on("click", ".editBtn", async function () {
     productTradeMarkModelNo.value = firebaseProductTrademarkModelNo;
     productTardeMarkSubModel.value = firebaseTradeMarkSubModel;
     productCampaignCodeTextInput.value = firebaseProductCampaignCode;
+    
+    
+    if (checkProductPropertiesArrayList.includes("1")) {
+
+       checkekonomik.checked = true;
+
+      }
+
+      if (checkProductPropertiesArrayList.includes("2")) {
+
+        checkVip.checked = true;
+ 
+       }
+
+       if (checkProductPropertiesArrayList.includes("3")) {
+
+        checkKraftKagit.checked = true;
+ 
+       }
+
+       if (checkProductPropertiesArrayList.includes("4")) {
+
+        checkLazerKesim.checked = true;
+ 
+       }
+
+       if (checkProductPropertiesArrayList.includes("5")) {
+
+        checkPlexi.checked = true;
+ 
+       }
+
+       if (checkProductPropertiesArrayList.includes("6")) {
+
+        checkAhsap.checked = true;
+ 
+       }
+
+       if (checkProductPropertiesArrayList.includes("7")) {
+
+        checkKabartma.checked = true;
+ 
+       }
+
+       if (checkProductPropertiesArrayList.includes("8")) {
+
+        checkMuhurlu.checked = true;
+ 
+       }
+
+       if (checkProductPropertiesArrayList.includes("9")) {
+
+        checkKadife.checked = true;
+ 
+       }
+
+       if (checkProductPropertiesArrayList.includes("10")) {
+
+        checkKutulu.checked = true;
+ 
+       }
+
+       if (checkProductPropertiesArrayList.includes("11")) {
+
+        checkIkili.checked = true;
+ 
+       }
+
+       if (checkProductPropertiesArrayList.includes("12")) {
+
+        checkIpli.checked = true;
+ 
+       }
+    
+ 
+
 
 
 
@@ -452,7 +743,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
 
     console.log(productModelNoTextInput.value, productCategorySelectInput.value, productEnvelopeSelectInput.value)
 
-    if (productModelNoTextInput.value == "" || productCategorySelectInput.value == "0" || productSubCategorySelectInput.value == "0" ||
+    if (productModelNoTextInput.value == "" || productCategorySelectInput.value == "0" || productThemeSelectInput.value == "0" ||
       productSizeCategorySelectInput.value == "0" || productColorCategorySelectInput == "0" || productEnvelopeSelectInput.value == 0 ||
       productTradeMarkSelectInput.value == 0 || productFoilPrintInvitationSelectInput.value == 0 || productFoilPrintTagSelectInput.value == 0 ||
       productPriceInput.value == 0 || productTardeMarkSubModel.value == 0 || productCampaignCodeTextInput.value == 0 || productTradeMarkModelNo.value == "") {
@@ -487,7 +778,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
                 productModelNo: productModelNoTextInput.value,
                 productTradeMarkModelNo: productTradeMarkModelNo.value,
                 productCategory: productCategorySelectInput.value,
-                productSubCategory: productSubCategorySelectInput.value,
+                productTheme: productThemeSelectInput.value,
                 productTradeMarkSubModel: productTardeMarkSubModel.value,
                 productCampaignCode: productCampaignCodeTextInput.value,
                 productSizeCategory: productSizeCategorySelectInput.value,
@@ -501,6 +792,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
                 productSalesQuantity: 0,
                 productStock: 0,
                 productFavorites: 0,
+                productProperties: checkProductPropertiesArrayList,
                 productAddDate: Timestamp.fromDate(new Date(date)),
                 productAddUser: auth.currentUser.email,
 
@@ -782,7 +1074,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
         productModelNo: productModelNoTextInput.value, 
         productTradeMarkModelNo: productTradeMarkModelNo.value,
         productCategory: productCategorySelectInput.value,
-        productSubCategory: productSubCategorySelectInput.value,
+        productThemeSelectInput: productThemeSelectInput.value,
         productSizeCategory: productSizeCategorySelectInput.value,
         productTradeMarkSubModel: productTardeMarkSubModel.value,
         productCampaignCode: productCampaignCodeTextInput.value,
@@ -793,6 +1085,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
         productTradeMark: productTradeMarkSelectInput.value,
         productFoilPrintInvitation: productFoilPrintInvitationSelectInput.value,
         productFoilPrintTag: productFoilPrintTagSelectInput.value,
+        productProperties: checkProductPropertiesArrayList,
 
         productPrice: productPriceInput.value,
 
