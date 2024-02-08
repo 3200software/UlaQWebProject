@@ -24,6 +24,8 @@ import {
   limit,
   getDocs,
   updateDoc,
+  deleteDoc,
+  deleteField,
   getDoc,
   Timestamp
 } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
@@ -80,6 +82,7 @@ let addEditActivityContainer = document.getElementById('addEditContainer');
 const btnProductAdd = document.getElementById("productAddButton");
 const btnProductAddCancel = document.getElementById("productAddCancelButton");
 const btnAddEditProductSuccess = document.getElementById("productAddSuccessButton");
+const btnDeleteProduct = document.getElementById("deleteProductButton");
 
 let btnAddEditStatus = String;
 let updateDocumentId = String;
@@ -100,6 +103,9 @@ const productTradeMarkModelNo = document.getElementById("tradeMarkModelNoTextInp
 const productTardeMarkSubModel = document.getElementById("tradeMarkSubModel");
 const productCampaignCodeTextInput = document.getElementById("productCampaignCodeTextInput");
 const productPriceInput = document.getElementById("productInvitationPrice");
+const productInvitationWholeSalePriceInput = document.getElementById("productInvitationWholeSalePrice");
+const productProfitRateInput = document.getElementById("productProfitRate");
+const productProfitInput = document.getElementById("productProfit");
 const image1Input = document.getElementById("image1Input");
 const image2Input = document.getElementById("image2Input");
 const image3Input = document.getElementById("image3Input");
@@ -125,173 +131,234 @@ const checkMuhurlu = document.getElementById("checkMuhurlu");
 const checkKadife = document.getElementById("checkKadife");
 const checkKutulu = document.getElementById("checkKutulu");
 const checkIkili = document.getElementById("checkIkili");
-const checkİpli = document.getElementById("checkİpli");
+const checkIpli = document.getElementById("checkIpli");
 
 var checkProductPropertiesArrayList = []
 
+productProfit.disabled = true;
 
 let firebaseProductImgUrl1 = String;
 
 
+productInvitationWholeSalePriceInput.oninput = function (event) {
+
+  var fiyat = parseFloat(productPriceInput.value);
+  var toptanFiyat = parseFloat(productInvitationWholeSalePriceInput.value);
 
 
-checkekonomik.onclick = function() {
+  var fark = fiyat - toptanFiyat;
+
+  productProfit.value = fark;
+
+  var oran = fark * 100 / fiyat;
+
+  console.log(oran)
+
+  var oranYuvarla = Math.round(oran)
+
+
+
+  productProfitRateInput.value = oranYuvarla;
+
+
+  //productProfitRateInput.value(oranString);
+
+
+
+
+}
+
+
+productProfitRateInput.oninput = function (event) {
+
+  var fiyat = parseFloat(productPriceInput.value);
+
+  var karOranı = parseFloat(productProfitRateInput.value)
+
+  var fark = fiyat * karOranı / 100;
+
+  var toptanFiyatFinal = fiyat - fark;
+
+  productProfitInput.value = fark;
+
+
+
+  productInvitationWholeSalePriceInput.value = toptanFiyatFinal;
+
+
+  //productProfitRateInput.value(oranString);
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+checkekonomik.onclick = function () {
 
   if (checkekonomik.checked == true) {
-    
+
     checkProductPropertiesArrayList.push("1");
 
   } else {
-  
-    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function(item) {
-  
+
+    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function (item) {
+
       return item !== "1";
-  
+
     });
-  
- 
+
+
   }
 
 }
 
 
-checkVip.onclick = function() {
+checkVip.onclick = function () {
 
   if (checkVip.checked == true) {
-    
+
     checkProductPropertiesArrayList.push("2");
-  
+
   } else {
-  
-    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function(item) {
-  
+
+    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function (item) {
+
       return item !== "2";
-  
+
     });
-  
- 
+
+
   }
 
 }
 
 
-checkKraftKagit.onclick = function() {
+checkKraftKagit.onclick = function () {
 
   if (checkKraftKagit.checked == true) {
-    
+
     checkProductPropertiesArrayList.push("3");
 
   } else {
-    
-    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function(item) {
-    
+
+    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function (item) {
+
       return item !== "3";
-    
+
     });
-     
+
   }
 
 }
 
-checkLazerKesim.onclick = function() {
+checkLazerKesim.onclick = function () {
 
   if (checkLazerKesim.checked == true) {
-    
+
     checkProductPropertiesArrayList.push("4");
 
   } else {
-    
-    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function(item) {
-    
+
+    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function (item) {
+
       return item !== "4";
-    
+
     });
-  
+
   }
 
 }
 
-checkPlexi.onclick = function() {
+checkPlexi.onclick = function () {
 
   if (checkPlexi.checked == true) {
-    
+
     checkProductPropertiesArrayList.push("5");
 
   } else {
- 
-    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function(item) {
- 
+
+    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function (item) {
+
       return item !== "5";
- 
+
     });
- 
+
   }
 
 }
 
-checkAhsap.onclick = function() {
+checkAhsap.onclick = function () {
 
   if (checkAhsap.checked == true) {
-    
+
     checkProductPropertiesArrayList.push("6");
 
   } else {
 
-    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function(item) {
+    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function (item) {
 
       return item !== "6";
 
     });
- 
+
   }
 
 }
 
-checkKabartma.onclick = function() {
+checkKabartma.onclick = function () {
 
   if (checkKabartma.checked == true) {
-    
+
     checkProductPropertiesArrayList.push("7");
 
   } else {
-   
-    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function(item) {
-   
+
+    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function (item) {
+
       return item !== "7";
-   
+
     });
-   
+
   }
 
 }
 
-checkMuhurlu.onclick = function() {
+checkMuhurlu.onclick = function () {
 
   if (checkMuhurlu.checked == true) {
-    
+
     checkProductPropertiesArrayList.push("8");
 
   } else {
 
-    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function(item) {
-    
+    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function (item) {
+
       return item !== "8";
-    
+
     });
-     
+
   }
 
 }
 
-checkKadife.onclick = function() {
+checkKadife.onclick = function () {
 
   if (checkKadife.checked == true) {
-    
+
     checkProductPropertiesArrayList.push("9");
 
   } else {
-  
-    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function(item) {
+
+    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function (item) {
 
       return item !== "9";
 
@@ -301,60 +368,60 @@ checkKadife.onclick = function() {
 
 }
 
-checkKutulu.onclick = function() {
+checkKutulu.onclick = function () {
 
   if (checkKutulu.checked == true) {
-    
+
     checkProductPropertiesArrayList.push("10");
 
   } else {
-   
-    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function(item) {
-   
+
+    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function (item) {
+
       return item !== "10";
-   
+
     });
-   
- 
+
+
   }
 
 }
 
-checkIkili.onclick = function() {
+checkIkili.onclick = function () {
 
   if (checkIkili.checked == true) {
-    
+
     checkProductPropertiesArrayList.push("11");
 
   } else {
-    
-    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function(item) {
-    
+
+    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function (item) {
+
       return item !== "11";
-    
+
     });
-  
+
   }
 
 }
 
-checkIpli.onclick = function() {
+checkIpli.onclick = function () {
 
   if (checkIpli.checked == true) {
-    
+
     checkProductPropertiesArrayList.push("12");
 
     console.log(checkProductPropertiesArrayList)
 
   } else {
-   
-    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function(item) {
-   
+
+    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function (item) {
+
       return item !== "12";
-   
+
     });
     console.log(checkProductPropertiesArrayList)
- 
+
   }
 
 }
@@ -368,17 +435,20 @@ function createProductsArray([proDocId, proimg, proModelNo, proCategory, ]) {
 
   let proCode = `
 
-  <div class="d-flex justify-content-between border rounded-2 m-1"> 
-        
-  <h6 class="m-2 p-1" style="padding: 1%;">${proModelNo}</h6>
 
-  <button type="button" data-key=${proDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
+  <div class="p-2 g-col-6 border rounded-2 m-1 justify-content-between d-flex align-items-center"> 
+  
+     <img class="m-2 rounded" src="${proimg}" alt="Ürün Resmi" style="width: 150px; height: 100px;">
+  
+     <h6 class="m-2 p-1" style="padding: 1%; align-items:center;">${proModelNo}</h6>
 
-</div>
+     <button type="button" data-key=${proDocId} class="btn btn-primary editBtn m-2" style="width: 150px; height: 50px;">Düzenle</button>
+
+  </div>
 
 `
 
-;
+  ;
 
   products.innerHTML += proCode;
 
@@ -408,7 +478,7 @@ $("body").on("click", ".editBtn", async function () {
   }
 
 
- 
+
 
 
 
@@ -417,7 +487,7 @@ $("body").on("click", ".editBtn", async function () {
 
   if (docs.exists()) {
 
-    
+
 
     const firebaseDocId = docs.id;
     const firebaseProductModelNo = docs.data().productModelNo;
@@ -440,12 +510,16 @@ $("body").on("click", ".editBtn", async function () {
     const firebaseProductFavorites = docs.data().productFavorites;
     const firebaseProductAddDate = docs.data().productAddDate;
     const firebaseProductAddUser = docs.data().productAddUser;
+
     checkProductPropertiesArrayList = docs.data().productProperties;
 
-    console.log(checkProductPropertiesArrayList)
-
     const firebaseProductPrice = docs.data().productPrice;
+    const firebaseProductWholeSalePrice = docs.data().productWholeSalePrice;
+    const firebaseProductProfitRate = docs.data().productProfitRate;
+    const firebaseProductProfit = docs.data().productProfit;
     firebaseProductImgUrl1 = docs.data().productImgUrl1;
+
+    
 
     
 
@@ -466,81 +540,84 @@ $("body").on("click", ".editBtn", async function () {
     productTradeMarkModelNo.value = firebaseProductTrademarkModelNo;
     productTardeMarkSubModel.value = firebaseTradeMarkSubModel;
     productCampaignCodeTextInput.value = firebaseProductCampaignCode;
-    
-    
+    productInvitationWholeSalePriceInput.value = firebaseProductWholeSalePrice;
+    productProfitRateInput.value = firebaseProductProfitRate;
+    productProfitInput.value = firebaseProductProfit;
+
+
     if (checkProductPropertiesArrayList.includes("1")) {
 
-       checkekonomik.checked = true;
+      checkekonomik.checked = true;
 
-      }
+    }
 
-      if (checkProductPropertiesArrayList.includes("2")) {
+    if (checkProductPropertiesArrayList.includes("2")) {
 
-        checkVip.checked = true;
- 
-       }
+      checkVip.checked = true;
 
-       if (checkProductPropertiesArrayList.includes("3")) {
+    }
 
-        checkKraftKagit.checked = true;
- 
-       }
+    if (checkProductPropertiesArrayList.includes("3")) {
 
-       if (checkProductPropertiesArrayList.includes("4")) {
+      checkKraftKagit.checked = true;
 
-        checkLazerKesim.checked = true;
- 
-       }
+    }
 
-       if (checkProductPropertiesArrayList.includes("5")) {
+    if (checkProductPropertiesArrayList.includes("4")) {
 
-        checkPlexi.checked = true;
- 
-       }
+      checkLazerKesim.checked = true;
 
-       if (checkProductPropertiesArrayList.includes("6")) {
+    }
 
-        checkAhsap.checked = true;
- 
-       }
+    if (checkProductPropertiesArrayList.includes("5")) {
 
-       if (checkProductPropertiesArrayList.includes("7")) {
+      checkPlexi.checked = true;
 
-        checkKabartma.checked = true;
- 
-       }
+    }
 
-       if (checkProductPropertiesArrayList.includes("8")) {
+    if (checkProductPropertiesArrayList.includes("6")) {
 
-        checkMuhurlu.checked = true;
- 
-       }
+      checkAhsap.checked = true;
 
-       if (checkProductPropertiesArrayList.includes("9")) {
+    }
 
-        checkKadife.checked = true;
- 
-       }
+    if (checkProductPropertiesArrayList.includes("7")) {
 
-       if (checkProductPropertiesArrayList.includes("10")) {
+      checkKabartma.checked = true;
 
-        checkKutulu.checked = true;
- 
-       }
+    }
 
-       if (checkProductPropertiesArrayList.includes("11")) {
+    if (checkProductPropertiesArrayList.includes("8")) {
 
-        checkIkili.checked = true;
- 
-       }
+      checkMuhurlu.checked = true;
 
-       if (checkProductPropertiesArrayList.includes("12")) {
+    }
 
-        checkIpli.checked = true;
- 
-       }
-    
- 
+    if (checkProductPropertiesArrayList.includes("9")) {
+
+      checkKadife.checked = true;
+
+    }
+
+    if (checkProductPropertiesArrayList.includes("10")) {
+
+      checkKutulu.checked = true;
+
+    }
+
+    if (checkProductPropertiesArrayList.includes("11")) {
+
+      checkIkili.checked = true;
+
+    }
+
+    if (checkProductPropertiesArrayList.includes("12")) {
+
+      checkIpli.checked = true;
+
+    }
+
+
 
 
 
@@ -687,6 +764,10 @@ activityProtocolCheckBox.addEventListener("change", (event) => {
 
 
 
+
+
+
+
 btnProductAdd.addEventListener("click", () => {
 
   if (addEditActivityContainer.style.display === "none") {
@@ -695,6 +776,9 @@ btnProductAdd.addEventListener("click", () => {
     addEditActivityContainer.style.display = ""
     mainActivityContainer.style.display = "none"
     btnProductAdd.style.visibility = "hidden"
+    btnDeleteProduct.style.display = "none"
+
+   
 
     img1Preview.style.display = "none"
     img2Preview.style.display = "none"
@@ -702,6 +786,8 @@ btnProductAdd.addEventListener("click", () => {
     img4Preview.style.display = "none"
     img5Preview.style.display = "none"
     videoPreview.style.display = "none"
+
+    
 
     btnAddEditStatus = "AddProduct"
 
@@ -712,7 +798,7 @@ btnProductAdd.addEventListener("click", () => {
 
 btnAddEditProductSuccess.addEventListener("click", async () => {
 
-  console.log(btnAddEditStatus);
+  
 
   var imageFiles1 = image1Input.files[0];
   var imageFiles2 = image2Input.files[0];
@@ -735,18 +821,23 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
   var image5Url;
   var videoUrl1;
 
+  
+
 
 
   if (btnAddEditStatus == "AddProduct") {
 
+    
 
+    
 
     console.log(productModelNoTextInput.value, productCategorySelectInput.value, productEnvelopeSelectInput.value)
 
     if (productModelNoTextInput.value == "" || productCategorySelectInput.value == "0" || productThemeSelectInput.value == "0" ||
       productSizeCategorySelectInput.value == "0" || productColorCategorySelectInput == "0" || productEnvelopeSelectInput.value == 0 ||
       productTradeMarkSelectInput.value == 0 || productFoilPrintInvitationSelectInput.value == 0 || productFoilPrintTagSelectInput.value == 0 ||
-      productPriceInput.value == 0 || productTardeMarkSubModel.value == 0 || productCampaignCodeTextInput.value == 0 || productTradeMarkModelNo.value == "") {
+      productPriceInput.value == 0 || productTardeMarkSubModel.value == 0 || productCampaignCodeTextInput.value == 0 || productTradeMarkModelNo.value == "" ||
+      productProfitRateInput.value == "" || productInvitationWholeSalePriceInput.value == "") {
 
       alert("Lütfen bütün kutucukları doldurunuz! Boyut kutucukları boş kalabilir!")
 
@@ -769,7 +860,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
 
             var date = new Date();
 
-            var priceDouble = parseFloat(productPriceInput.value)
+           
 
             try {
 
@@ -797,7 +888,10 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
                 productUpdateDate: Timestamp.fromDate(new Date(date)),
                 productAddUser: auth.currentUser.email,
 
-                productPrice: priceDouble,
+                productPrice: productPriceInput.value,
+                productWholeSalePrice: productInvitationWholeSalePriceInput.value,
+                productProfitRate: productProfitRateInput.value,
+                productProfit: productProfitInput.value,
 
                 productImgUrl1: image1Url,
 
@@ -1072,7 +1166,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
       // Set the "capital" field of the city 'DC'
       await updateDoc(updateRef, {
 
-        productModelNo: productModelNoTextInput.value, 
+        productModelNo: productModelNoTextInput.value,
         productTradeMarkModelNo: productTradeMarkModelNo.value,
         productCategory: productCategorySelectInput.value,
         productThemeSelectInput: productThemeSelectInput.value,
@@ -1090,6 +1184,9 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
         productUpdateDate: Timestamp.fromDate(new Date(date)),
 
         productPrice: productPriceInput.value,
+        productProfitRate: productProfitRateInput.value,
+        productProfit: productProfitInput.value,
+        productSalesQuantity: 0,
 
         productImgUrl1: imgUrl,
 
@@ -1360,6 +1457,14 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
   }
 
 });
+
+
+btnDeleteProduct.addEventListener("click", async () => {
+
+  await deleteDoc(doc(db, "Product", updateDocumentId));
+  window.location.reload();
+
+})
 
 
 
