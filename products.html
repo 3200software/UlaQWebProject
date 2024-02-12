@@ -99,7 +99,7 @@
 
 
 
-      <div class="productCard grid gap-3 " >
+      <div class="productCard" >
 
 
       </div>
@@ -126,9 +126,6 @@
 
         <input type="text" class=" col form-control me-1" id="prodcutModelNoTextInput" placeholder="UlaQ Model No">
 
-        <input type="text" class="col form-control ms-1 me-1" id="tradeMarkModelNoTextInput"
-          placeholder="Firma Model No">
-
         <select class="form-select col ms-1 me-1" id="productTradeMarkSelectInput" aria-label="Default select example">
 
           <option value="0" selected>Marka</option>
@@ -139,7 +136,10 @@
 
         </select>
 
-        <input type="text" class="col ms-1 form-control" id="tradeMarkSubModel" placeholder="Marka Alt Kategori">
+        <input type="text" class="col ms-1 me-1 form-control" id="tradeMarkSubModel" placeholder="Marka Alt Kategori">
+
+        <input type="text" class="col form-control ms-1 " id="tradeMarkModelNoTextInput"
+          placeholder="Firma Model No">
 
       </div>
 
@@ -210,6 +210,10 @@
 
         <input class="col ms-1 me-1 form-control" type="text" id="productCampaignCodeTextInput"
           placeholder="Kampanya Kodu" aria-label="Default select example">
+
+
+          <input class="col ms-1 form-control" type="text" id="stockAddInput"
+          placeholder="Stok Gir" aria-label="Default select example">
 
 
 
@@ -324,7 +328,7 @@
 
       </div>
 
-      <div class="row border p-1 mt-2 mb-2 rounded-2">
+      <div class="row border p-1 mt-2 mb-2 rounded-2 " id="propertiesCheckList">
 
         <h5 class="text-primary border-bottom border-primary pb-1">Özellikler</h5>
 
@@ -450,18 +454,13 @@
 
       <div class=" row border rounded-2  mt-2 mb-2 p-1">
 
-      
-
-
+    
         <h5 class="text-primary border-bottom border-primary pb-1">Fotoğraflar</h5>
 
+            <div class="container mt-2">
+
         
-
-
-
-        <div class="container mt-2">
-
-          <div class="row">
+              <div class="row">
 
             <div class="col">
 
@@ -588,28 +587,28 @@
 
       </div>
 
-    
+     
 
       <div class="row mt-2">
 
         <div class="col ps-0" >
 
-          <label class="form-check-label text-primary ms-1" for="checkAhsap">
+          <label class="form-check-label text-primary ms-1" for="productPrice">
             Fiyat
           </label>
           <input class="col form-control" type="number" min="0" max="10000" step="1" class="form-control"
-          id="productInvitationPrice" placeholder="Fiyat">
+          id="productPrice" placeholder="Fiyat">
           
         </div>
 
 
         <div class="col ps-0 pe-2" >
 
-          <label class="form-check-label text-primary ms-1" for="checkAhsap">
+          <label class="form-check-label text-primary ms-1" for="productWholeSalePrice">
             Toptan Fiyat
           </label>
           <input class="col form-control" type="number" min="0" max="10000" step="1" class="form-control"
-          id="productInvitationWholeSalePrice" placeholder="Toptan Fiyat">
+          id="productWholeSalePrice" placeholder="Toptan Fiyat">
           
         </div>
 
@@ -617,7 +616,7 @@
         
         <div class="col pe-0 ps-1" >
 
-          <label class="form-check-label text-primary ms-1" for="checkAhsap">
+          <label class="form-check-label text-primary ms-1" for="productProfit">
             Kar
           </label>
           <input class="col form-control" type="number" min="0" max="10000" step="1" class="form-control"
@@ -629,7 +628,7 @@
 
         <div class="col pe-0" >
 
-          <label class="form-check-label text-primary ms-1" for="checkAhsap">
+          <label class="form-check-label text-primary ms-1" for="productProfitRate">
             Kar Oranı
           </label>
           <input class="col form-control" type="number" min="0" max="10000" step="1" class="form-control"
@@ -661,7 +660,7 @@
             Satış
           </label>
           <input class="col form-control" type="number" min="0" max="10000" step="1" class="form-control"
-          id="productSalesInfo" placeholder="">
+          id="productSalesInfo" placeholder="Satış">
           
         </div>
 
@@ -672,11 +671,13 @@
             Favori
           </label>
           <input class="col form-control " type="number" min="0" max="10000" step="1" class="form-control"
-          id="productFavoriInfo" placeholder="Kar">
+          id="productFavoriInfo" placeholder="Favori">
           
         </div>
 
       </div>
+
+    
 
 
       <div class="row mt-4 ">

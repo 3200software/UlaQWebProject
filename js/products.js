@@ -25,6 +25,7 @@ import {
   getDocs,
   updateDoc,
   deleteDoc,
+  onSnapshot,
   deleteField,
   getDoc,
   Timestamp
@@ -102,8 +103,9 @@ const productFoilPrintTagSelectInput = document.getElementById("productPrintType
 const productTradeMarkModelNo = document.getElementById("tradeMarkModelNoTextInput");
 const productTardeMarkSubModel = document.getElementById("tradeMarkSubModel");
 const productCampaignCodeTextInput = document.getElementById("productCampaignCodeTextInput");
-const productPriceInput = document.getElementById("productInvitationPrice");
-const productInvitationWholeSalePriceInput = document.getElementById("productInvitationWholeSalePrice");
+const stockAddInput = document.getElementById("stockAddInput");
+const productPriceInput = document.getElementById("productPrice");
+const productWholeSalePriceInput = document.getElementById("productWholeSalePrice");
 const productProfitRateInput = document.getElementById("productProfitRate");
 const productProfitInput = document.getElementById("productProfit");
 const image1Input = document.getElementById("image1Input");
@@ -120,6 +122,7 @@ const img4Preview = document.getElementById("img4Preview");
 const img5Preview = document.getElementById("img5Preview");
 const videoPreview = document.getElementById("videoPreview");
 
+const propertiesCheckList = document.getElementById("propertiesCheckList");
 const checkekonomik = document.getElementById("checkEkonomik");
 const checkVip = document.getElementById("checkVip");
 const checkKraftKagit = document.getElementById("checkKraftKagit");
@@ -133,17 +136,31 @@ const checkKutulu = document.getElementById("checkKutulu");
 const checkIkili = document.getElementById("checkIkili");
 const checkIpli = document.getElementById("checkIpli");
 
+const productStockInfo = document.getElementById("productStockInfo");
+const productSalesInfo = document.getElementById("productSalesInfo");
+const productFavoriInfo = document.getElementById("productFavoriInfo");
+
+
 var checkProductPropertiesArrayList = []
 
+
 productProfit.disabled = true;
+productStockInfo.disabled = true;
+productSalesInfo.disabled = true;
+productFavoriInfo.disabled = true;
 
 let firebaseProductImgUrl1 = String;
 
 
-productInvitationWholeSalePriceInput.oninput = function (event) {
+
+
+
+
+
+productWholeSalePriceInput.oninput = function (event) {
 
   var fiyat = parseFloat(productPriceInput.value);
-  var toptanFiyat = parseFloat(productInvitationWholeSalePriceInput.value);
+  var toptanFiyat = parseFloat(productWholeSalePriceInput.value);
 
 
   var fark = fiyat - toptanFiyat;
@@ -161,10 +178,73 @@ productInvitationWholeSalePriceInput.oninput = function (event) {
   productProfitRateInput.value = oranYuvarla;
 
 
-  //productProfitRateInput.value(oranString);
+}
+
+productModelNoTextInput.onchange = function () {
+
+  const q = query(collection(db, "Product"), where("productModelNo", "==", productModelNoTextInput.value));
+  const unsubscribe = onSnapshot(q, (querySnapshot) => {
+    const ProductsModelNoArray = [];
+    querySnapshot.forEach((doc) => {
+      ProductsModelNoArray.push(doc.data().productModelNo);
+
+     });
+
+     if(ProductsModelNoArray.length != 0) {
+
+      alert("Bu model adı daha önce eklenmiş. Lütfen farklı bir model adı giriniz.")
+      productModelNoTextInput.classList.add("is-invalid")
+      productModelNoTextInput.value = ""
 
 
+    
+      
 
+    } else {
+
+      productModelNoTextInput.classList.remove("is-invalid")
+      
+     
+
+    }
+
+    
+
+  });
+
+}
+
+productTradeMarkModelNo.onchange = function () {
+
+  const q = query(collection(db, "Product"), where("productModelNo", "==", productModelNoTextInput.value), where("productTradeMark", "==", productTradeMarkSelectInput.value),  where("productTradeMarkSubModel", "==", productTardeMarkSubModel.value) );
+  const unsubscribe = onSnapshot(q, (querySnapshot) => {
+    const TaradeMarkModelNoArray = [];
+    querySnapshot.forEach((doc) => {
+      TaradeMarkModelNoArray.push(doc.data().productModelNo);
+
+     });
+
+     if(TaradeMarkModelNoArray.length != 0) {
+
+      alert("Bu ürün daha önce eklenmiş. Lütfen farklı bir ürün giriniz.")
+      productTradeMarkModelNo.classList.add("is-invalid")
+      productTradeMarkModelNo.value = ""
+
+
+    
+      
+
+    } else {
+
+      productTradeMarkModelNo.classList.remove("is-invalid")
+      
+     
+
+    }
+
+    
+
+  });
 
 }
 
@@ -183,7 +263,7 @@ productProfitRateInput.oninput = function (event) {
 
 
 
-  productInvitationWholeSalePriceInput.value = toptanFiyatFinal;
+  productWholeSalePriceInput.value = toptanFiyatFinal;
 
 
   //productProfitRateInput.value(oranString);
@@ -368,6 +448,8 @@ checkKadife.onclick = function () {
 
 }
 
+
+
 checkKutulu.onclick = function () {
 
   if (checkKutulu.checked == true) {
@@ -519,11 +601,11 @@ $("body").on("click", ".editBtn", async function () {
     const firebaseProductProfit = docs.data().productProfit;
     firebaseProductImgUrl1 = docs.data().productImgUrl1;
 
-    
+    console.log(firebaseProductStock)
+    console.log(firebaseProductSalesQuantity)
+    console.log(firebaseProductFavorites)
 
-    
-
-
+  
     productModelNoTextInput.value = firebaseProductModelNo;
     productCategorySelectInput.value = firebaseProductCategory;
     productThemeSelectInput.value = firebaseProductThemeSelect;
@@ -540,10 +622,13 @@ $("body").on("click", ".editBtn", async function () {
     productTradeMarkModelNo.value = firebaseProductTrademarkModelNo;
     productTardeMarkSubModel.value = firebaseTradeMarkSubModel;
     productCampaignCodeTextInput.value = firebaseProductCampaignCode;
-    productInvitationWholeSalePriceInput.value = firebaseProductWholeSalePrice;
+    productWholeSalePriceInput.value = firebaseProductWholeSalePrice;
     productProfitRateInput.value = firebaseProductProfitRate;
     productProfitInput.value = firebaseProductProfit;
 
+    productStockInfo.value = parseInt(firebaseProductStock);
+    productSalesInfo.value = parseInt(firebaseProductSalesQuantity);
+    productFavoriInfo.value = parseInt(firebaseProductFavorites);
 
     if (checkProductPropertiesArrayList.includes("1")) {
 
@@ -827,318 +912,505 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
 
   if (btnAddEditStatus == "AddProduct") {
 
-    
-
-    
-
-    console.log(productModelNoTextInput.value, productCategorySelectInput.value, productEnvelopeSelectInput.value)
-
-    if (productModelNoTextInput.value == "" || productCategorySelectInput.value == "0" || productThemeSelectInput.value == "0" ||
-      productSizeCategorySelectInput.value == "0" || productColorCategorySelectInput == "0" || productEnvelopeSelectInput.value == 0 ||
-      productTradeMarkSelectInput.value == 0 || productFoilPrintInvitationSelectInput.value == 0 || productFoilPrintTagSelectInput.value == 0 ||
-      productPriceInput.value == 0 || productTardeMarkSubModel.value == 0 || productCampaignCodeTextInput.value == 0 || productTradeMarkModelNo.value == "" ||
-      productProfitRateInput.value == "" || productInvitationWholeSalePriceInput.value == "") {
-
-      alert("Lütfen bütün kutucukları doldurunuz! Boyut kutucukları boş kalabilir!")
+     if (productModelNoTextInput.value == "" || productCategorySelectInput.value == "0" || productThemeSelectInput.value == "0" ||
+      productSizeCategorySelectInput.value == "0" || productColorCategorySelectInput.value == "0" || productEnvelopeSelectInput.value == "0" ||
+      productTradeMarkSelectInput.value == "0" || productFoilPrintInvitationSelectInput.value == "0" || productFoilPrintTagSelectInput.value == "0" ||
+      productPriceInput.value == "" || productTardeMarkSubModel.value == "" || productTradeMarkModelNo.value == "" ||
+      productProfitRateInput.value == "" || productWholeSalePriceInput.value == "" || stockAddInput.value == "") {
 
 
-    } else {
+        alert("Lütfen bütün kutucukları doldurunuz! Boyut kutucukları boş kalabilir!")
+
+        if (productModelNoTextInput.value == "") {
+
+          productModelNoTextInput.classList.add("is-invalid");
+
+        } else {
+
+          productModelNoTextInput.classList.remove("is-invalid");
+
+        }
+
+        if (productCategorySelectInput.value == "0") {
+
+          productCategorySelectInput.classList.add("is-invalid");
+
+        } else {
+
+          productCategorySelectInput.classList.remove("is-invalid");
+
+        }
+
+        if (productThemeSelectInput.value == "0") {
+
+          productThemeSelectInput.classList.add("is-invalid");
+
+        } else {
+
+          productThemeSelectInput.classList.remove("is-invalid");
+
+        }
+
+        if (productSizeCategorySelectInput.value == "0") {
+
+          productSizeCategorySelectInput.classList.add("is-invalid");
+
+        } else {
+
+          productSizeCategorySelectInput.classList.remove("is-invalid");
+
+        }
+
+        if (productColorCategorySelectInput.value == "0") {
+
+          productColorCategorySelectInput.classList.add("is-invalid");
+
+        } else {
+
+          productColorCategorySelectInput.classList.remove("is-invalid");
+
+        }
+
+        if (productEnvelopeSelectInput.value == "0") {
+
+          productEnvelopeSelectInput.classList.add("is-invalid");
+
+        } else {
+
+          productEnvelopeSelectInput.classList.remove("is-invalid");
+
+        }
+
+        if (productTradeMarkSelectInput.value == "0") {
+
+          productTradeMarkSelectInput.classList.add("is-invalid");
+
+        } else {
+
+          productTradeMarkSelectInput.classList.remove("is-invalid");
+
+        }
+
+        if (productFoilPrintInvitationSelectInput.value == "0") {
+
+          productFoilPrintInvitationSelectInput.classList.add("is-invalid");
+
+        } else {
+
+          productFoilPrintInvitationSelectInput.classList.remove("is-invalid");
+
+        }
+
+        if (productFoilPrintTagSelectInput.value == "0") {
+
+          productFoilPrintTagSelectInput.classList.add("is-invalid");
+
+        } else {
+
+          productFoilPrintTagSelectInput.classList.remove("is-invalid");
+
+        }
+
+        
+        if (productPriceInput.value == "") {
+
+          productPriceInput.classList.add("is-invalid");
+
+        } else {
+
+          productPriceInput.classList.remove("is-invalid");
+
+        }
+
+        
+        if (productTardeMarkSubModel.value == "") {
+
+          productTardeMarkSubModel.classList.add("is-invalid");
+
+        } else {
+
+          productTardeMarkSubModel.classList.remove("is-invalid");
+
+        }
+      
+
+        if (productTradeMarkModelNo.value == "") {
+
+          productTradeMarkModelNo.classList.add("is-invalid");
+
+        } else {
+
+          productTradeMarkModelNo.classList.remove("is-invalid");
+
+        }
+
+        if (stockAddInput.value == "") {
+
+          stockAddInput.classList.add("is-invalid");
+
+        } else {
+
+          stockAddInput.classList.remove("is-invalid");
+
+        }
+
+        if (productWholeSalePriceInput.value == "") {
+
+          productWholeSalePriceInput.classList.add("is-invalid");
+
+        } else {
+
+          productWholeSalePriceInput.classList.remove("is-invalid");
+
+        }
 
 
-      if (imageFiles1 == null || imageFiles2 == null) {
-
-        alert("Lütfen vitrin fotoğrafını ve ürüne ait en az 1 fotoğraf ekleyin.");
 
       } else {
 
-        let storageRef1 = ref(storage, "productImages/" + imageFileName1);
-        uploadBytes(storageRef1, imageFiles1).then((snapshot) => {
+        productModelNoTextInput.classList.remove("is-invalid");
+        productCategorySelectInput.classList.remove("is-invalid");
+        productThemeSelectInput.classList.remove("is-invalid");
+        productSizeCategorySelectInput.classList.remove("is-invalid");
+        productColorCategorySelectInput.classList.remove("is-invalid");
+        productEnvelopeSelectInput.classList.remove("is-invalid");
+        productTradeMarkSelectInput.classList.remove("is-invalid");
+        productFoilPrintInvitationSelectInput.classList.remove("is-invalid");
+        productFoilPrintTagSelectInput.classList.remove("is-invalid");
+        productPriceInput.classList.remove("is-invalid");
+        productTardeMarkSubModel.classList.remove("is-invalid");
+        productTradeMarkModelNo.classList.remove("is-invalid");
+        stockAddInput.classList.remove("is-invalid");
+        productWholeSalePriceInput.classList.remove("is-invalid");
 
-          getDownloadURL(ref(storage, "productImages/" + imageFileName1)).then(async (url) => {
 
-            image1Url = url;
+        if (checkekonomik.checked == true || checkVip.checked == true || checkKraftKagit.checked == true || checkLazerKesim.checked == true ||
+          checkPlexi.checked == true || checkAhsap.checked == true || checkKabartma.checked == true || checkMuhurlu.checked == true || checkKadife.checked == true ||
+          checkKutulu.checked == true || checkIkili.checked == true || checkIpli.checked == true ) {
 
-            var date = new Date();
-
+            propertiesCheckList.classList.remove("border-danger");
            
+            if (imageFiles1 == null || imageFiles2 == null) {
+              
 
-            try {
+              alert("Lütfen vitrin fotoğrafını ve ürüne ait en az 1 fotoğraf ekleyin.");
+      
+         
 
-              const docRef = await addDoc(collection(db, "Product"), {
-
-                productModelNo: productModelNoTextInput.value,
-                productTradeMarkModelNo: productTradeMarkModelNo.value,
-                productCategory: productCategorySelectInput.value,
-                productTheme: productThemeSelectInput.value,
-                productTradeMarkSubModel: productTardeMarkSubModel.value,
-                productCampaignCode: productCampaignCodeTextInput.value,
-                productSizeCategory: productSizeCategorySelectInput.value,
-                productWidth: productSizeWidthTextInput.value,
-                productHeight: productSizeHeightTextInput.value,
-                productColorCategory: productColorCategorySelectInput.value,
-                productEnvelope: productEnvelopeSelectInput.value,
-                productTradeMark: productTradeMarkSelectInput.value,
-                productFoilPrintInvitation: productFoilPrintInvitationSelectInput.value,
-                productFoilPrintTag: productFoilPrintTagSelectInput.value,
-                productSalesQuantity: 0,
-                productStock: 0,
-                productFavorites: 0,
-                productProperties: checkProductPropertiesArrayList,
-                productAddDate: Timestamp.fromDate(new Date(date)),
-                productUpdateDate: Timestamp.fromDate(new Date(date)),
-                productAddUser: auth.currentUser.email,
-
-                productPrice: productPriceInput.value,
-                productWholeSalePrice: productInvitationWholeSalePriceInput.value,
-                productProfitRate: productProfitRateInput.value,
-                productProfit: productProfitInput.value,
-
-                productImgUrl1: image1Url,
-
-
-
-              });
-
-              console.log("Document written with ID: ", docRef.id);
-
-              try {
-
-                await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
-
-                  productImgUrl: image1Url,
-                  no: 1,
-
-                });
-
-                console.log("Document written with ID: ", imageFileName1);
-
-                let storageRef2 = ref(storage, "productImages/" + imageFileName2);
-                uploadBytes(storageRef2, imageFiles2).then((snapshot) => {
-
-                  getDownloadURL(ref(storage, "productImages/" + imageFileName2)).then(async (url) => {
-
-                    image2Url = url;
-
+               } else {
+      
+              let storageRef1 = ref(storage, "productImages/" + imageFileName1);
+              uploadBytes(storageRef1, imageFiles1).then((snapshot) => {
+      
+                getDownloadURL(ref(storage, "productImages/" + imageFileName1)).then(async (url) => {
+      
+                  image1Url = url;
+      
+                  var date = new Date();
+      
+                  var stockAddInteger = parseInt(stockAddInput.value);
+      
+                  try {
+      
+                    const docRef = await addDoc(collection(db, "Product"), {
+      
+                      productModelNo: productModelNoTextInput.value,
+                      productTradeMark: productTradeMarkSelectInput.value,
+                      productTradeMarkSubModel: productTardeMarkSubModel.value,
+                      productTradeMarkModelNo: productTradeMarkModelNo.value,
+                      productCategory: productCategorySelectInput.value,
+                      productTheme: productThemeSelectInput.value,
+                      productCampaignCode: productCampaignCodeTextInput.value,
+                      productSizeCategory: productSizeCategorySelectInput.value,
+                      productWidth: productSizeWidthTextInput.value,
+                      productHeight: productSizeHeightTextInput.value,
+                      productColorCategory: productColorCategorySelectInput.value,
+                      productEnvelope: productEnvelopeSelectInput.value,
+                      productFoilPrintInvitation: productFoilPrintInvitationSelectInput.value,
+                      productFoilPrintTag: productFoilPrintTagSelectInput.value,
+                      productSalesQuantity: 0,
+                      productStock: stockAddInteger,
+                      productFavorites: 0,
+                      productProperties: checkProductPropertiesArrayList,
+                      productAddDate: Timestamp.fromDate(new Date(date)),
+                      productUpdateDate: Timestamp.fromDate(new Date(date)),
+                      productAddUser: auth.currentUser.email,
+      
+                      productPrice: productPriceInput.value,
+                      productWholeSalePrice: productWholeSalePriceInput.value,
+                      productProfitRate: productProfitRateInput.value,
+                      productProfit: productProfitInput.value,
+      
+                      productImgUrl1: image1Url,
+      
+      
+      
+                    });
+      
                     try {
-
+      
                       await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
-
-                        productImgUrl: image2Url,
-                        no: 2,
-
-
+      
+                        productImgUrl: image1Url,
+                        no: 1,
+      
                       });
-
-                      console.log("Document written with ID: ", imageFileName2);
-
-                      let storageRef3 = ref(storage, "productImages/" + imageFileName3);
-                      uploadBytes(storageRef3, imageFiles3).then((snapshot) => {
-
-                        getDownloadURL(ref(storage, "productImages/" + imageFileName3)).then(async (url) => {
-
-                          if (imageFiles3 == null) {
-
-                            image3Url = "";
-
-                          } else {
-
-                            image3Url = url;
-
-                          }
-
+      
+                      console.log("Document written with ID: ", imageFileName1);
+      
+                      let storageRef2 = ref(storage, "productImages/" + imageFileName2);
+                      uploadBytes(storageRef2, imageFiles2).then((snapshot) => {
+      
+                        getDownloadURL(ref(storage, "productImages/" + imageFileName2)).then(async (url) => {
+      
+                          image2Url = url;
+      
                           try {
-
+      
                             await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
-
-                              productImgUrl: image3Url,
-                              no: 3,
-
+      
+                              productImgUrl: image2Url,
+                              no: 2,
+      
+      
                             });
-
-                            console.log("Document written with ID: ", imageFileName3);
-
-                            let storageRef4 = ref(storage, "productImages/" + imageFileName4);
-                            uploadBytes(storageRef4, imageFiles4).then((snapshot) => {
-
-                              getDownloadURL(ref(storage, "productImages/" + imageFileName4)).then(async (url) => {
-
-                                if (imageFiles4 == null) {
-
-                                  image4Url = "";
-
+      
+                            console.log("Document written with ID: ", imageFileName2);
+      
+                            let storageRef3 = ref(storage, "productImages/" + imageFileName3);
+                            uploadBytes(storageRef3, imageFiles3).then((snapshot) => {
+      
+                              getDownloadURL(ref(storage, "productImages/" + imageFileName3)).then(async (url) => {
+      
+                                if (imageFiles3 == null) {
+      
+                                  image3Url = "";
+      
                                 } else {
-
-                                  image4Url = url;
-
+      
+                                  image3Url = url;
+      
                                 }
-
+      
                                 try {
-
+      
                                   await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
-
-
-                                    productImgUrl: image4Url,
-                                    no: 4,
-
+      
+                                    productImgUrl: image3Url,
+                                    no: 3,
+      
                                   });
-
-                                  console.log("Document written with ID: ", imageFileName4);
-
-
-                                  let storageRef5 = ref(storage, "productImages/" + imageFileName5);
-                                  uploadBytes(storageRef5, imageFiles5).then((snapshot) => {
-
-                                    getDownloadURL(ref(storage, "productImages/" + imageFileName5)).then(async (url) => {
-
-
-                                      if (imageFiles5 == null) {
-
-                                        image5Url = "";
-
+      
+                                  console.log("Document written with ID: ", imageFileName3);
+      
+                                  let storageRef4 = ref(storage, "productImages/" + imageFileName4);
+                                  uploadBytes(storageRef4, imageFiles4).then((snapshot) => {
+      
+                                    getDownloadURL(ref(storage, "productImages/" + imageFileName4)).then(async (url) => {
+      
+                                      if (imageFiles4 == null) {
+      
+                                        image4Url = "";
+      
                                       } else {
-
-                                        image5Url = url;
-
+      
+                                        image4Url = url;
+      
                                       }
-
+      
                                       try {
-
+      
                                         await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
-
-
-                                          productImgUrl: image5Url,
-                                          no: 5,
-
-
+      
+      
+                                          productImgUrl: image4Url,
+                                          no: 4,
+      
                                         });
-
-                                        console.log("Document written with ID: ", imageFileName5);
-
-                                        let storageRef6 = ref(storage, "productImages/" + videoFileName1);
-                                        uploadBytes(storageRef6, videoFiles1).then((snapshot) => {
-
-                                          getDownloadURL(ref(storage, "productImages/" + videoFileName1)).then(async (url) => {
-
-                                            if (videoFiles1 == null) {
-
-                                              videoUrl1 = "";
-
+      
+                                        console.log("Document written with ID: ", imageFileName4);
+      
+      
+                                        let storageRef5 = ref(storage, "productImages/" + imageFileName5);
+                                        uploadBytes(storageRef5, imageFiles5).then((snapshot) => {
+      
+                                          getDownloadURL(ref(storage, "productImages/" + imageFileName5)).then(async (url) => {
+      
+      
+                                            if (imageFiles5 == null) {
+      
+                                              image5Url = "";
+      
                                             } else {
-
-                                              videoUrl1 = url;
-
+      
+                                              image5Url = url;
+      
                                             }
-
+      
                                             try {
-
+      
                                               await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
-
-                                                productImgUrl: videoUrl1,
-                                                no: 6,
-
+      
+      
+                                                productImgUrl: image5Url,
+                                                no: 5,
+      
+      
                                               });
-
-                                              console.log("Document written with ID: ", videoFileName1);
-
-                                              window.location.href = "products.html"
-
-
-
+      
+                                              console.log("Document written with ID: ", imageFileName5);
+      
+                                              let storageRef6 = ref(storage, "productImages/" + videoFileName1);
+                                              uploadBytes(storageRef6, videoFiles1).then((snapshot) => {
+      
+                                                getDownloadURL(ref(storage, "productImages/" + videoFileName1)).then(async (url) => {
+      
+                                                  if (videoFiles1 == null) {
+      
+                                                    videoUrl1 = "";
+      
+                                                  } else {
+      
+                                                    videoUrl1 = url;
+      
+                                                  }
+      
+                                                  try {
+      
+                                                    await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
+      
+                                                      productImgUrl: videoUrl1,
+                                                      no: 6,
+      
+                                                    });
+      
+                                                    console.log("Document written with ID: ", videoFileName1);
+      
+                                                    window.location.href = "products.html"
+      
+      
+      
+                                                  } catch (e) {
+      
+                                                    console.error("Error adding document: ", e);
+      
+      
+                                                  }
+      
+                                                })
+      
+                                              });
+      
+      
                                             } catch (e) {
-
+      
                                               console.error("Error adding document: ", e);
-
-
+      
+      
                                             }
-
+      
                                           })
-
+      
                                         });
-
-
+      
+      
                                       } catch (e) {
-
+      
                                         console.error("Error adding document: ", e);
-
-
+      
+      
                                       }
-
+      
+      
+      
                                     })
-
+      
                                   });
-
-
+      
+      
                                 } catch (e) {
-
+      
                                   console.error("Error adding document: ", e);
-
-
+      
+      
                                 }
-
-
-
+      
+      
+      
                               })
-
+      
                             });
-
-
+      
+      
                           } catch (e) {
-
+      
                             console.error("Error adding document: ", e);
-
-
+      
+      
                           }
-
-
-
+      
+      
                         })
-
+      
                       });
-
-
+      
+      
                     } catch (e) {
-
+      
                       console.error("Error adding document: ", e);
-
-
+      
                     }
-
-
-                  })
-
-                });
-
-
-              } catch (e) {
-
-                console.error("Error adding document: ", e);
-
-              }
-
-
-            } catch (e) {
-
-              console.error("Error adding document: ", e);
-
+      
+      
+                  } catch (e) {
+      
+                    console.error("Error adding document: ", e);
+      
+                  }
+      
+      
+      
+                })
+      
+              });
+      
             }
+        
+    
+        } else {
 
+          alert("Ne yani bu davetiyenin hiçbir özelliği yok mu? Lütfen Bir kaç özellik ekleyin!");
+          propertiesCheckList.classList.add("border-danger");
+    
+          
+    
+        }
 
-
-          })
-
-        });
-
-      }
+      
+        
+ 
 
 
     }
 
-
-
-
+  
   } else if (btnAddEditStatus == "EditProduct") {
 
     let imgUrl = String;
+
+    if (stockAddInput.value != "") {
+
+      var newStock = parseInt(stockAddInput.value) + parseInt(productStockInfo.value);
+
+    } else {
+
+      var newStock = parseInt(productStockInfo.value);
+
+    }
+
+    var date = new Date();
+
+    
 
     if (imageFiles1 == null) {
 
@@ -1182,8 +1454,10 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
         productFoilPrintTag: productFoilPrintTagSelectInput.value,
         productProperties: checkProductPropertiesArrayList,
         productUpdateDate: Timestamp.fromDate(new Date(date)),
+        productStock: newStock,
 
         productPrice: productPriceInput.value,
+        productWholeSalePrice: productWholeSalePriceInput.value,
         productProfitRate: productProfitRateInput.value,
         productProfit: productProfitInput.value,
         productSalesQuantity: 0,
@@ -1421,6 +1695,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
 
               });
 
+            
               console.log("Document written with ID: ", docRef.id);
 
 
@@ -1431,14 +1706,17 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
 
             }
 
-
+           
 
           })
 
         });
 
+        
+
       }
 
+      window.location.reload();
 
 
 
