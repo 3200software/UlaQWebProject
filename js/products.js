@@ -101,7 +101,7 @@ const productTradeMarkSelectInput = document.getElementById("productTradeMarkSel
 const productFoilPrintInvitationSelectInput = document.getElementById("productPrintTypeInvitationSelectInput");
 const productFoilPrintTagSelectInput = document.getElementById("productPrintTypeTagSelectInput");
 const productTradeMarkModelNo = document.getElementById("tradeMarkModelNoTextInput");
-const productTardeMarkSubModel = document.getElementById("tradeMarkSubModel");
+const productTardeMarkSubModelSelectInput = document.getElementById("tradeMarkSubModelSelectInput");
 const productCampaignCodeTextInput = document.getElementById("productCampaignCodeTextInput");
 const stockAddInput = document.getElementById("stockAddInput");
 const productPriceInput = document.getElementById("productPrice");
@@ -143,7 +143,6 @@ const productFavoriInfo = document.getElementById("productFavoriInfo");
 
 var checkProductPropertiesArrayList = []
 
-
 productProfit.disabled = true;
 productStockInfo.disabled = true;
 productSalesInfo.disabled = true;
@@ -179,6 +178,85 @@ productWholeSalePriceInput.oninput = function (event) {
 
 
 }
+
+
+productTradeMarkSelectInput.onchange = function () {
+
+  if (productTradeMarkSelectInput.value == "1") {
+
+    console.log("1")
+
+    productTardeMarkSubModelSelectInput.innerHTML = "";
+
+      var option0 = document.createElement("option");
+      option0.text = "Marka Alt Kategori";
+      option0.value = "0";
+      productTardeMarkSubModelSelectInput.add(option0);
+
+      var option1 = document.createElement("option");
+      option1.text = "Wedding";
+      option1.value = "1";
+      productTardeMarkSubModelSelectInput.add(option1);
+      
+      var option2 = document.createElement("option");
+      option2.text = "Alyans";
+      option2.value = "2";
+      productTardeMarkSubModelSelectInput.add(option2);
+      
+      var option3 = document.createElement("option");
+      option3.text = "Fenomen";
+      option3.value = "3";
+      productTardeMarkSubModelSelectInput.add(option3);
+
+      var option4 = document.createElement("option");
+      option4.text = "İklim";
+      option4.value = "4";
+      productTardeMarkSubModelSelectInput.add(option4);
+
+      var option5 = document.createElement("option");
+      option5.text = "Sünnet";
+      option5.value = "5";
+      productTardeMarkSubModelSelectInput.add(option5);
+    
+
+
+  } else if (productTradeMarkSelectInput.value == "2"){
+
+    productTardeMarkSubModelSelectInput.innerHTML = "";
+
+    var option0 = document.createElement("option");
+    option0.text = "Marka Alt Kategori";
+    option0.value = "0";
+    productTardeMarkSubModelSelectInput.add(option0);
+
+    var option1 = document.createElement("option");
+    option1.text = "Ekonom";
+    option1.value = "1";
+    productTardeMarkSubModelSelectInput.add(option1);
+    
+    var option2 = document.createElement("option");
+    option2.text = "ButiQline";
+    option2.value = "2";
+    productTardeMarkSubModelSelectInput.add(option2);
+    
+    var option3 = document.createElement("option");
+    option3.text = "Erdem";
+    option3.value = "3";
+    productTardeMarkSubModelSelectInput.add(option3);
+
+    var option4 = document.createElement("option");
+    option4.text = "Sünnet";
+    option4.value = "4";
+    productTardeMarkSubModelSelectInput.add(option4);
+
+    
+  }
+
+
+}
+
+
+
 
 productModelNoTextInput.onchange = function () {
 
@@ -620,7 +698,7 @@ $("body").on("click", ".editBtn", async function () {
     productPriceInput.value = firebaseProductPrice;
     img1Preview.src = firebaseProductImgUrl1;
     productTradeMarkModelNo.value = firebaseProductTrademarkModelNo;
-    productTardeMarkSubModel.value = firebaseTradeMarkSubModel;
+    productTardeMarkSubModelSelectInput.value = firebaseTradeMarkSubModel;
     productCampaignCodeTextInput.value = firebaseProductCampaignCode;
     productWholeSalePriceInput.value = firebaseProductWholeSalePrice;
     productProfitRateInput.value = firebaseProductProfitRate;
@@ -915,7 +993,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
      if (productModelNoTextInput.value == "" || productCategorySelectInput.value == "0" || productThemeSelectInput.value == "0" ||
       productSizeCategorySelectInput.value == "0" || productColorCategorySelectInput.value == "0" || productEnvelopeSelectInput.value == "0" ||
       productTradeMarkSelectInput.value == "0" || productFoilPrintInvitationSelectInput.value == "0" || productFoilPrintTagSelectInput.value == "0" ||
-      productPriceInput.value == "" || productTardeMarkSubModel.value == "" || productTradeMarkModelNo.value == "" ||
+      productPriceInput.value == "" || productTardeMarkSubModelSelectInput.value == "" || productTradeMarkModelNo.value == "" ||
       productProfitRateInput.value == "" || productWholeSalePriceInput.value == "" || stockAddInput.value == "") {
 
 
@@ -1023,13 +1101,13 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
         }
 
         
-        if (productTardeMarkSubModel.value == "") {
+        if (productTardeMarkSubModelSelectInput.value == "") {
 
-          productTardeMarkSubModel.classList.add("is-invalid");
+          productTardeMarkSubModelSelectInput.classList.add("is-invalid");
 
         } else {
 
-          productTardeMarkSubModel.classList.remove("is-invalid");
+          productTardeMarkSubModelSelectInput.classList.remove("is-invalid");
 
         }
       
@@ -1078,7 +1156,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
         productFoilPrintInvitationSelectInput.classList.remove("is-invalid");
         productFoilPrintTagSelectInput.classList.remove("is-invalid");
         productPriceInput.classList.remove("is-invalid");
-        productTardeMarkSubModel.classList.remove("is-invalid");
+        productTardeMarkSubModelSelectInput.classList.remove("is-invalid");
         productTradeMarkModelNo.classList.remove("is-invalid");
         stockAddInput.classList.remove("is-invalid");
         productWholeSalePriceInput.classList.remove("is-invalid");
@@ -1116,7 +1194,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
       
                       productModelNo: productModelNoTextInput.value,
                       productTradeMark: productTradeMarkSelectInput.value,
-                      productTradeMarkSubModel: productTardeMarkSubModel.value,
+                      productTradeMarkSubModel: productTardeMarkSubModelSelectInput.value,
                       productTradeMarkModelNo: productTradeMarkModelNo.value,
                       productCategory: productCategorySelectInput.value,
                       productTheme: productThemeSelectInput.value,
@@ -1443,7 +1521,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
         productCategory: productCategorySelectInput.value,
         productThemeSelectInput: productThemeSelectInput.value,
         productSizeCategory: productSizeCategorySelectInput.value,
-        productTradeMarkSubModel: productTardeMarkSubModel.value,
+        productTradeMarkSubModel: productTardeMarkSubModelSelectInput.value,
         productCampaignCode: productCampaignCodeTextInput.value,
         productWidth: productSizeWidthTextInput.value,
         productHeight: productSizeHeightTextInput.value,
