@@ -152,10 +152,6 @@ let firebaseProductImgUrl1 = String;
 
 
 
-
-
-
-
 productWholeSalePriceInput.oninput = function (event) {
 
   var fiyat = parseFloat(productPriceInput.value);
