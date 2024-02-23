@@ -1192,7 +1192,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
                       productTradeMark: productTradeMarkSelectInput.value,
                       productTradeMarkSubModel: productTardeMarkSubModelSelectInput.value,
                       productTradeMarkModelNo: productTradeMarkModelNo.value,
-                      productCategory: productCategorySelectInput.value,
+                      productCategory: parseInt(productCategorySelectInput.value),
                       productTheme: productThemeSelectInput.value,
                       productCampaignCode: productCampaignCodeTextInput.value,
                       productSizeCategory: productSizeCategorySelectInput.value,
@@ -1514,7 +1514,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
 
         productModelNo: productModelNoTextInput.value,
         productTradeMarkModelNo: productTradeMarkModelNo.value,
-        productCategory: productCategorySelectInput.value,
+        productCategory: parseInt(productCategorySelectInput.value),
         productThemeSelectInput: productThemeSelectInput.value,
         productSizeCategory: productSizeCategorySelectInput.value,
         productTradeMarkSubModel: productTardeMarkSubModelSelectInput.value,
