@@ -1210,7 +1210,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
                       productUpdateDate: Timestamp.fromDate(new Date(date)),
                       productAddUser: auth.currentUser.email,
       
-                      productPrice: productPriceInput.value,
+                      productPrice: parseFloat(productPriceInput.value),
                       productWholeSalePrice: productWholeSalePriceInput.value,
                       productProfitRate: productProfitRateInput.value,
                       productProfit: productProfitInput.value,
@@ -1530,7 +1530,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
         productUpdateDate: Timestamp.fromDate(new Date(date)),
         productStock: newStock,
 
-        productPrice: productPriceInput.value,
+        productPrice: parseFloat(productPriceInput.value),
         productWholeSalePrice: productWholeSalePriceInput.value,
         productProfitRate: productProfitRateInput.value,
         productProfit: productProfitInput.value,
