@@ -254,73 +254,6 @@ productTradeMarkSelectInput.onchange = function () {
 
 
 
-productModelNoTextInput.onchange = function () {
-
-  const q = query(collection(db, "Product"), where("productModelNo", "==", productModelNoTextInput.value));
-  const unsubscribe = onSnapshot(q, (querySnapshot) => {
-    const ProductsModelNoArray = [];
-    querySnapshot.forEach((doc) => {
-      ProductsModelNoArray.push(doc.data().productModelNo);
-
-     });
-
-     if(ProductsModelNoArray.length != 0) {
-
-      alert("Bu model adı daha önce eklenmiş. Lütfen farklı bir model adı giriniz.")
-      productModelNoTextInput.classList.add("is-invalid")
-      productModelNoTextInput.value = ""
-
-
-    
-      
-
-    } else {
-
-      productModelNoTextInput.classList.remove("is-invalid")
-      
-     
-
-    }
-
-    
-
-  });
-
-}
-
-productTradeMarkModelNo.onchange = function () {
-
-  const q = query(collection(db, "Product"), where("productModelNo", "==", productModelNoTextInput.value), where("productTradeMark", "==", productTradeMarkSelectInput.value),  where("productTradeMarkSubModel", "==", productTardeMarkSubModel.value) );
-  const unsubscribe = onSnapshot(q, (querySnapshot) => {
-    const TaradeMarkModelNoArray = [];
-    querySnapshot.forEach((doc) => {
-      TaradeMarkModelNoArray.push(doc.data().productModelNo);
-
-     });
-
-     if(TaradeMarkModelNoArray.length != 0) {
-
-      alert("Bu ürün daha önce eklenmiş. Lütfen farklı bir ürün giriniz.")
-      productTradeMarkModelNo.classList.add("is-invalid")
-      productTradeMarkModelNo.value = ""
-
-
-    
-      
-
-    } else {
-
-      productTradeMarkModelNo.classList.remove("is-invalid")
-      
-     
-
-    }
-
-    
-
-  });
-
-}
 
 
 productProfitRateInput.oninput = function (event) {
@@ -675,11 +608,7 @@ $("body").on("click", ".editBtn", async function () {
     const firebaseProductProfit = docs.data().productProfit;
     firebaseProductImgUrl1 = docs.data().productImgUrl1;
 
-    console.log(firebaseProductStock)
-    console.log(firebaseProductSalesQuantity)
-    console.log(firebaseProductFavorites)
 
-  
     productModelNoTextInput.value = firebaseProductModelNo;
     productCategorySelectInput.value = firebaseProductCategory;
     productThemeSelectInput.value = firebaseProductThemeSelect;
@@ -694,7 +623,7 @@ $("body").on("click", ".editBtn", async function () {
     productPriceInput.value = firebaseProductPrice;
     img1Preview.src = firebaseProductImgUrl1;
     productTradeMarkModelNo.value = firebaseProductTrademarkModelNo;
-    productTardeMarkSubModelSelectInput.value = firebaseTradeMarkSubModel;
+    
     productCampaignCodeTextInput.value = firebaseProductCampaignCode;
     productWholeSalePriceInput.value = firebaseProductWholeSalePrice;
     productProfitRateInput.value = firebaseProductProfitRate;
@@ -703,6 +632,79 @@ $("body").on("click", ".editBtn", async function () {
     productStockInfo.value = parseInt(firebaseProductStock);
     productSalesInfo.value = parseInt(firebaseProductSalesQuantity);
     productFavoriInfo.value = parseInt(firebaseProductFavorites);
+
+
+    if (productTradeMarkSelectInput.value == "1") {
+
+      console.log("1")
+  
+      productTardeMarkSubModelSelectInput.innerHTML = "";
+  
+        var option0 = document.createElement("option");
+        option0.text = "Marka Alt Kategori";
+        option0.value = "0";
+        productTardeMarkSubModelSelectInput.add(option0);
+  
+        var option1 = document.createElement("option");
+        option1.text = "Wedding";
+        option1.value = "1";
+        productTardeMarkSubModelSelectInput.add(option1);
+        
+        var option2 = document.createElement("option");
+        option2.text = "Alyans";
+        option2.value = "2";
+        productTardeMarkSubModelSelectInput.add(option2);
+        
+        var option3 = document.createElement("option");
+        option3.text = "Fenomen";
+        option3.value = "3";
+        productTardeMarkSubModelSelectInput.add(option3);
+  
+        var option4 = document.createElement("option");
+        option4.text = "İklim";
+        option4.value = "4";
+        productTardeMarkSubModelSelectInput.add(option4);
+  
+        var option5 = document.createElement("option");
+        option5.text = "Sünnet";
+        option5.value = "5";
+        productTardeMarkSubModelSelectInput.add(option5);
+      
+  
+  
+    } else if (productTradeMarkSelectInput.value == "2"){
+  
+      productTardeMarkSubModelSelectInput.innerHTML = "";
+  
+      var option0 = document.createElement("option");
+      option0.text = "Marka Alt Kategori";
+      option0.value = "0";
+      productTardeMarkSubModelSelectInput.add(option0);
+  
+      var option1 = document.createElement("option");
+      option1.text = "Ekonom";
+      option1.value = "1";
+      productTardeMarkSubModelSelectInput.add(option1);
+      
+      var option2 = document.createElement("option");
+      option2.text = "ButiQline";
+      option2.value = "2";
+      productTardeMarkSubModelSelectInput.add(option2);
+      
+      var option3 = document.createElement("option");
+      option3.text = "Erdem";
+      option3.value = "3";
+      productTardeMarkSubModelSelectInput.add(option3);
+  
+      var option4 = document.createElement("option");
+      option4.text = "Sünnet";
+      option4.value = "4";
+      productTardeMarkSubModelSelectInput.add(option4);
+  
+      
+    }
+
+    productTardeMarkSubModelSelectInput.value = firebaseTradeMarkSubModel;
 
     if (checkProductPropertiesArrayList.includes("1")) {
 
@@ -1456,16 +1458,9 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
           alert("Ne yani bu davetiyenin hiçbir özelliği yok mu? Lütfen Bir kaç özellik ekleyin!");
           propertiesCheckList.classList.add("border-danger");
     
-          
-    
         }
-
-      
-        
- 
-
-
-    }
+    
+      }
 
   
   } else if (btnAddEditStatus == "EditProduct") {
@@ -1509,7 +1504,6 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
 
       const updateRef = doc(db, "Product", updateDocumentId);
 
-      // Set the "capital" field of the city 'DC'
       await updateDoc(updateRef, {
 
         productModelNo: productModelNoTextInput.value,
@@ -1832,6 +1826,72 @@ btnProductAddCancel.addEventListener("click", () => {
   }
 
 })
+
+
+productModelNoTextInput.onchange = function () {
+
+  const q = query(collection(db, "Product"), where("productModelNo", "==", productModelNoTextInput.value));
+  const unsubscribe = onSnapshot(q, (querySnapshot) => {
+    const ProductsModelNoArray = [];
+    querySnapshot.forEach((doc) => {
+      ProductsModelNoArray.push(doc.data().productModelNo);
+
+     });
+
+     if(ProductsModelNoArray.length != 0) {
+      
+
+      alert("Bu model adı daha önce eklenmiş. Lütfen farklı bir model adı giriniz.")
+      productModelNoTextInput.classList.add("is-invalid")
+      productModelNoTextInput.value = ""
+
+
+    } else {
+
+      productModelNoTextInput.classList.remove("is-invalid")
+      
+
+    }
+
+    
+
+  });
+
+}
+
+productTradeMarkModelNo.onchange = function () {
+
+  const q = query(collection(db, "Product"), where("productModelNo", "==", productModelNoTextInput.value), where("productTradeMark", "==", productTradeMarkSelectInput.value),  where("productTradeMarkSubModel", "==", productTardeMarkSubModelSelectInput.value) );
+  const unsubscribe = onSnapshot(q, (querySnapshot) => {
+    const TaradeMarkModelNoArray = [];
+    querySnapshot.forEach((doc) => {
+      TaradeMarkModelNoArray.push(doc.data().productModelNo);
+
+     });
+
+     if(TaradeMarkModelNoArray.length != 0) {
+
+      alert("Bu ürün daha önce eklenmiş. Lütfen farklı bir ürün giriniz.")
+      productTradeMarkModelNo.classList.add("is-invalid")
+      productTradeMarkModelNo.value = ""
+
+
+    
+      
+
+    } else {
+
+      productTradeMarkModelNo.classList.remove("is-invalid")
+      
+     
+
+    }
+
+    
+
+  });
+
+}
 
 
 btnLogout.addEventListener("click", () => {
