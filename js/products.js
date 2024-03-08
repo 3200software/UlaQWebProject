@@ -126,10 +126,8 @@ const propertiesCheckList = document.getElementById("propertiesCheckList");
 const checkekonomik = document.getElementById("checkEkonomik");
 const checkVip = document.getElementById("checkVip");
 const checkKraftKagit = document.getElementById("checkKraftKagit");
-const checkLazerKesim = document.getElementById("checkLazerKesim");
 const checkPlexi = document.getElementById("checkPlexi");
 const checkAhsap = document.getElementById("checkAhsap");
-const checkKabartma = document.getElementById("checkKabartma");
 const checkMuhurlu = document.getElementById("checkMuhurlu");
 const checkKadife = document.getElementById("checkKadife");
 const checkKutulu = document.getElementById("checkKutulu");
@@ -357,23 +355,6 @@ checkKraftKagit.onclick = function () {
 
 }
 
-checkLazerKesim.onclick = function () {
-
-  if (checkLazerKesim.checked == true) {
-
-    checkProductPropertiesArrayList.push("4");
-
-  } else {
-
-    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function (item) {
-
-      return item !== "4";
-
-    });
-
-  }
-
-}
 
 checkPlexi.onclick = function () {
 
@@ -385,7 +366,7 @@ checkPlexi.onclick = function () {
 
     checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function (item) {
 
-      return item !== "5";
+      return item !== "4";
 
     });
 
@@ -403,7 +384,7 @@ checkAhsap.onclick = function () {
 
     checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function (item) {
 
-      return item !== "6";
+      return item !== "5";
 
     });
 
@@ -411,23 +392,6 @@ checkAhsap.onclick = function () {
 
 }
 
-checkKabartma.onclick = function () {
-
-  if (checkKabartma.checked == true) {
-
-    checkProductPropertiesArrayList.push("7");
-
-  } else {
-
-    checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function (item) {
-
-      return item !== "7";
-
-    });
-
-  }
-
-}
 
 checkMuhurlu.onclick = function () {
 
@@ -439,7 +403,7 @@ checkMuhurlu.onclick = function () {
 
     checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function (item) {
 
-      return item !== "8";
+      return item !== "6";
 
     });
 
@@ -457,7 +421,7 @@ checkKadife.onclick = function () {
 
     checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function (item) {
 
-      return item !== "9";
+      return item !== "7";
 
     });
 
@@ -477,7 +441,7 @@ checkKutulu.onclick = function () {
 
     checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function (item) {
 
-      return item !== "10";
+      return item !== "8";
 
     });
 
@@ -496,7 +460,7 @@ checkIkili.onclick = function () {
 
     checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function (item) {
 
-      return item !== "11";
+      return item !== "9";
 
     });
 
@@ -516,7 +480,7 @@ checkIpli.onclick = function () {
 
     checkProductPropertiesArrayList = checkProductPropertiesArrayList.filter(function (item) {
 
-      return item !== "12";
+      return item !== "10";
 
     });
     console.log(checkProductPropertiesArrayList)
@@ -734,55 +698,44 @@ $("body").on("click", ".editBtn", async function () {
 
     }
 
-    if (checkProductPropertiesArrayList.includes("4")) {
-
-      checkLazerKesim.checked = true;
-
-    }
-
-    if (checkProductPropertiesArrayList.includes("5")) {
+     if (checkProductPropertiesArrayList.includes("4")) {
 
       checkPlexi.checked = true;
 
     }
 
-    if (checkProductPropertiesArrayList.includes("6")) {
+    if (checkProductPropertiesArrayList.includes("5")) {
 
       checkAhsap.checked = true;
 
     }
 
-    if (checkProductPropertiesArrayList.includes("7")) {
 
-      checkKabartma.checked = true;
-
-    }
-
-    if (checkProductPropertiesArrayList.includes("8")) {
+    if (checkProductPropertiesArrayList.includes("6")) {
 
       checkMuhurlu.checked = true;
 
     }
 
-    if (checkProductPropertiesArrayList.includes("9")) {
+    if (checkProductPropertiesArrayList.includes("7")) {
 
       checkKadife.checked = true;
 
     }
 
-    if (checkProductPropertiesArrayList.includes("10")) {
+    if (checkProductPropertiesArrayList.includes("8")) {
 
       checkKutulu.checked = true;
 
     }
 
-    if (checkProductPropertiesArrayList.includes("11")) {
+    if (checkProductPropertiesArrayList.includes("9")) {
 
       checkIkili.checked = true;
 
     }
 
-    if (checkProductPropertiesArrayList.includes("12")) {
+    if (checkProductPropertiesArrayList.includes("10")) {
 
       checkIpli.checked = true;
 
@@ -1156,8 +1109,8 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
         productWholeSalePriceInput.classList.remove("is-invalid");
 
 
-        if (checkekonomik.checked == true || checkVip.checked == true || checkKraftKagit.checked == true || checkLazerKesim.checked == true ||
-          checkPlexi.checked == true || checkAhsap.checked == true || checkKabartma.checked == true || checkMuhurlu.checked == true || checkKadife.checked == true ||
+        if (checkekonomik.checked == true || checkVip.checked == true || checkKraftKagit.checked == true  ||
+          checkPlexi.checked == true || checkAhsap.checked == true || checkMuhurlu.checked == true || checkKadife.checked == true ||
           checkKutulu.checked == true || checkIkili.checked == true || checkIpli.checked == true ) {
 
             propertiesCheckList.classList.remove("border-danger");
