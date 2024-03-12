@@ -42,7 +42,7 @@
 
         <a href="orderTracking.html" class="list-group-item list-group-item-action">Sipariş Takip</a>
 
-        <a href="products.html" class="list-group-item list-group-item-action active">Ürünler</a>
+        <button href="products.html" id="productsPages" class="list-group-item list-group-item-action active">Ürünler</button>
 
       </div>
 
@@ -123,6 +123,7 @@
 
   </div>
 
+ 
 
   <div class="container height" id="addEditContainer" style=" margin-left: 22% ; margin-top: 1%; display: none;">
 
@@ -132,8 +133,19 @@
 
     </div>
 
+    <div class="container" id="deleteContainer" style="display: none;" >
 
-    <div class="container">
+      <div class="row mt-2 mb-2" >
+
+        <button class="col me-1 btn btn-primary" id="productDeleteCancelButton">Vazgeç</button>
+        <button class="col me-1 btn btn-danger" id="productDeleteDeletButton">Sil Sil Sil</button>
+
+
+      </div>
+
+    </div>
+
+    <div class="container" id="productContainer">
 
 
       <div class="row mt-2 mb-2">
@@ -690,7 +702,7 @@
 
         <button class="col me-1 btn btn-danger" id="productAddCancelButton">Vazgeç</button>
 
-        <button class="col me-1 btn btn-danger" id="deleteProductButton">Ürünü Sil</button>
+        <button class="col me-1 btn btn-danger" onClick="handleClick()" id="deleteProductButton">Ürünü Sil</button> 
 
         <button class="col ms-1 btn btn-success" id="productAddSuccessButton">Onayla</button>
 

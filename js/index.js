@@ -1,5 +1,35 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut
+} from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
+import {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL
+} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-storage.js";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  doc,
+  query,
+  where,
+  orderBy,
+  limit,
+  getDocs,
+  updateDoc,
+  deleteDoc,
+  onSnapshot,
+  deleteField,
+  getDoc,
+  Timestamp
+} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
 
 
 
@@ -17,23 +47,13 @@ const firebaseapp = initializeApp ({
 });
 
   // Initialize Firebase
-const auth = getAuth();
+  const auth = getAuth(firebaseapp);
+  const storage = getStorage(firebaseapp);
+  const db = getFirestore(firebaseapp);
 
-onAuthStateChanged(auth, user => {
 
-  if (user != null) {
 
-    window.location.href = "dashboard.html"
-      console.log('logged in')
 
-  } else {
-
-      console.log('no user')
-
-  };
-
-  
-} );
 
 let btnlogin = document.getElementById("loginButton");
 
@@ -43,16 +63,78 @@ btnlogin.addEventListener("click", function(evets) {
     let email = document.getElementById("InputEmail1").value;
     let password = document.getElementById("InputPassword1").value;
 
-    console.log(email,password)
-
     signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
 
-      window.location.href = "dashboard.html"
-      const user = userCredential.user;
+        
+
+      onAuthStateChanged(auth, async user => {
+
+        if (user != null) {
+      
+     
+
+          const queryUser = query(collection(db,"Users"),where("email", "==", user.email));
+      
+          const UsersInfo = await getDocs(queryUser);
+
+     
+          
+          UsersInfo.forEach((doc) => {
+        
+         
+
+            const usersInfo = doc.data().userStatus;
+      
+            if (usersInfo == "0001") {
+
+             
+      
+              window.location.href = "dashboard.html"
+              const user = userCredential.user;
+      
+      
+            } else {
+      
+             
+              const auth = getAuth();
+               signOut(auth).then(() => {
+                window.location.href = "index.html"
+               alert("Bu sayfaya giriş yetkiniz yok! Lütfen gidin!!")
+               }).catch((error) => {
+           // An error happened.
+               });
+      
+      
+            }
+      
+            
+      
+        
+          })
+      
+          
+      
+           
+      
+        } else {
+      
+       
+      
+        };
+      
+        
+      } );
+
+
     // ...
+
+
+
      })
     .catch((error) => {
+
+      alert("Email veya şifre hatalı! Lütfen bilgilerinizi kontrol edip tekrar deneyiniz!")
     const errorCode = error.code;
     const errorMessage = error.message;
     });

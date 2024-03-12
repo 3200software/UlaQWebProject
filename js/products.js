@@ -51,7 +51,9 @@ onAuthStateChanged(auth, user => {
 
   if (user != null) {
 
-    console.log('logged in')
+    user.email
+
+    console.log('logged in' + user.email)
 
   } else {
 
@@ -76,6 +78,8 @@ btnLogout.addEventListener("click", () => {
 
 });
 
+const productPagesOfCanvassButton = document.getElementById("productsPages");
+
 
 let mainActivityContainer = document.getElementById("mainContainer");
 let addEditActivityContainer = document.getElementById('addEditContainer');
@@ -87,7 +91,6 @@ const btnDeleteProduct = document.getElementById("deleteProductButton");
 
 let btnAddEditStatus = String;
 let updateDocumentId = String;
-
 
 const productModelNoTextInput = document.getElementById("prodcutModelNoTextInput");
 const productCategorySelectInput = document.getElementById("productCategorySelectInput");
@@ -114,6 +117,11 @@ const image3Input = document.getElementById("image3Input");
 const image4Input = document.getElementById("image4Input");
 const image5Input = document.getElementById("image5Input");
 const videoInput = document.getElementById("videoInput");
+
+const productContainer = document.getElementById("productContainer");
+const deleteContainer = document.getElementById("deleteContainer");
+const productDeleteCanceButton = document.getElementById("productDeleteCancelButton");
+const productDeleteDeleteButon = document.getElementById("productDeleteDeletButton");
 
 const img1Preview = document.getElementById("img1Preview");
 const img2Preview = document.getElementById("img2Preview");
@@ -266,10 +274,6 @@ productTradeMarkSelectInput.onchange = function () {
 };
 
 
-
-
-
-
 productProfitRateInput.oninput = function (event) {
 
   var fiyat = parseFloat(productPriceInput.value);
@@ -293,8 +297,6 @@ productProfitRateInput.oninput = function (event) {
 
 
 }
-
-
 
 
 checkekonomik.onclick = function () {
@@ -846,7 +848,7 @@ querySnapshot.forEach((doc) => {
   const firebaseProductCategory = doc.data().productCategory;
   const firebaseProductImgUrl1 = doc.data().productImgUrl1;
 
-  let productItem = [firebaseDocId, firebaseProductImgUrl1, firebaseProductModelNo, firebaseProductCategory, ];
+  let productItem = [firebaseDocId, firebaseProductImgUrl1, firebaseProductModelNo, firebaseProductCategory,];
 
 
   createProductsArray(productItem);
@@ -915,6 +917,55 @@ btnProductAdd.addEventListener("click", () => {
 
   }
 })
+
+productPagesOfCanvassButton.addEventListener("click", async () => {
+
+  onAuthStateChanged(auth, async user => {
+
+    if (user != null) {
+
+      const queryUser = query(collection(db,"Users"),where("email", "==", user.email));
+
+      const UsersInfo = await getDocs(queryUser);
+      
+      UsersInfo.forEach((doc) => {
+    
+        const usersInfo = doc.data().userStatus;
+
+        if (usersInfo == "0001") {
+
+          deleteContainer.style.display = "none"
+          productContainer.style.display = ""
+
+
+        } else {
+
+          
+          deleteContainer.style.display = ""
+          productContainer.style.display = "none"
+
+
+        }
+
+        
+
+    
+      })
+      
+    } else {
+  
+      window.location.href = "index.html"
+  
+    };
+  
+  
+  });
+
+
+  
+
+})
+
 
 btnAddEditProductSuccess.addEventListener("click", async () => {
 
@@ -1753,10 +1804,28 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
 });
 
 
-btnDeleteProduct.addEventListener("click", async () => {
+btnDeleteProduct.addEventListener("click", () => {
+
+  deleteContainer.style.display = ""
+  productContainer.style.display = "none"
+
+})
+
+productDeleteCanceButton.addEventListener("click", () => {
+
+  deleteContainer.style.display = "none"
+  productContainer.style.display = ""
+
+
+})
+
+
+productDeleteDeleteButon.addEventListener("click", async () => {
 
   await deleteDoc(doc(db, "Product", updateDocumentId));
+  
   window.location.reload();
+
 
 })
 
@@ -1853,3 +1922,4 @@ btnLogout.addEventListener("click", () => {
 
 
 });
+
