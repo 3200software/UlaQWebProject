@@ -1147,7 +1147,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
         productModelNoTextInput.classList.remove("is-invalid");
         productCategorySelectInput.classList.remove("is-invalid");
         productThemeSelectInput.classList.remove("is-invalid");
-        // silinecek productSizeCategorySelectInput.classList.remove("is-invalid");
+        productSizeCategorySelectInput.classList.remove("is-invalid");
         productColorCategorySelectInput.classList.remove("is-invalid");
         productEnvelopeSelectInput.classList.remove("is-invalid");
         productTradeMarkSelectInput.classList.remove("is-invalid");
@@ -1190,6 +1190,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
           
                         const docRef = await addDoc(collection(db, "Product"), {
           
+                          productDocumentId: "",
                           productModelNo: productModelNoTextInput.value,
                           productTradeMark: productTradeMarkSelectInput.value,
                           productTradeMarkSubModel: productTardeMarkSubModelSelectInput.value,
@@ -1218,10 +1219,31 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
                           productProfit: parseFloat(productProfitInput.value),
           
                           productImgUrl1: image1Url,
+                          
           
           
           
                         });
+                        
+
+                        try {
+
+                          const updateRef = doc(db, "Product", docRef.id);
+
+            
+                          await updateDoc(updateRef, {
+
+        
+                            productDocumentId: docRef.id
+        
+      
+                          });
+                          
+                        } catch (error) {
+                          
+                        }
+
+
           
                         try {
           
