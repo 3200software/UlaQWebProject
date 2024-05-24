@@ -101,8 +101,8 @@ const productSizeHeightTextInput = document.getElementById("productSizeHeightTex
 const productColorCategorySelectInput = document.getElementById("productColorCategorySelectInput");
 const productEnvelopeSelectInput = document.getElementById("productEnvelopeSelectInput");
 const productTradeMarkSelectInput = document.getElementById("productTradeMarkSelectInput");
-const productFoilPrintInvitationSelectInput = document.getElementById("productPrintTypeInvitationSelectInput");
-const productFoilPrintTagSelectInput = document.getElementById("productPrintTypeTagSelectInput");
+const productInvitationPrintTypeSelectInput = document.getElementById("productInvitationPrintTypeSelectInput");
+const productEnvelopePrintTypeSelectInput = document.getElementById("productEnvelopePrintTypeSelectInput");
 const productTradeMarkModelNo = document.getElementById("tradeMarkModelNoTextInput");
 const productTardeMarkSubModelSelectInput = document.getElementById("tradeMarkSubModelSelectInput");
 const productCampaignCodeTextInput = document.getElementById("productCampaignCodeTextInput");
@@ -530,6 +530,8 @@ $("body").on("click", ".editBtn", async function () {
 
   updateDocumentId = $key;
 
+
+
   btnAddEditStatus = "EditProduct"
 
 
@@ -564,8 +566,8 @@ $("body").on("click", ".editBtn", async function () {
     const firebaseProductColorCategory = docs.data().productColorCategory;
     const firebaseProductEnvelope = docs.data().productEnvelope;
     const firebaseProductTradeMark = docs.data().productTradeMark;
-    const firebaseProductFoilPrintInvitation = docs.data().productFoilPrintInvitation;
-    const firebaseProductFoilPrintTag = docs.data().productFoilPrintTag;
+    const firebaseProductInvitationPrintType = docs.data().productInvitationPrintType;
+    const firebaseProductEnvelopePrintType = docs.data().productEnvelopePrintType;
     const firebaseProductTrademarkModelNo = docs.data().productTradeMarkModelNo;
     const firebaseTradeMarkSubModel = docs.data().productTradeMarkSubModel;
     const firebaseProductCampaignCode = docs.data().productCampaignCode;
@@ -590,14 +592,14 @@ $("body").on("click", ".editBtn", async function () {
     productModelNoTextInput.value = firebaseProductModelNo;
     productCategorySelectInput.value = firebaseProductCategory;
     productThemeSelectInput.value = firebaseProductThemeSelect;
-    productColorArrayList.value = firebaseProductSizeCategory;
+    //productColorArrayList.value = firebaseProductSizeCategory;
     productSizeWidthTextInput.value = firebaseProductWidth;
     productSizeHeightTextInput.value = firebaseProductHeight;
     productColorCategorySelectInput.value = firebaseProductColorCategory;
     productEnvelopeSelectInput.value = firebaseProductEnvelope;
     productTradeMarkSelectInput.value = firebaseProductTradeMark;
-    productFoilPrintInvitationSelectInput.value = firebaseProductFoilPrintInvitation;
-    productFoilPrintTagSelectInput.value = firebaseProductFoilPrintTag;
+    productInvitationPrintTypeSelectInput.value = firebaseProductInvitationPrintType;
+    productEnvelopePrintTypeSelectInput.value = firebaseProductEnvelopePrintType;
     productPriceInput.value = firebaseProductPrice;
     img1Preview.src = firebaseProductImgUrl1;
     productTradeMarkModelNo.value = firebaseProductTrademarkModelNo;
@@ -1000,7 +1002,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
 
      if (productModelNoTextInput.value == "" || productCategorySelectInput.value == "0" || productThemeSelectInput.value == "0" ||
       productSizeCategorySelectInput.value == "0" || productEnvelopeSelectInput.value == "0" ||
-      productTradeMarkSelectInput.value == "0" || productFoilPrintInvitationSelectInput.value == "0" || productFoilPrintTagSelectInput.value == "0" ||
+      productTradeMarkSelectInput.value == "0" || productInvitationPrintTypeSelectInput.value == "0" || productEnvelopePrintTypeSelectInput.value == "0" ||
       productPriceInput.value == "" || productTardeMarkSubModelSelectInput.value == "" || productTradeMarkModelNo.value == "" ||
       productProfitRateInput.value == "" || productWholeSalePriceInput.value == "" || stockAddInput.value == "" || productColorCategorySelectInput.value == "") {
 
@@ -1151,8 +1153,8 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
         productColorCategorySelectInput.classList.remove("is-invalid");
         productEnvelopeSelectInput.classList.remove("is-invalid");
         productTradeMarkSelectInput.classList.remove("is-invalid");
-        productFoilPrintInvitationSelectInput.classList.remove("is-invalid");
-        productFoilPrintTagSelectInput.classList.remove("is-invalid");
+        productInvitationPrintTypeSelectInput.classList.remove("is-invalid");
+        productEnvelopePrintTypeSelectInput.classList.remove("is-invalid");
         productPriceInput.classList.remove("is-invalid");
         productTardeMarkSubModelSelectInput.classList.remove("is-invalid");
         productTradeMarkModelNo.classList.remove("is-invalid");
@@ -1203,8 +1205,8 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
                           productHeight: productSizeHeightTextInput.value,
                           productColorCategory: productColorCategorySelectInput.value,
                           productEnvelope: productEnvelopeSelectInput.value,
-                          productFoilPrintInvitation: productFoilPrintInvitationSelectInput.value,
-                          productFoilPrintTag: productFoilPrintTagSelectInput.value,
+                          productInvitationPrintType: productInvitationPrintTypeSelectInput.value,
+                          productEnvelopePrintType: productEnvelopePrintTypeSelectInput.value,
                           productSalesQuantity: 0,
                           productStock: stockAddInteger,
                           productFavorites: 0,
@@ -1539,8 +1541,8 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
         productColorCategory: productColorCategorySelectInput.value,
         productEnvelope: productEnvelopeSelectInput.value,
         productTradeMark: productTradeMarkSelectInput.value,
-        productFoilPrintInvitation: productFoilPrintInvitationSelectInput.value,
-        productFoilPrintTag: productFoilPrintTagSelectInput.value,
+        productInvitationPrintType: productInvitationPrintTypeSelectInput.value,
+        productEnvelopePrintType: productEnvelopePrintTypeSelectInput.value,
         productProperties: checkProductPropertiesArrayList,
         productUpdateDate: Timestamp.fromDate(new Date(date)),
         productStock: newStock,
