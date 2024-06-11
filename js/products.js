@@ -1,18 +1,18 @@
 import {
   initializeApp
-} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
   getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut
-} from 'https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js';
+} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
 import {
   getStorage,
   ref,
   uploadBytes,
   getDownloadURL
-} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-storage.js";
+} from "https://www.gstatic.com/firebasejs/10.12.2//firebase-storage.js";
 import {
   getFirestore,
   collection,
@@ -29,17 +29,17 @@ import {
   deleteField,
   getDoc,
   Timestamp
-} from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseapp = initializeApp({
 
-  apiKey: "AIzaSyAEFTx1TpA0o_cdTpFAviUEO4r2sDS1_Bc",
-  authDomain: "ulaq-4be8f.firebaseapp.com",
-  projectId: "ulaq-4be8f",
-  storageBucket: "ulaq-4be8f.appspot.com",
-  messagingSenderId: "4744659662",
-  appId: "1:4744659662:web:8d191334a226fbe2f3469f",
-  measurementId: "G-MT0PK7J59D"
+  apiKey: "AIzaSyAgAbd8gSa5cH8t8dPPkkGUV_hsrr4K_Lo",
+  authDomain: "ulaq-1e47e.firebaseapp.com",
+  projectId: "ulaq-1e47e",
+  storageBucket: "ulaq-1e47e.appspot.com",
+  messagingSenderId: "790902980229",
+  appId: "1:790902980229:web:871d392c9b1aad25fb33ec",
+  measurementId: "G-E0J48THPNY"
 
 });
 
@@ -934,7 +934,7 @@ productPagesOfCanvassButton.addEventListener("click", async () => {
     
         const usersInfo = doc.data().userStatus;
 
-        if (usersInfo == "0001") {
+        if (usersInfo == "1") {
 
           deleteContainer.style.display = "none"
           productContainer.style.display = ""
