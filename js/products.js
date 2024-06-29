@@ -142,6 +142,19 @@ const checkKutulu = document.getElementById("checkKutulu");
 const checkIkili = document.getElementById("checkIkili");
 const checkIpli = document.getElementById("checkIpli");
 
+const themeCheckList = document.getElementById("themeCheckList");
+const checkKlasik = document.getElementById("checkKlasik");
+const checkModern = document.getElementById("checkModern");
+const checkMinimal = document.getElementById("checkMinimal");
+const checkTrend = document.getElementById("checkTrend");
+const checkDoga = document.getElementById("checkDoga");
+const checkDini = document.getElementById("checkDini");
+const checkNostalji = document.getElementById("checkNostalji");
+const checkIlginc = document.getElementById("checkIlginc");
+const checkSpor = document.getElementById("checkSpor");
+const checkKarikatür = document.getElementById("checkKarikatür");
+
+
 const colorCheckList = document.getElementById("colorList");
 const colorRed = document.getElementById("colorRed");
 const colorGreen = document.getElementById("colorGreen");
@@ -163,7 +176,7 @@ const productFavoriInfo = document.getElementById("productFavoriInfo");
 
 var checkProductPropertiesArrayList = [];
 
-var productColorArrayList = [];
+var checkThemeArrayList = [];
 
 productProfit.disabled = true;
 productStockInfo.disabled = true;
@@ -206,39 +219,39 @@ productTradeMarkSelectInput.onchange = function () {
 
     productTardeMarkSubModelSelectInput.innerHTML = "";
 
-      var option0 = document.createElement("option");
-      option0.text = "Marka Alt Kategori";
-      option0.value = "0";
-      productTardeMarkSubModelSelectInput.add(option0);
+    var option0 = document.createElement("option");
+    option0.text = "Marka Alt Kategori";
+    option0.value = "0";
+    productTardeMarkSubModelSelectInput.add(option0);
 
-      var option1 = document.createElement("option");
-      option1.text = "Wedding";
-      option1.value = "1";
-      productTardeMarkSubModelSelectInput.add(option1);
-      
-      var option2 = document.createElement("option");
-      option2.text = "Alyans";
-      option2.value = "2";
-      productTardeMarkSubModelSelectInput.add(option2);
-      
-      var option3 = document.createElement("option");
-      option3.text = "Fenomen";
-      option3.value = "3";
-      productTardeMarkSubModelSelectInput.add(option3);
+    var option1 = document.createElement("option");
+    option1.text = "Wedding";
+    option1.value = "1";
+    productTardeMarkSubModelSelectInput.add(option1);
 
-      var option4 = document.createElement("option");
-      option4.text = "İklim";
-      option4.value = "4";
-      productTardeMarkSubModelSelectInput.add(option4);
+    var option2 = document.createElement("option");
+    option2.text = "Alyans";
+    option2.value = "2";
+    productTardeMarkSubModelSelectInput.add(option2);
 
-      var option5 = document.createElement("option");
-      option5.text = "Sünnet";
-      option5.value = "5";
-      productTardeMarkSubModelSelectInput.add(option5);
-    
+    var option3 = document.createElement("option");
+    option3.text = "Fenomen";
+    option3.value = "3";
+    productTardeMarkSubModelSelectInput.add(option3);
+
+    var option4 = document.createElement("option");
+    option4.text = "İklim";
+    option4.value = "4";
+    productTardeMarkSubModelSelectInput.add(option4);
+
+    var option5 = document.createElement("option");
+    option5.text = "Sünnet";
+    option5.value = "5";
+    productTardeMarkSubModelSelectInput.add(option5);
 
 
-  } else if (productTradeMarkSelectInput.value == "2"){
+
+  } else if (productTradeMarkSelectInput.value == "2") {
 
     productTardeMarkSubModelSelectInput.innerHTML = "";
 
@@ -251,12 +264,12 @@ productTradeMarkSelectInput.onchange = function () {
     option1.text = "Ekonom";
     option1.value = "1";
     productTardeMarkSubModelSelectInput.add(option1);
-    
+
     var option2 = document.createElement("option");
     option2.text = "ButiQline";
     option2.value = "2";
     productTardeMarkSubModelSelectInput.add(option2);
-    
+
     var option3 = document.createElement("option");
     option3.text = "Erdem";
     option3.value = "3";
@@ -267,7 +280,7 @@ productTradeMarkSelectInput.onchange = function () {
     option4.value = "4";
     productTardeMarkSubModelSelectInput.add(option4);
 
-    
+
   }
 
 
@@ -362,7 +375,7 @@ checkPlexi.onclick = function () {
 
   if (checkPlexi.checked == true) {
 
-    checkProductPropertiesArrayList.push("5");
+    checkProductPropertiesArrayList.push("4");
 
   } else {
 
@@ -380,7 +393,7 @@ checkAhsap.onclick = function () {
 
   if (checkAhsap.checked == true) {
 
-    checkProductPropertiesArrayList.push("6");
+    checkProductPropertiesArrayList.push("5");
 
   } else {
 
@@ -399,7 +412,7 @@ checkMuhurlu.onclick = function () {
 
   if (checkMuhurlu.checked == true) {
 
-    checkProductPropertiesArrayList.push("8");
+    checkProductPropertiesArrayList.push("6");
 
   } else {
 
@@ -417,7 +430,7 @@ checkKadife.onclick = function () {
 
   if (checkKadife.checked == true) {
 
-    checkProductPropertiesArrayList.push("9");
+    checkProductPropertiesArrayList.push("7");
 
   } else {
 
@@ -437,7 +450,7 @@ checkKutulu.onclick = function () {
 
   if (checkKutulu.checked == true) {
 
-    checkProductPropertiesArrayList.push("10");
+    checkProductPropertiesArrayList.push("8");
 
   } else {
 
@@ -456,7 +469,7 @@ checkIkili.onclick = function () {
 
   if (checkIkili.checked == true) {
 
-    checkProductPropertiesArrayList.push("11");
+    checkProductPropertiesArrayList.push("9");
 
   } else {
 
@@ -474,7 +487,7 @@ checkIpli.onclick = function () {
 
   if (checkIpli.checked == true) {
 
-    checkProductPropertiesArrayList.push("12");
+    checkProductPropertiesArrayList.push("10");
 
     console.log(checkProductPropertiesArrayList)
 
@@ -491,29 +504,227 @@ checkIpli.onclick = function () {
 
 }
 
+checkKlasik.onclick = function () {
+
+  if (checkKlasik.checked == true) {
+
+    checkThemeArrayList.push("1");
+
+  } else {
+
+    checkThemeArrayList = checkThemeArrayList.filter(function (item) {
+
+      return item !== "1";
+
+    });
+
+  }
+
+}
+
+
+
+checkModern.onclick = function () {
+
+  if (checkModern.checked == true) {
+
+    checkThemeArrayList.push("2");
+
+  } else {
+
+    checkThemeArrayList = checkThemeArrayList.filter(function (item) {
+
+      return item !== "2";
+
+    });
+
+  }
+
+}
+
+checkMinimal.onclick = function () {
+
+  if (checkMinimal.checked == true) {
+
+    checkThemeArrayList.push("3");
+
+  } else {
+
+    checkThemeArrayList = checkThemeArrayList.filter(function (item) {
+
+      return item !== "3";
+
+    });
+
+  }
+
+}
+
+checkTrend.onclick = function () {
+
+  if (checkTrend.checked == true) {
+
+    checkThemeArrayList.push("4");
+
+  } else {
+
+    checkThemeArrayList = checkThemeArrayList.filter(function (item) {
+
+      return item !== "4";
+
+    });
+
+  }
+
+}
+
+
+checkDoga.onclick = function () {
+
+  if (checkDoga.checked == true) {
+
+    checkThemeArrayList.push("5");
+
+  } else {
+
+    checkThemeArrayList = checkThemeArrayList.filter(function (item) {
+
+      return item !== "5";
+
+    });
+
+  }
+
+}
+
+
+checkDini.onclick = function () {
+
+  if (checkDini.checked == true) {
+
+    checkThemeArrayList.push("6");
+
+  } else {
+
+    checkThemeArrayList = checkThemeArrayList.filter(function (item) {
+
+      return item !== "6";
+
+    });
+
+  }
+
+}
+
+
+
+checkNostalji.onclick = function () {
+
+  if (checkNostalji.checked == true) {
+
+    checkThemeArrayList.push("7");
+
+  } else {
+
+    checkThemeArrayList = checkThemeArrayList.filter(function (item) {
+
+      return item !== "7";
+
+    });
+
+  }
+
+}
+
+
+
+checkIlginc.onclick = function () {
+
+  if (checkIlginc.checked == true) {
+
+    checkThemeArrayList.push("8");
+
+  } else {
+
+    checkThemeArrayList = checkThemeArrayList.filter(function (item) {
+
+      return item !== "8";
+
+    });
+
+  }
+
+}
+
+
+
+
+checkSpor.onclick = function () {
+
+  if (checkSpor.checked == true) {
+
+    checkThemeArrayList.push("9");
+
+  } else {
+
+    checkThemeArrayList = checkThemeArrayList.filter(function (item) {
+
+      return item !== "9";
+
+    });
+
+  }
+
+}
+
+
+
+checkKarikatür.onclick = function () {
+
+  if (checkKarikatür.checked == true) {
+
+    checkThemeArrayList.push("10");
+
+  } else {
+
+    checkThemeArrayList = checkThemeArrayList.filter(function (item) {
+
+      return item !== "10";
+
+    });
+
+  }
+
+}
+
 
 
 
 const products = document.querySelector(".productCard")
 
-function createProductsArray([proDocId, proimg, proModelNo, proCategory, ]) {
+function createProductsArray([proDocId, proimg, proModelNo, proCategory,]) {
 
   let proCode = `
 
+  <div class="card m-2 " style="width: 15rem;" >
 
-  <div class="p-2 g-col-6 border rounded-2 m-1 justify-content-between d-flex align-items-center"> 
+   <img class="card-img-top" src="${proimg}" alt="Ürün Resmi"">
+
+   <div class="card-body">
+   
+   <h5 class="card-title">${proModelNo}</h5>
+    
+   <button type="button" data-key=${proDocId} class="btn btn-primary editBtn" style="width : 100%">Düzenle</button>
+
+
+    </div>
   
-     <img class="m-2 rounded" src="${proimg}" alt="Ürün Resmi" style="width: 150px; height: 100px;">
-  
-     <h6 class="m-2 p-1" style="padding: 1%; align-items:center;">${proModelNo}</h6>
+     
 
-     <button type="button" data-key=${proDocId} class="btn btn-primary editBtn m-2" style="width: 150px; height: 50px;">Düzenle</button>
-
-  </div>
 
 `
 
-  ;
+    ;
 
   products.innerHTML += proCode;
 
@@ -530,8 +741,6 @@ $("body").on("click", ".editBtn", async function () {
 
   updateDocumentId = $key;
 
-
-
   btnAddEditStatus = "EditProduct"
 
 
@@ -545,10 +754,6 @@ $("body").on("click", ".editBtn", async function () {
   }
 
 
-
-
-
-
   const docRef = doc(db, "Product", updateDocumentId);
   const docs = await getDoc(docRef);
 
@@ -559,7 +764,7 @@ $("body").on("click", ".editBtn", async function () {
     const firebaseDocId = docs.id;
     const firebaseProductModelNo = docs.data().productModelNo;
     const firebaseProductCategory = docs.data().productCategory;
-    const firebaseProductThemeSelect = docs.data().productTheme;
+    // const firebaseProductThemeSelect = docs.data().productTheme;
     const firebaseProductSizeCategory = docs.data().productSizeCategory;
     const firebaseProductWidth = docs.data().productWidth;
     const firebaseProductHeight = docs.data().productHeight;
@@ -580,7 +785,9 @@ $("body").on("click", ".editBtn", async function () {
 
     checkProductPropertiesArrayList = docs.data().productProperties;
 
-    productColorArrayList = docs.data().productColors;
+    checkThemeArrayList = docs.data().productTheme;
+
+  
 
     const firebaseProductPrice = docs.data().productPrice;
     const firebaseProductWholeSalePrice = docs.data().productWholeSalePrice;
@@ -591,8 +798,7 @@ $("body").on("click", ".editBtn", async function () {
 
     productModelNoTextInput.value = firebaseProductModelNo;
     productCategorySelectInput.value = firebaseProductCategory;
-    productThemeSelectInput.value = firebaseProductThemeSelect;
-    //productColorArrayList.value = firebaseProductSizeCategory;
+    productSizeCategorySelectInput.value = firebaseProductSizeCategory;
     productSizeWidthTextInput.value = firebaseProductWidth;
     productSizeHeightTextInput.value = firebaseProductHeight;
     productColorCategorySelectInput.value = firebaseProductColorCategory;
@@ -603,7 +809,7 @@ $("body").on("click", ".editBtn", async function () {
     productPriceInput.value = firebaseProductPrice;
     img1Preview.src = firebaseProductImgUrl1;
     productTradeMarkModelNo.value = firebaseProductTrademarkModelNo;
-    
+
     productCampaignCodeTextInput.value = firebaseProductCampaignCode;
     productWholeSalePriceInput.value = firebaseProductWholeSalePrice;
     productProfitRateInput.value = firebaseProductProfitRate;
@@ -617,69 +823,69 @@ $("body").on("click", ".editBtn", async function () {
     if (productTradeMarkSelectInput.value == "1") {
 
       productTardeMarkSubModelSelectInput.innerHTML = "";
-  
-        var option0 = document.createElement("option");
-        option0.text = "Marka Alt Kategori";
-        option0.value = "0";
-        productTardeMarkSubModelSelectInput.add(option0);
-  
-        var option1 = document.createElement("option");
-        option1.text = "Wedding";
-        option1.value = "1";
-        productTardeMarkSubModelSelectInput.add(option1);
-        
-        var option2 = document.createElement("option");
-        option2.text = "Alyans";
-        option2.value = "2";
-        productTardeMarkSubModelSelectInput.add(option2);
-        
-        var option3 = document.createElement("option");
-        option3.text = "Fenomen";
-        option3.value = "3";
-        productTardeMarkSubModelSelectInput.add(option3);
-  
-        var option4 = document.createElement("option");
-        option4.text = "İklim";
-        option4.value = "4";
-        productTardeMarkSubModelSelectInput.add(option4);
-  
-        var option5 = document.createElement("option");
-        option5.text = "Sünnet";
-        option5.value = "5";
-        productTardeMarkSubModelSelectInput.add(option5);
-      
-  
-  
-    } else if (productTradeMarkSelectInput.value == "2"){
-  
-      productTardeMarkSubModelSelectInput.innerHTML = "";
-  
+
       var option0 = document.createElement("option");
       option0.text = "Marka Alt Kategori";
       option0.value = "0";
       productTardeMarkSubModelSelectInput.add(option0);
-  
+
+      var option1 = document.createElement("option");
+      option1.text = "Wedding";
+      option1.value = "1";
+      productTardeMarkSubModelSelectInput.add(option1);
+
+      var option2 = document.createElement("option");
+      option2.text = "Alyans";
+      option2.value = "2";
+      productTardeMarkSubModelSelectInput.add(option2);
+
+      var option3 = document.createElement("option");
+      option3.text = "Fenomen";
+      option3.value = "3";
+      productTardeMarkSubModelSelectInput.add(option3);
+
+      var option4 = document.createElement("option");
+      option4.text = "İklim";
+      option4.value = "4";
+      productTardeMarkSubModelSelectInput.add(option4);
+
+      var option5 = document.createElement("option");
+      option5.text = "Sünnet";
+      option5.value = "5";
+      productTardeMarkSubModelSelectInput.add(option5);
+
+
+
+    } else if (productTradeMarkSelectInput.value == "2") {
+
+      productTardeMarkSubModelSelectInput.innerHTML = "";
+
+      var option0 = document.createElement("option");
+      option0.text = "Marka Alt Kategori";
+      option0.value = "0";
+      productTardeMarkSubModelSelectInput.add(option0);
+
       var option1 = document.createElement("option");
       option1.text = "Ekonom";
       option1.value = "1";
       productTardeMarkSubModelSelectInput.add(option1);
-      
+
       var option2 = document.createElement("option");
       option2.text = "ButiQline";
       option2.value = "2";
       productTardeMarkSubModelSelectInput.add(option2);
-      
+
       var option3 = document.createElement("option");
       option3.text = "Erdem";
       option3.value = "3";
       productTardeMarkSubModelSelectInput.add(option3);
-  
+
       var option4 = document.createElement("option");
       option4.text = "Sünnet";
       option4.value = "4";
       productTardeMarkSubModelSelectInput.add(option4);
-  
-      
+
+
     }
 
     productTardeMarkSubModelSelectInput.value = firebaseTradeMarkSubModel;
@@ -702,7 +908,7 @@ $("body").on("click", ".editBtn", async function () {
 
     }
 
-     if (checkProductPropertiesArrayList.includes("4")) {
+    if (checkProductPropertiesArrayList.includes("4")) {
 
       checkPlexi.checked = true;
 
@@ -742,6 +948,69 @@ $("body").on("click", ".editBtn", async function () {
     if (checkProductPropertiesArrayList.includes("10")) {
 
       checkIpli.checked = true;
+
+    }
+
+
+
+    if (checkThemeArrayList.includes("1")) {
+
+      checkKlasik.checked = true;
+
+    }
+
+    if (checkThemeArrayList.includes("2")) {
+
+      checkModern.checked = true;
+
+    }
+
+    if (checkThemeArrayList.includes("3")) {
+
+      checkMinimal.checked = true;
+
+    }
+
+    if (checkThemeArrayList.includes("4")) {
+
+      checkTrend.checked = true;
+
+    }
+
+    if (checkThemeArrayList.includes("5")) {
+
+      checkDoga.checked = true;
+
+    }
+
+
+    if (checkThemeArrayList.includes("6")) {
+
+      checkDini.checked = true;
+
+    }
+
+    if (checkThemeArrayList.includes("7")) {
+
+      checkNostalji.checked = true;
+
+    }
+
+    if (checkThemeArrayList.includes("8")) {
+
+      checkIlginc.checked = true;
+
+    }
+
+    if (checkThemeArrayList.includes("9")) {
+
+      checkSpor.checked = true;
+
+    }
+
+    if (checkThemeArrayList.includes("10")) {
+
+      checkKarikatür.checked = true;
 
     }
 
@@ -840,7 +1109,7 @@ $("body").on("click", ".editBtn", async function () {
 
 
 
-const getData = query(collection(db, "Product"), );
+const getData = query(collection(db, "Product"),);
 
 const querySnapshot = await getDocs(getData);
 querySnapshot.forEach((doc) => {
@@ -902,7 +1171,7 @@ btnProductAdd.addEventListener("click", () => {
     btnProductAdd.style.visibility = "hidden"
     btnDeleteProduct.style.display = "none"
 
-   
+
 
     img1Preview.style.display = "none"
     img2Preview.style.display = "none"
@@ -911,7 +1180,7 @@ btnProductAdd.addEventListener("click", () => {
     img5Preview.style.display = "none"
     videoPreview.style.display = "none"
 
-    
+
 
     btnAddEditStatus = "AddProduct"
 
@@ -926,12 +1195,12 @@ productPagesOfCanvassButton.addEventListener("click", async () => {
 
     if (user != null) {
 
-      const queryUser = query(collection(db,"Users"),where("email", "==", user.email));
+      const queryUser = query(collection(db, "Users"), where("email", "==", user.email));
 
       const UsersInfo = await getDocs(queryUser);
-      
+
       UsersInfo.forEach((doc) => {
-    
+
         const usersInfo = doc.data().userStatus;
 
         if (usersInfo == "1") {
@@ -942,36 +1211,36 @@ productPagesOfCanvassButton.addEventListener("click", async () => {
 
         } else {
 
-          
+
           deleteContainer.style.display = ""
           productContainer.style.display = "none"
 
 
         }
 
-        
 
-    
+
+
       })
-      
+
     } else {
-  
+
       window.location.href = "index.html"
-  
+
     };
-  
-  
+
+
   });
 
 
-  
+
 
 })
 
 
 btnAddEditProductSuccess.addEventListener("click", async () => {
 
-  
+
 
   var imageFiles1 = image1Input.files[0];
   var imageFiles2 = image2Input.files[0];
@@ -994,498 +1263,530 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
   var image5Url;
   var videoUrl1;
 
-  
+
 
 
 
   if (btnAddEditStatus == "AddProduct") {
 
-     if (productModelNoTextInput.value == "" || productCategorySelectInput.value == "0" || productThemeSelectInput.value == "0" ||
+    if (productModelNoTextInput.value == "" || productCategorySelectInput.value == "0" ||
       productSizeCategorySelectInput.value == "0" || productEnvelopeSelectInput.value == "0" ||
       productTradeMarkSelectInput.value == "0" || productInvitationPrintTypeSelectInput.value == "0" || productEnvelopePrintTypeSelectInput.value == "0" ||
       productPriceInput.value == "" || productTardeMarkSubModelSelectInput.value == "" || productTradeMarkModelNo.value == "" ||
       productProfitRateInput.value == "" || productWholeSalePriceInput.value == "" || stockAddInput.value == "" || productColorCategorySelectInput.value == "") {
 
 
-        alert("Lütfen bütün kutucukları doldurunuz! Boyut kutucukları boş kalabilir!")
+      alert("Lütfen bütün kutucukları doldurunuz! Boyut kutucukları boş kalabilir!")
 
-        if (productModelNoTextInput.value == "") {
+      if (productModelNoTextInput.value == "") {
 
-          productModelNoTextInput.classList.add("is-invalid");
-
-        } else {
-
-          productModelNoTextInput.classList.remove("is-invalid");
-
-        }
-
-        if (productCategorySelectInput.value == "0") {
-
-          productCategorySelectInput.classList.add("is-invalid");
-
-        } else {
-
-          productCategorySelectInput.classList.remove("is-invalid");
-
-        }
-
-        if (productThemeSelectInput.value == "0") {
-
-          productThemeSelectInput.classList.add("is-invalid");
-
-        } else {
-
-          productThemeSelectInput.classList.remove("is-invalid");
-
-        }
-
-        if (productSizeCategorySelectInput.value == "0") {
-
-          productSizeCategorySelectInput.classList.add("is-invalid");
-
-        } else {
-
-          productSizeCategorySelectInput.classList.remove("is-invalid");
-
-        }
-
-        if (productEnvelopeSelectInput.value == "0") {
-
-          productEnvelopeSelectInput.classList.add("is-invalid");
-
-        } else {
-
-          productEnvelopeSelectInput.classList.remove("is-invalid");
-
-        }
-
-        if (productTradeMarkSelectInput.value == "0") {
-
-          productTradeMarkSelectInput.classList.add("is-invalid");
-
-        } else {
-
-          productTradeMarkSelectInput.classList.remove("is-invalid");
-
-        }
-
-        if (productFoilPrintInvitationSelectInput.value == "0") {
-
-          productFoilPrintInvitationSelectInput.classList.add("is-invalid");
-
-        } else {
-
-          productFoilPrintInvitationSelectInput.classList.remove("is-invalid");
-
-        }
-
-        if (productFoilPrintTagSelectInput.value == "0") {
-
-          productFoilPrintTagSelectInput.classList.add("is-invalid");
-
-        } else {
-
-          productFoilPrintTagSelectInput.classList.remove("is-invalid");
-
-        }
-
-        
-        if (productPriceInput.value == "") {
-
-          productPriceInput.classList.add("is-invalid");
-
-        } else {
-
-          productPriceInput.classList.remove("is-invalid");
-
-        }
-
-        
-        if (productTardeMarkSubModelSelectInput.value == "") {
-
-          productTardeMarkSubModelSelectInput.classList.add("is-invalid");
-
-        } else {
-
-          productTardeMarkSubModelSelectInput.classList.remove("is-invalid");
-
-        }
-      
-
-        if (productTradeMarkModelNo.value == "") {
-
-          productTradeMarkModelNo.classList.add("is-invalid");
-
-        } else {
-
-          productTradeMarkModelNo.classList.remove("is-invalid");
-
-        }
-
-        if (stockAddInput.value == "") {
-
-          stockAddInput.classList.add("is-invalid");
-
-        } else {
-
-          stockAddInput.classList.remove("is-invalid");
-
-        }
-
-        if (productWholeSalePriceInput.value == "") {
-
-          productWholeSalePriceInput.classList.add("is-invalid");
-
-        } else {
-
-          productWholeSalePriceInput.classList.remove("is-invalid");
-
-        }
-
-
+        productModelNoTextInput.classList.add("is-invalid");
 
       } else {
 
         productModelNoTextInput.classList.remove("is-invalid");
-        productCategorySelectInput.classList.remove("is-invalid");
-        productThemeSelectInput.classList.remove("is-invalid");
-        productSizeCategorySelectInput.classList.remove("is-invalid");
-        productColorCategorySelectInput.classList.remove("is-invalid");
-        productEnvelopeSelectInput.classList.remove("is-invalid");
-        productTradeMarkSelectInput.classList.remove("is-invalid");
-        productInvitationPrintTypeSelectInput.classList.remove("is-invalid");
-        productEnvelopePrintTypeSelectInput.classList.remove("is-invalid");
-        productPriceInput.classList.remove("is-invalid");
-        productTardeMarkSubModelSelectInput.classList.remove("is-invalid");
-        productTradeMarkModelNo.classList.remove("is-invalid");
-        stockAddInput.classList.remove("is-invalid");
-        productWholeSalePriceInput.classList.remove("is-invalid");
 
-
-        if (checkekonomik.checked == true || checkVip.checked == true || checkKraftKagit.checked == true  ||
-          checkPlexi.checked == true || checkAhsap.checked == true || checkMuhurlu.checked == true || checkKadife.checked == true ||
-          checkKutulu.checked == true || checkIkili.checked == true || checkIpli.checked == true ) {
-
-            propertiesCheckList.classList.remove("border-danger");
-
-                if (imageFiles1 == null || imageFiles2 == null) {
-              
-
-                  alert("Lütfen vitrin fotoğrafını ve ürüne ait en az 1 fotoğraf ekleyin.");
-          
-             
-    
-                   } else {
-          
-                  let storageRef1 = ref(storage, "productImages/" + imageFileName1);
-                  uploadBytes(storageRef1, imageFiles1).then((snapshot) => {
-          
-                    getDownloadURL(ref(storage, "productImages/" + imageFileName1)).then(async (url) => {
-          
-                      image1Url = url;
-          
-                      var date = new Date();
-          
-                      var stockAddInteger = parseInt(stockAddInput.value);
-          
-                      try {
-          
-                        const docRef = await addDoc(collection(db, "Product"), {
-          
-                          productDocumentId: "",
-                          productModelNo: productModelNoTextInput.value,
-                          productTradeMark: productTradeMarkSelectInput.value,
-                          productTradeMarkSubModel: productTardeMarkSubModelSelectInput.value,
-                          productTradeMarkModelNo: productTradeMarkModelNo.value,
-                          productCategory: parseInt(productCategorySelectInput.value),
-                          productTheme: productThemeSelectInput.value,
-                          productCampaignCode: productCampaignCodeTextInput.value,
-                          productSizeCategory: productSizeCategorySelectInput.value,
-                          productWidth: productSizeWidthTextInput.value,
-                          productHeight: productSizeHeightTextInput.value,
-                          productColorCategory: productColorCategorySelectInput.value,
-                          productEnvelope: productEnvelopeSelectInput.value,
-                          productInvitationPrintType: productInvitationPrintTypeSelectInput.value,
-                          productEnvelopePrintType: productEnvelopePrintTypeSelectInput.value,
-                          productSalesQuantity: 0,
-                          productStock: stockAddInteger,
-                          productFavorites: 0,
-                          productProperties: checkProductPropertiesArrayList,
-                          productAddDate: Timestamp.fromDate(new Date(date)),
-                          productUpdateDate: Timestamp.fromDate(new Date(date)),
-                          productAddUser: auth.currentUser.email,
-          
-                          productPrice: parseFloat(productPriceInput.value),
-                          productWholeSalePrice: parseFloat(productWholeSalePriceInput.value),
-                          productProfitRate: parseFloat(productProfitRateInput.value),
-                          productProfit: parseFloat(productProfitInput.value),
-          
-                          productImgUrl1: image1Url,
-                          
-          
-          
-          
-                        });
-                        
-
-                        try {
-
-                          const updateRef = doc(db, "Product", docRef.id);
-
-            
-                          await updateDoc(updateRef, {
-
-        
-                            productDocumentId: docRef.id
-        
-      
-                          });
-                          
-                        } catch (error) {
-                          
-                        }
-
-
-          
-                        try {
-          
-                          await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
-          
-                            productImgUrl: image1Url,
-                            no: 1,
-          
-                          });
-          
-                          console.log("Document written with ID: ", imageFileName1);
-          
-                          let storageRef2 = ref(storage, "productImages/" + imageFileName2);
-                          uploadBytes(storageRef2, imageFiles2).then((snapshot) => {
-          
-                            getDownloadURL(ref(storage, "productImages/" + imageFileName2)).then(async (url) => {
-          
-                              image2Url = url;
-          
-                              try {
-          
-                                await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
-          
-                                  productImgUrl: image2Url,
-                                  no: 2,
-          
-          
-                                });
-          
-                                console.log("Document written with ID: ", imageFileName2);
-          
-                                let storageRef3 = ref(storage, "productImages/" + imageFileName3);
-                                uploadBytes(storageRef3, imageFiles3).then((snapshot) => {
-          
-                                  getDownloadURL(ref(storage, "productImages/" + imageFileName3)).then(async (url) => {
-          
-                                    if (imageFiles3 == null) {
-          
-                                      image3Url = "";
-          
-                                    } else {
-          
-                                      image3Url = url;
-          
-                                    }
-          
-                                    try {
-          
-                                      await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
-          
-                                        productImgUrl: image3Url,
-                                        no: 3,
-          
-                                      });
-          
-                                      console.log("Document written with ID: ", imageFileName3);
-          
-                                      let storageRef4 = ref(storage, "productImages/" + imageFileName4);
-                                      uploadBytes(storageRef4, imageFiles4).then((snapshot) => {
-          
-                                        getDownloadURL(ref(storage, "productImages/" + imageFileName4)).then(async (url) => {
-          
-                                          if (imageFiles4 == null) {
-          
-                                            image4Url = "";
-          
-                                          } else {
-          
-                                            image4Url = url;
-          
-                                          }
-          
-                                          try {
-          
-                                            await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
-          
-          
-                                              productImgUrl: image4Url,
-                                              no: 4,
-          
-                                            });
-          
-                                            console.log("Document written with ID: ", imageFileName4);
-          
-          
-                                            let storageRef5 = ref(storage, "productImages/" + imageFileName5);
-                                            uploadBytes(storageRef5, imageFiles5).then((snapshot) => {
-          
-                                              getDownloadURL(ref(storage, "productImages/" + imageFileName5)).then(async (url) => {
-          
-          
-                                                if (imageFiles5 == null) {
-          
-                                                  image5Url = "";
-          
-                                                } else {
-          
-                                                  image5Url = url;
-          
-                                                }
-          
-                                                try {
-          
-                                                  await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
-          
-          
-                                                    productImgUrl: image5Url,
-                                                    no: 5,
-          
-          
-                                                  });
-          
-                                                  console.log("Document written with ID: ", imageFileName5);
-          
-                                                  let storageRef6 = ref(storage, "productImages/" + videoFileName1);
-                                                  uploadBytes(storageRef6, videoFiles1).then((snapshot) => {
-          
-                                                    getDownloadURL(ref(storage, "productImages/" + videoFileName1)).then(async (url) => {
-          
-                                                      if (videoFiles1 == null) {
-          
-                                                        videoUrl1 = "";
-          
-                                                      } else {
-          
-                                                        videoUrl1 = url;
-          
-                                                      }
-          
-                                                      try {
-          
-                                                        await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
-          
-                                                          productImgUrl: videoUrl1,
-                                                          no: 6,
-          
-                                                        });
-          
-                                                        console.log("Document written with ID: ", videoFileName1);
-          
-                                                        window.location.href = "products.html"
-          
-          
-          
-                                                      } catch (e) {
-          
-                                                        console.error("Error adding document: ", e);
-          
-          
-                                                      }
-          
-                                                    })
-          
-                                                  });
-          
-          
-                                                } catch (e) {
-          
-                                                  console.error("Error adding document: ", e);
-          
-          
-                                                }
-          
-                                              })
-          
-                                            });
-          
-          
-                                          } catch (e) {
-          
-                                            console.error("Error adding document: ", e);
-          
-          
-                                          }
-          
-          
-          
-                                        })
-          
-                                      });
-          
-          
-                                    } catch (e) {
-          
-                                      console.error("Error adding document: ", e);
-          
-          
-                                    }
-          
-          
-          
-                                  })
-          
-                                });
-          
-          
-                              } catch (e) {
-          
-                                console.error("Error adding document: ", e);
-          
-          
-                              }
-          
-          
-                            })
-          
-                          });
-          
-          
-                        } catch (e) {
-          
-                          console.error("Error adding document: ", e);
-          
-                        }
-          
-          
-                      } catch (e) {
-          
-                        console.error("Error adding document: ", e);
-          
-                      }
-          
-          
-          
-                    })
-          
-                  });
-          
-                }
-
-              } else {
-
-                alert("Ne yani bu davetiye renksiz mi? Lütfen renk ekleyin!");
-                 colorCheckList.classList.add("border-danger");
-
-                } 
-    
       }
 
-  
+      if (productCategorySelectInput.value == "0") {
+
+        productCategorySelectInput.classList.add("is-invalid");
+
+      } else {
+
+        productCategorySelectInput.classList.remove("is-invalid");
+
+      }
+
+      if (productTardeMarkSubModelSelectInput.value == "0") {
+
+        productTardeMarkSubModelSelectInput.classList.add("is-invalid");
+
+      } else {
+
+        productTardeMarkSubModelSelectInput.classList.remove("is-invalid");
+
+      }
+
+      if (productTradeMarkModelNo.value == "") {
+
+        productTradeMarkModelNo.classList.add("is-invalid");
+
+      } else {
+
+        productTradeMarkModelNo.classList.remove("is-invalid");
+
+      }
+
+
+
+      if (productSizeCategorySelectInput.value == "0") {
+
+        productSizeCategorySelectInput.classList.add("is-invalid");
+
+      } else {
+
+        productSizeCategorySelectInput.classList.remove("is-invalid");
+
+      }
+
+
+
+      if (productColorCategorySelectInput.value == "0") {
+
+        productColorCategorySelectInput.classList.add("is-invalid");
+
+      } else {
+
+        productColorCategorySelectInput.classList.remove("is-invalid");
+
+      }
+
+
+
+      if (productEnvelopeSelectInput.value == "0") {
+
+        productEnvelopeSelectInput.classList.add("is-invalid");
+
+      } else {
+
+        productEnvelopeSelectInput.classList.remove("is-invalid");
+
+      }
+
+      if (productTradeMarkSelectInput.value == "0") {
+
+        productTradeMarkSelectInput.classList.add("is-invalid");
+
+      } else {
+
+        productTradeMarkSelectInput.classList.remove("is-invalid");
+
+      }
+
+      if (productInvitationPrintTypeSelectInput.value == "0") {
+
+        productInvitationPrintTypeSelectInput.classList.add("is-invalid");
+
+      } else {
+
+        productInvitationPrintTypeSelectInput.classList.remove("is-invalid");
+
+      }
+
+      if (productEnvelopePrintTypeSelectInput.value == "0") {
+
+        productEnvelopePrintTypeSelectInput.classList.add("is-invalid");
+
+      } else {
+
+        productEnvelopePrintTypeSelectInput.classList.remove("is-invalid");
+
+      }
+
+
+      if (productPriceInput.value == "") {
+
+        productPriceInput.classList.add("is-invalid");
+
+      } else {
+
+        productPriceInput.classList.remove("is-invalid");
+
+      }
+
+
+      if (productTardeMarkSubModelSelectInput.value == "") {
+
+        productTardeMarkSubModelSelectInput.classList.add("is-invalid");
+
+      } else {
+
+        productTardeMarkSubModelSelectInput.classList.remove("is-invalid");
+
+      }
+
+
+      if (productTradeMarkModelNo.value == "") {
+
+        productTradeMarkModelNo.classList.add("is-invalid");
+
+      } else {
+
+        productTradeMarkModelNo.classList.remove("is-invalid");
+
+      }
+
+      if (stockAddInput.value == "") {
+
+        stockAddInput.classList.add("is-invalid");
+
+      } else {
+
+        stockAddInput.classList.remove("is-invalid");
+
+      }
+
+      if (productWholeSalePriceInput.value == "") {
+
+        productWholeSalePriceInput.classList.add("is-invalid");
+
+      } else {
+
+        productWholeSalePriceInput.classList.remove("is-invalid");
+
+      }
+
+
+
+    } else {
+
+      productModelNoTextInput.classList.remove("is-invalid");
+      productCategorySelectInput.classList.remove("is-invalid");
+      productSizeCategorySelectInput.classList.remove("is-invalid");
+      productColorCategorySelectInput.classList.remove("is-invalid");
+      productEnvelopeSelectInput.classList.remove("is-invalid");
+      productTradeMarkSelectInput.classList.remove("is-invalid");
+      productInvitationPrintTypeSelectInput.classList.remove("is-invalid");
+      productEnvelopePrintTypeSelectInput.classList.remove("is-invalid");
+      productPriceInput.classList.remove("is-invalid");
+      productTardeMarkSubModelSelectInput.classList.remove("is-invalid");
+      productTradeMarkModelNo.classList.remove("is-invalid");
+      stockAddInput.classList.remove("is-invalid");
+      productWholeSalePriceInput.classList.remove("is-invalid");
+
+      if (checkekonomik.checked == true || checkVip.checked == true || checkKraftKagit.checked == true ||
+        checkPlexi.checked == true || checkAhsap.checked == true || checkMuhurlu.checked == true || checkKadife.checked == true ||
+        checkKutulu.checked == true || checkIkili.checked == true || checkIpli.checked == true) {
+
+        propertiesCheckList.classList.remove("border-danger");
+
+
+        if (checkKlasik.checked == true || checkModern.checked == true || checkMinimal.checked == true || checkTrend.checked == true || checkDoga.checked == true ||
+          checkDini.checked == true || checkNostalji.checked == true || checkIlginc.checked == true || checkSpor.checked == true || checkKarikatür == true
+        ) {
+
+          themeCheckList.classList.remove("border-danger")
+
+
+        if (imageFiles1 == null || imageFiles2 == null) {
+
+          alert("Lütfen vitrin fotoğrafını ve ürüne ait en az 1 fotoğraf ekleyin. Tek fotograf varsa vitrin fotoğrafı ve 1. Fotografa aynı fotografı ekleyin!");
+
+        } else {
+
+          let storageRef1 = ref(storage, "productImages/" + imageFileName1);
+
+          uploadBytes(storageRef1, imageFiles1).then((snapshot) => {
+
+            getDownloadURL(ref(storage, "productImages/" + imageFileName1)).then(async (url) => {
+
+              image1Url = url;
+
+              var date = new Date();
+
+              var stockAddInteger = parseInt(stockAddInput.value);
+
+              try {
+
+                const docRef = await addDoc(collection(db, "Product"), {
+
+                  productDocumentId: "",
+
+                  productModelNo: productModelNoTextInput.value,
+                  productTradeMark: productTradeMarkSelectInput.value,
+                  productTradeMarkSubModel: productTardeMarkSubModelSelectInput.value,
+                  productTradeMarkModelNo: productTradeMarkModelNo.value,
+                  productCategory: parseInt(productCategorySelectInput.value),
+                  productTheme: checkThemeArrayList,
+                  productCampaignCode: productCampaignCodeTextInput.value,
+                  productSizeCategory: productSizeCategorySelectInput.value,
+                  productWidth: productSizeWidthTextInput.value,
+                  productHeight: productSizeHeightTextInput.value,
+                  productColorCategory: productColorCategorySelectInput.value,
+                  productEnvelope: productEnvelopeSelectInput.value,
+                  productInvitationPrintType: productInvitationPrintTypeSelectInput.value,
+                  productEnvelopePrintType: productEnvelopePrintTypeSelectInput.value,
+                  productSalesQuantity: 0,
+                  productStock: stockAddInteger,
+                  productFavorites: 0,
+                  productProperties: checkProductPropertiesArrayList,
+                  productAddDate: Timestamp.fromDate(new Date(date)),
+                  productUpdateDate: Timestamp.fromDate(new Date(date)),
+                  productAddUser: auth.currentUser.email,
+
+                  productPrice: parseFloat(productPriceInput.value),
+                  productWholeSalePrice: parseFloat(productWholeSalePriceInput.value),
+                  productProfitRate: parseFloat(productProfitRateInput.value),
+                  productProfit: parseFloat(productProfitInput.value),
+
+                  productImgUrl1: image1Url,
+
+                });
+
+                try {
+
+                  const updateRef = doc(db, "Product", docRef.id);
+
+                  await updateDoc(updateRef, {
+
+                    productDocumentId: docRef.id
+
+                  });
+
+                } catch (error) {
+
+                }
+
+                try {
+
+                  await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
+
+                    productImgUrl: image1Url,
+                    no: 1,
+
+                  });
+
+                  console.log("Document written with ID: ", imageFileName1);
+
+                  let storageRef2 = ref(storage, "productImages/" + imageFileName2);
+                  uploadBytes(storageRef2, imageFiles2).then((snapshot) => {
+
+                    getDownloadURL(ref(storage, "productImages/" + imageFileName2)).then(async (url) => {
+
+
+                      image2Url = url;
+
+                      try {
+
+                        await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
+
+                          productImgUrl: image2Url,
+                          no: 2,
+
+
+                        });
+
+                        console.log("Document written with ID: ", imageFileName2);
+
+                        let storageRef3 = ref(storage, "productImages/" + imageFileName3);
+                        uploadBytes(storageRef3, imageFiles3).then((snapshot) => {
+
+                          getDownloadURL(ref(storage, "productImages/" + imageFileName3)).then(async (url) => {
+
+                            if (imageFiles3 == null) {
+
+                              image3Url = "";
+
+                            } else {
+
+                              image3Url = url;
+
+                            }
+
+                            try {
+
+                              await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
+
+                                productImgUrl: image3Url,
+                                no: 3,
+
+                              });
+
+                              console.log("Document written with ID: ", imageFileName3);
+
+                              let storageRef4 = ref(storage, "productImages/" + imageFileName4);
+                              uploadBytes(storageRef4, imageFiles4).then((snapshot) => {
+
+                                getDownloadURL(ref(storage, "productImages/" + imageFileName4)).then(async (url) => {
+
+                                  if (imageFiles4 == null) {
+
+                                    image4Url = "";
+
+                                  } else {
+
+                                    image4Url = url;
+
+                                  }
+
+                                  try {
+
+                                    await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
+
+
+                                      productImgUrl: image4Url,
+                                      no: 4,
+
+                                    });
+
+                                    console.log("Document written with ID: ", imageFileName4);
+
+
+                                    let storageRef5 = ref(storage, "productImages/" + imageFileName5);
+                                    uploadBytes(storageRef5, imageFiles5).then((snapshot) => {
+
+                                      getDownloadURL(ref(storage, "productImages/" + imageFileName5)).then(async (url) => {
+
+
+                                        if (imageFiles5 == null) {
+
+                                          image5Url = "";
+
+                                        } else {
+
+                                          image5Url = url;
+
+                                        }
+
+                                        try {
+
+                                          await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
+
+
+                                            productImgUrl: image5Url,
+                                            no: 5,
+
+
+                                          });
+
+                                          console.log("Document written with ID: ", imageFileName5);
+
+                                          let storageRef6 = ref(storage, "productImages/" + videoFileName1);
+                                          uploadBytes(storageRef6, videoFiles1).then((snapshot) => {
+
+                                            getDownloadURL(ref(storage, "productImages/" + videoFileName1)).then(async (url) => {
+
+                                              if (videoFiles1 == null) {
+
+                                                videoUrl1 = "";
+
+                                              } else {
+
+                                                videoUrl1 = url;
+
+                                              }
+
+                                              try {
+
+                                                await addDoc(collection(db, "Product/" + docRef.id + "/img"), {
+
+                                                  productImgUrl: videoUrl1,
+                                                  no: 6,
+
+                                                });
+
+                                                console.log("Document written with ID: ", videoFileName1);
+
+                                                window.location.href = "products.html"
+
+
+
+                                              } catch (e) {
+
+                                                console.error("Error adding document: ", e);
+
+
+                                              }
+
+                                            })
+
+                                          });
+
+
+                                        } catch (e) {
+
+                                          console.error("Error adding document: ", e);
+
+
+                                        }
+
+                                      })
+
+                                    });
+
+
+                                  } catch (e) {
+
+                                    console.error("Error adding document: ", e);
+
+
+                                  }
+
+
+
+                                })
+
+                              });
+
+
+                            } catch (e) {
+
+                              console.error("Error adding document: ", e);
+
+
+                            }
+
+
+
+                          })
+
+                        });
+
+
+                      } catch (e) {
+
+                        console.error("Error adding document: ", e);
+
+
+                      }
+
+
+                    })
+
+                  });
+
+
+                } catch (e) {
+
+                  console.error("Error adding document: ", e);
+
+                }
+
+
+              } catch (e) {
+
+                console.error("Error adding document: ", e);
+
+              }
+
+
+
+            })
+
+          });
+
+        }
+
+      
+      } else {
+
+        alert("Lütfen tema ekleyin");
+        themeCheckList.classList.add("border-danger");
+
+
+      }
+
+      } else {
+
+        alert("Ne yani bu davetiyenin hiç özelliği yok mu! Lütfen özellik Ekleyin");
+        propertiesCheckList.classList.add("border-danger");
+
+      }
+
+    }
+
+
   } else if (btnAddEditStatus == "EditProduct") {
 
     let imgUrl = String;
@@ -1502,7 +1803,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
 
     var date = new Date();
 
-    
+
 
     if (imageFiles1 == null) {
 
@@ -1532,7 +1833,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
         productModelNo: productModelNoTextInput.value,
         productTradeMarkModelNo: productTradeMarkModelNo.value,
         productCategory: parseInt(productCategorySelectInput.value),
-        productThemeSelectInput: productThemeSelectInput.value,
+        productTheme: checkThemeArrayList,
         productSizeCategory: productSizeCategorySelectInput.value,
         productTradeMarkSubModel: productTardeMarkSubModelSelectInput.value,
         productCampaignCode: productCampaignCodeTextInput.value,
@@ -1786,7 +2087,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
 
               });
 
-            
+
               console.log("Document written with ID: ", docRef.id);
 
 
@@ -1797,13 +2098,13 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
 
             }
 
-           
+
 
           })
 
         });
 
-        
+
 
       }
 
@@ -1847,7 +2148,7 @@ productDeleteCanceButton.addEventListener("click", () => {
 productDeleteDeleteButon.addEventListener("click", async () => {
 
   await deleteDoc(doc(db, "Product", updateDocumentId));
-  
+
   window.location.reload();
 
 
@@ -1877,10 +2178,10 @@ productModelNoTextInput.onchange = function () {
     querySnapshot.forEach((doc) => {
       ProductsModelNoArray.push(doc.data().productModelNo);
 
-     });
+    });
 
-     if(ProductsModelNoArray.length != 0) {
-      
+    if (ProductsModelNoArray.length != 0) {
+
 
       alert("Bu model adı daha önce eklenmiş. Lütfen farklı bir model adı giriniz.")
       productModelNoTextInput.classList.add("is-invalid")
@@ -1890,11 +2191,11 @@ productModelNoTextInput.onchange = function () {
     } else {
 
       productModelNoTextInput.classList.remove("is-invalid")
-      
+
 
     }
 
-    
+
 
   });
 
@@ -1902,33 +2203,33 @@ productModelNoTextInput.onchange = function () {
 
 productTradeMarkModelNo.onchange = function () {
 
-  const q = query(collection(db, "Product"), where("productModelNo", "==", productModelNoTextInput.value), where("productTradeMark", "==", productTradeMarkSelectInput.value),  where("productTradeMarkSubModel", "==", productTardeMarkSubModelSelectInput.value) );
+  const q = query(collection(db, "Product"), where("productModelNo", "==", productModelNoTextInput.value), where("productTradeMark", "==", productTradeMarkSelectInput.value), where("productTradeMarkSubModel", "==", productTardeMarkSubModelSelectInput.value));
   const unsubscribe = onSnapshot(q, (querySnapshot) => {
     const TaradeMarkModelNoArray = [];
     querySnapshot.forEach((doc) => {
       TaradeMarkModelNoArray.push(doc.data().productModelNo);
 
-     });
+    });
 
-     if(TaradeMarkModelNoArray.length != 0) {
+    if (TaradeMarkModelNoArray.length != 0) {
 
       alert("Bu ürün daha önce eklenmiş. Lütfen farklı bir ürün giriniz.")
       productTradeMarkModelNo.classList.add("is-invalid")
       productTradeMarkModelNo.value = ""
 
 
-    
-      
+
+
 
     } else {
 
       productTradeMarkModelNo.classList.remove("is-invalid")
-      
-     
+
+
 
     }
 
-    
+
 
   });
 

@@ -117,8 +117,7 @@
 
     <div class="containerTitle d-flex justify-content-between  border-bottom border-primary bg-white">
 
-      
-      <h3 class="h2 text-primary" id="orderTrackingTitle">Sipariş Detay</h3>
+       <h3 class="h2 text-primary" id="orderTrackingTitle">Sipariş Detay</h3>
 
     </div>
 
@@ -127,12 +126,8 @@
 
       <div class="row m-0 mt-2">
 
-      
-      
-      
         <div class="col">
 
-        
         <div class="h6 text-primary mt-3 mb-1 flex-fill"> Sipariş Kodu </div>
         
         <input type="text" class="form-control" id="orderCodeTextInput" placeholder="Sipariş Kodu">
@@ -141,134 +136,147 @@
       
       
         <div class="col">
+          
+          <div class="h6 text-primary mt-3 mb-1 flex-fill"> Sipariş Model No </div>
 
-             <div class="h6 text-primary mt-3 mb-1 flex-fill"> Sipariş Model No </div>
+          <input type="text" class="form-control" id="orderModelNoTextView" placeholder="Sipariş Model No">
 
-             <input type="text" class="form-control" id="orderModelNo" placeholder="Sipariş Model No">
+        </div>
+        
+        <div class="col">
 
-            </div>
-
-          <div class="col">
-
-              <div class="h6 text-primary mt-3 mb-1 flex-fill"> Sipariş Adedi </div>
-
-              <input type="text" class="form-control" id="orderPiece" placeholder="Sipariş Adedi">
-  
-            </div>
+          <div class="h6 text-primary mt-3 mb-1 flex-fill"> Sipariş Adedi </div>
+          
+          <input type="text" class="form-control" id="orderPieceTextView" placeholder="Sipariş Adedi">
+        
+        </div>
+      
         <div class="col">
 
           <div class="h6 text-primary mt-3 mb-1 pb-0 flex-fill"> Sipariş Durumu </div>
 
           <select class="col   form-select" id="filterModelNoFormSelect" aria-label="Default select example">
 
-           <option value="0" selected>Sipariş Durumu</option>
-           <option value="1">Beklemede</option>
-           <option value="2">Onaylandı</option>
-           <option value="3">Tasarlandı</option>
-           <option value="4">Tasamrım Onayı Bekleniyor</option>
-           <option value="5">Tasarım Onaylandı</option>
-           <option value="6">Baskıda</option>
-           <option value="7">Üretimde</option>
-           <option value="8">Sevkiyat Bekliyor</option>
-           <option value="9">Kargolandı</option>
-           <option value="10">Teslim Edildi</option>
-           <option value="11">İptal Edildi</option>
-
+            <option value="0" selected>Sipariş Durumu</option>
+            <option value="1">Beklemede</option>
+            <option value="2">Onaylandı</option>
+            <option value="3">Tasarlandı</option>
+            <option value="4">Tasamrım Onayı Bekleniyor</option>
+            <option value="5">Tasarım Onaylandı</option>
+            <option value="6">Baskıda</option>
+            <option value="7">Üretimde</option>
+            <option value="8">Sevkiyat Bekliyor</option>
+            <option value="9">Kargolandı</option>
+            <option value="10">Teslim Edildi</option>
+            <option value="11">İptal Edildi</option>
 
           </select>
 
-         </div>
-
-         
+        </div>
 
 
+        <h5 class="h5 mt-4 text-primary" id="orderTrackingTitle">Davetiye Bilgileri</h5>
 
-
-         
        
-       
-       
-       
-         
-         
-    
-         <h5 class="h5  m-3 text-primary" id="orderTrackingTitle">Gelin Damat Bilgileri</h5>
-  
-
-         <div class="row ms-0 me-0 mt-2">
-
-
-          <div class="col">
-
-          <div class="h6 text-primary mt-3 mb-1 flex-fill"> Gelin Adı </div>
-
-          <input type="text" class="form-control" id="orderPiece" placeholder="Gelin Adı">
+        <div class="border rounded-2 ">
         
-        
-        </div>
+          <div class="row mt-2">
 
-        <div class="col">
+            <div class="col">
+              
+              <div class="h6 text-primary mt-1 mb-1 flex-fill"> Gelin Adı </div>
+          
+              <input type="text" class="form-control" id="orderPiece" placeholder="Gelin Adı">
+      
+            </div>
+          
+            <div class="col">
 
-          <div class="h6 text-primary mt-3 mb-1 flex-fill"> Gelin Soyadı </div>
-
-          <input type="text" class="form-control" id="orderPiece" placeholder="Gelin Soyadı">
-
-        </div>
-
-        <div class="col">
-
-          <div class="h6 text-primary mt-3 mb-1 flex-fill"> Damat Adı </div>
-
-          <input type="text" class="form-control" id="orderPiece" placeholder="Damat Adı">
-
-        </div>
-
-        <div class="col">
-
-          <div class="h6 text-primary mt-3 mb-1 flex-fill"> Damat Soyadı </div>
-
-          <input type="text" class="form-control" id="orderPiece" placeholder="Damat Soyadı">
-
-        </div>
-
-        <div class="row ms-0 me-0 mt-2">
-
-          <div class="row">
-
-            <div class="col" >
-
-            <div class="h6 text-primary mt-3 mb-1 flex-fill"> Gelini Ailesi </div>
-  
-            <input type="text" class="form-control" id="orderPiece" placeholder="Gelin Ailesi">
-
-          </div>
+              <div class="h6 text-primary mt-1 mb-1 flex-fill"> Gelin Soyadı </div>
+              
+              <input type="text" class="form-control" id="orderPiece" placeholder="Gelin Soyadı">
+            
+            </div>
 
             <div class="col">
             
-            <div class="h6 text-primary mt-3 mb-1 flex-fill"> Damat Ailesi </div>
-  
-            <input type="text" class="form-control" id="orderPiece" placeholder="Damat Ailesi">
-  
+              <div class="h6 text-primary mt-1 mb-1 flex-fill"> Damat Adı </div>
+              
+              <input type="text" class="form-control" id="orderPiece" placeholder="Damat Adı">
+            
+            </div>
+
+            <div class="col">
+              
+              <div class="h6 text-primary mt-1 mb-1 flex-fill"> Damat Soyadı </div>
+              
+              <input type="text" class="form-control" id="orderPiece" placeholder="Damat Soyadı">
+            
             </div>
           
           </div>
 
+    
+          <div class="row mb-3">
+    
+            <div class="col">
+          
+              <div class="h6 text-primary mt-3 mb-1 flex-fill"> Gelini Ailesi </div>
+
+              <input type="text" class="form-control" id="orderPiece" placeholder="Gelin Ailesi">
+            
+            </div>
+
+            <div class="col">
+              
+              <div class="h6 text-primary mt-3 mb-1 flex-fill"> Damat Ailesi </div>
+  
+              <input type="text" class="form-control" id="orderPiece" placeholder="Damat Ailesi">
+            
+            </div>
+          
+          </div>
+
+        </div>
+
+        
+      
+         
+      
+     
+      
+      <div class="border rounded-2 mt-2 ">
+
+        <div class="row">
+
           <div class="col">
 
-            <div class="h6 text-primary mt-3 mb-1 flex-fill"> Davetiye Yazısı </div>
+          <div class="col">
+
+            <div class="h6 text-primary mt-3 mb-1 flex-fill" > Davetiye Yazısı </div>
   
-            <input type="text" class="form-control" id="orderPiece" placeholder="Davetiye Yazısı">
+            <input type="text" class="form-control mb-2" id="orderPiece" placeholder="Davetiye Yazısı" style="height: 118px;">
   
           </div>
 
-          <div class="row">
+          <div class="col">
+            
+            <div class="h6 text-primary mt-3 mb-1 flex-fill">Save The Date Video URL </div>
+      
+            <input type="text" class="form-control" id="orderPiece" placeholder="Save The Date Video URL">
+      
+          </div>
+
+        </div>
+      
+          <div class="col">
 
             <div class="col">
-
+              
               <div class="h6 text-primary mt-3 mb-1 flex-fill">Dijital Kod</div>
     
               <input type="text" class="form-control" id="orderPiece" placeholder="Dijital Kod">
-    
+            
             </div>
 
             <div class="col">
@@ -276,239 +284,39 @@
               <div class="h6 text-primary mt-3 mb-1 flex-fill">QR Kod</div>
     
               <input type="text" class="form-control" id="orderPiece" placeholder="QR Kod">
-    
+
             </div>
-
-
+          
             <div class="col m-2">
-
-                <img src="assets/274348852_320609883437173_4953649348556891409_n.jpg" alt="" style="width: 150px; height: 150px;">
-              
-              </div>
-
-            </div>
-
-            <div class="row">
-
-              <div class="col">
-
-                <div class="h6 text-primary mt-3 mb-1 flex-fill">Save The Date Video URL </div>
-      
-                <input type="text" class="form-control" id="orderPiece" placeholder="Save The Date Video URL">
-      
-              </div>
-
-            </div>
-
-
-
-       
-
-
         
-
-
-
+              <img src="assets/274348852_320609883437173_4953649348556891409_n.jpg" alt="" style="width: 150px; height: 150px;">
+          
+            </div>
+        
+          </div>
+        
         </div>
 
 
-
-
-      </div>
-
-      <div class="row ms-0 me-0 mt-2">
-
-        <select class="form-select col me-1 " id="productSizeCategorySelectInput" aria-label="Default select example">
-
-          <option value="0" selected>Boyut Kategorisi</option>
-
-          <option value="1">Yatay</option>
-
-          <option value="2">Dikey</option>
-
-          <option value="3">Kare</option>
-
-        </select>
-
-
-        <input type="number" class="form-control col ms-1 me-1" id="productSizeWidthTextInput"
-          placeholder="Genişlik(cm)">
-
-        <input type="number" class="form-control col ms-1" id="productSizeHeightTextInput" placeholder="Yükseklik(cm)">
-
-
-      </div>
-
-      <div class="row ms-0 me-0 mt-2">
-
-        <select class="form-select col me-1 " id="productColorCategorySelectInput" aria-label="Default select example">
-
-          <option value="0" selected>Renk</option>
-
-          <option value="1">Sarı</option>
-
-          <option value="2">Kırmız</option>
-
-          <option value="3">Mavi</option>
-
-        </select>
-
-        <select class="form-select col ms-1 me-1 " id="productEnvelopeSelectInput" aria-label="Default select example">
-
-          <option value="0" selected>Zarf</option>
-
-          <option value="1">Zarflı</option>
-
-          <option value="2">Zarfsız</option>
-
-        </select>
-
-        <select class="form-select col ms-1" id="productTradeMarkSelectInput" aria-label="Default select example">
-
-          <option value="0" selected>Marka</option>
-
-          <option value="1">İklim</option>
-
-          <option value="2">Sedef</option>
-
-        </select>
-
-      </div>
-
-      <div class="row ms-0 me-0 mt-2">
-
-        <select class="form-select col me-1" id="productFoilPrintInvitationSelectInput"
-          aria-label="Default select example">
-
-          <option value="0" selected>Varak Baskı(Davetiye)</option>
-
-          <option value="1">Var</option>
-
-          <option value="2">Yok</option>
-
-        </select>
-
-        <select class="form-select col ms-1" id="productFoilPrintTagSelectInput" aria-label="Default select example">
-
-          <option value="0" selected>Varak Baskı(İsimlik)</option>
-
-          <option value="1">Var</option>
-
-          <option value="2">Yok</option>
-
-        </select>
-
-
-      </div>
-
-
-
-      <div class="border rounded-2 mt-2 ">
-
-        <div class="container mt-2">
-
-          <div class="row">
-
-            <div class="col">
+        
+        <div class="row">
+            
+          <div class="col">
 
               <div class="ms-3">
-
+                
                 <label class="fs-6 fw-light text">Vitrin Fotoğrafı</label>
-
+              
               </div>
 
               <div class="container d-flex">
-
+                
                 <input class="form-control mb-1" type="file" id="image1Input" accept="image/png, image/gif, image/jpeg">
-
+                
                 <img src="" alt="" width="150" height="100" id="img1Preview">
-
+              
               </div>
-
-
-
-            </div>
-
-            <div class="col">
-
-              <div class="ms-3">
-
-                <label class="fs-6 fw-light text">1. Fotoğraf</label>
-
-              </div>
-
-              <div class="container d-flex">
-
-                <input class="form-control mb-1" type="file" id="image2Input" accept="image/png, image/gif, image/jpeg">
-
-                <img class="border border-radius" src="" alt="" width="150" height="100" id="img2Preview">
-
-              </div>
-
-
-
-
-            </div>
-
-            <div class="col">
-
-              <div class="ms-3">
-
-                <label class="fs-6 fw-light text">2. Fotoğraf</label>
-
-              </div>
-
-              <div class="container d-flex">
-
-                <input class="form-control mb-1" type="file" id="image3Input" accept="image/png, image/gif, image/jpeg">
-
-                <img class="border border-radius" src="" id="img3Preview" alt="" width="150" height="100">
-
-              </div>
-
-
-
-            </div>
-
-            <div class="col">
-
-              <div class="ms-3">
-
-                <label class="fs-6 fw-light text">3. Fotoğraf</label>
-
-              </div>
-
-              <div class="container d-flex">
-
-                <input class="form-control mb-1" type="file" id="image4Input" accept="image/png, image/gif, image/jpeg">
-
-                <img class="border border-radius" src="" id="img4Preview" alt="" width="150" height="100">
-
-
-              </div>
-
-
-
-            </div>
-
-            <div class="col">
-
-              <div class="ms-3">
-
-                <label class="fs-6 fw-light text">4. Fotoğraf</label>
-
-              </div>
-
-              <div class="container d-flex">
-
-                <input class="form-control mb-1" type="file" id="image5Input" accept="image/png, image/gif, image/jpeg">
-
-                <img class="border border-radius" src="" id="img5Preview" alt="" width="150" height="100">
-
-
-              </div>
-
-
+            
             </div>
 
             <div class="col">
@@ -516,7 +324,7 @@
               <div class="ms-3">
 
                 <label class="fs-6 fw-light text">Video</label>
-
+              
               </div>
 
               <div class="container d-flex">
@@ -531,29 +339,15 @@
 
           </div>
 
-        </div>
-
-        <div class="container mt-2">
-
-
-
-        </div>
-
-        <div class="container mt-2">
-
-
-
-        </div>
-
       </div>
 
       <div class="container ms-3 me-3 mt-2">
 
         <div class="row">
 
-          <button class="col me-1 btn btn-danger" id="productAddCancelButton">Vazgeç</button>
+          
 
-          <button class="col ms-1 btn btn-success" id="productAddSuccessButton">Onayla</button>
+          <button class="col ms-1 btn btn-success" id="productAddSuccessButton">Siparişlere Geri Dön</button>
 
         </div>
 
@@ -562,10 +356,6 @@
     </div>
 
   </div>
-
-
-
-
 
   <script src="js/jquery-3.6.3.js"></script>
 

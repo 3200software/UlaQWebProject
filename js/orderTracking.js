@@ -25,7 +25,7 @@ import {
   getDocs,
   updateDoc,
   getDoc
-} from "hhttps://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseapp = initializeApp({
 
@@ -58,9 +58,14 @@ onAuthStateChanged(auth, user => {
 
 });
 
+let updateDocumentId = String;
+
 const btnLogout = document.getElementById("logoutButton");
 const orderDetailContainer = document.getElementById("orderDetailContainer");
 const orderMainContainer = document.getElementById("orderMainContainer");
+const ordercodeTextView = document.getElementById("orderCodeTextInput");
+const orderModelNoTextView = document.getElementById("orderModelNoTextView"); 
+const orderPieceTextView = document.getElementById("orderPieceTextView");
 
 
 btnLogout.addEventListener("click", () => {
@@ -76,7 +81,12 @@ btnLogout.addEventListener("click", () => {
 
 const products = document.querySelector(".ordersCard")
 
-function createOrderssArray([firebaseOrdersDocId, firebaseOrdersBrideName, firebaseOrdersGroomName, firebaseOrdersOrderID, firebaseOrdersOrderPhase]) {
+function createOrderssArray([firebaseOrdersDocId, firebaseOrdersBrideName, firebaseOrdersGroomName, firebaseOrdersOrderID, orderPhaseStr]) {
+
+
+  if (orderPhaseStr == "Beklemede") {
+
+
 
   let proCode = `
 
@@ -86,18 +96,45 @@ function createOrderssArray([firebaseOrdersDocId, firebaseOrdersBrideName, fireb
 
   <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrdersBrideName} & ${firebaseOrdersGroomName}</h6>
 
-  <button type="button" data-key=' " + ${firebaseOrdersDocId}+ "' class="btn btn-primary editBtn m-2">Düzenle</button>
+  <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
+
+  <button type="button" class="btn btn-primary editBtn m-2">${orderPhaseStr}</button>
+
 
 </div>
 
 `
+ ;
+
+ products.innerHTML += proCode;
+
+  } if (orderPhaseStr == "") {
 
 
 
+    let proCode = `
+  
+    <div class="d-flex justify-content-between border rounded-2 m-1"> 
+          
+    <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrdersOrderID}</h6>
+  
+    <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrdersBrideName} & ${firebaseOrdersGroomName}</h6>
+  
+    <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
+  
+    <button type="button" class="btn btn-danger editBtn m-2">${orderPhaseStr}</button>
+  
+  
+  </div>
+  
+  `
+   ;
+  
+   products.innerHTML += proCode;
+  
+    } 
 
-  ;
 
-  products.innerHTML += proCode;
 
 
 };
@@ -106,11 +143,11 @@ function createOrderssArray([firebaseOrdersDocId, firebaseOrdersBrideName, fireb
 
 $("body").on("click", ".editBtn", async function () {
   
-  //var $key = $(this).data("key");
+  
+    var $key = $(this).data("keys");
+    
+    updateDocumentId = $key;
 
-  console.log("heyyyy")
-
-  //updateDocumentId = $key;
 
   //btnAddEditStatus = "EditProduct"
 
@@ -120,43 +157,47 @@ $("body").on("click", ".editBtn", async function () {
 
     orderDetailContainer.style.display = ""
     orderMainContainer.style.display = "none"
-    btnProductAdd.style.visibility = "hidden"
+  
 
   }
 
-
-
-  const docRef = doc(db, "Orders", $key);
+  const docRef = doc(db, "Orders", updateDocumentId);
   const docs = await getDoc(docRef);
+
+  console.log(docRef.$key)
 
   if (docs.exists()) {
 
-    const firebaseOrdersDocId = doc.id;
+    const firebaseOrdersDocId = docs.id;
 
-    const firebaseOrdersUserEmail = doc.data().userEmail;
-    const firebaseOrdersAnonymousUser = doc.data().anonymousDeviceId;
-    const firebaseOrdersOrderID = doc.data().orderID;
-    const firebaseOrdersInvitationCode = doc.data().invitationModelNo;
-    const firebaseOrdersInvitationPiece = doc.data().invitationPiece;
-    const firebaseOrdersInvitationPrice = doc.data().invitationPrice;
+   
+    const firebaseOrdersOrderID = docs.data().orderID;
+    const firebaseOrdersCode = docs.data().orderModelNo;
+    const firebaseOrdersPiece = docs.data().orderPiece;
+    const firebaseOrdersInvitationPrice = docs.data().invitationPrice;
 
-    const firebaseOrdersQrCode = doc.data().QRCode;
-    const firebaseOrdersQrCodeImageUrl = doc.data().QRCodeImage;
-    const firebaseOrdersVideoUrl = doc.data().videoUrl;
-    const firebaseOrdersBrideFamily = doc.data().brideFamily;
-    const firebaseOrdersBrideName = doc.data().brideName;
-    const firebaseOrdersBrideSurName = doc.data().brideSurName;
-    const firebaseOrdersGroomFamily = doc.data().groomFamily;
-    const firebaseOrdersGroomName = doc.data().groomName;
-    const firebaseOrdersGroomSurName = doc.data().groomSurName;
-    const firebaseOrdersInvitationWriting = doc.data().invitationWriting;
-    const firebaseOrdersOrderPhase = doc.data().orderPhase;
+    const firebaseOrdersQrCode = docs.data().QRCode;
+    const firebaseOrdersQrCodeImageUrl = docs.data().QRCodeImage;
+    const firebaseOrdersVideoUrl = docs.data().videoUrl;
+    const firebaseOrdersBrideFamily = docs.data().brideFamily;
+    const firebaseOrdersBrideName = docs.data().brideName;
+    const firebaseOrdersBrideSurName = docs.data().brideSurName;
+    const firebaseOrdersGroomFamily = docs.data().groomFamily;
+    const firebaseOrdersGroomName = docs.data().groomName;
+    const firebaseOrdersGroomSurName = docs.data().groomSurName;
+    const firebaseOrdersInvitationWriting = docs.data().invitationWriting;
+    const firebaseOrdersOrderPhase = docs.data().orderPhase;
 
-    const firebaseInvitationFoilPrint = doc.data().invitationFoilPrint;
-    const firebaseEnvelopeFoilPrint = doc.data().envelopeFoilPrint;
-    const firebaseFoilPrintType = doc.data().foilPrintType;
-    const firebaseEnvelopment = doc.data().invitationEnvelopement;
-    const firebaseInvitationGuestName = doc.data().invitationGuestName;
+    const firebaseInvitationFoilPrint = docs.data().invitationFoilPrint;
+    const firebaseEnvelopeFoilPrint = docs.data().envelopeFoilPrint;
+    const firebaseFoilPrintType = docs.data().foilPrintType;
+    const firebaseEnvelopment = docs.data().invitationEnvelopement;
+    const firebaseInvitationGuestName = docs.data().invitationGuestName;
+
+    
+    ordercodeTextView.value = firebaseOrdersOrderID;
+    orderModelNoTextView.value = firebaseOrdersCode;
+    orderPieceTextView.value = firebaseOrdersPiece;
 
 
 
@@ -203,12 +244,13 @@ $("body").on("click", ".editBtn", async function () {
 
 })
 
+let orderPhaseStr = "";
 
-
-const getData = query(collection(db, "Orders"), );
+const getData = query(collection(db, "Orders"),where("orderStatus", "==", "Order"));
 
 const querySnapshot = await getDocs(getData);
 querySnapshot.forEach((doc) => {
+  
 
   const firebaseOrdersDocId = doc.id;
   const firebaseOrdersBrideName = doc.data().brideName;
@@ -216,8 +258,20 @@ querySnapshot.forEach((doc) => {
   const firebaseOrdersOrderID = doc.data().orderID;
   const firebaseOrdersOrderPhase = doc.data().orderPhase;
 
+  
 
-  let ordersItem = [firebaseOrdersDocId, firebaseOrdersBrideName, firebaseOrdersGroomName, firebaseOrdersOrderID, firebaseOrdersOrderPhase];
+  if (firebaseOrdersOrderPhase == 1 ) {
+
+    orderPhaseStr = "Beklemede";
+    console.log("order" + orderPhaseStr)
+
+  }
+
+
+  
+
+
+  let ordersItem = [firebaseOrdersDocId, firebaseOrdersBrideName, firebaseOrdersGroomName, firebaseOrdersOrderID, orderPhaseStr];
 
   createOrderssArray(ordersItem);
 
