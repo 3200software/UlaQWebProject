@@ -11,7 +11,8 @@ import {
   getStorage,
   ref,
   uploadBytes,
-  getDownloadURL
+  getDownloadURL,
+  deleteObject
 } from "https://www.gstatic.com/firebasejs/10.12.2//firebase-storage.js";
 import {
   getFirestore,
@@ -46,6 +47,11 @@ const firebaseapp = initializeApp({
 const auth = getAuth(firebaseapp);
 const storage = getStorage(firebaseapp);
 const db = getFirestore(firebaseapp);
+
+
+
+
+
 
 onAuthStateChanged(auth, user => {
 
@@ -94,7 +100,6 @@ let updateDocumentId = String;
 
 const productModelNoTextInput = document.getElementById("prodcutModelNoTextInput");
 const productCategorySelectInput = document.getElementById("productCategorySelectInput");
-const productThemeSelectInput = document.getElementById("productThemeSelectInput");
 const productSizeCategorySelectInput = document.getElementById("productSizeCategorySelectInput");
 const productSizeWidthTextInput = document.getElementById("productSizeWidthTextInput");
 const productSizeHeightTextInput = document.getElementById("productSizeHeightTextInput");
@@ -173,6 +178,12 @@ const productStockInfo = document.getElementById("productStockInfo");
 const productSalesInfo = document.getElementById("productSalesInfo");
 const productFavoriInfo = document.getElementById("productFavoriInfo");
 
+var imgUrl1 = "";
+var imgUrl2 = "";
+var imgUrl3 = "";
+var imgUrl4 = "";
+var imgUrl5 = "";
+var videoUrl = "";
 
 var checkProductPropertiesArrayList = [];
 
@@ -215,8 +226,7 @@ productTradeMarkSelectInput.onchange = function () {
 
   if (productTradeMarkSelectInput.value == "1") {
 
-    console.log("1")
-
+   
     productTardeMarkSubModelSelectInput.innerHTML = "";
 
     var option0 = document.createElement("option");
@@ -699,6 +709,122 @@ checkKarikatür.onclick = function () {
 
 
 
+productModelNoTextInput.onchange = async function () {
+
+  const getData = query(collection(db, "Product"),where("productModelNo", "==", productModelNoTextInput.value));
+
+  var ProductsModelNo = "";
+  const querySnapshot = await getDocs(getData);
+  querySnapshot.forEach((doc) => {
+
+
+    ProductsModelNo = doc.data().productModelNo;
+  console.log(ProductsModelNo);
+
+  
+});
+
+if (ProductsModelNo == productModelNoTextInput.value) {
+
+
+  alert("Bu model adı daha önce eklenmiş. Lütfen farklı bir model adı giriniz.");
+  productModelNoTextInput.classList.add("is-invalid");
+  productModelNoTextInput.value = "";
+
+
+} else {
+
+  productModelNoTextInput.classList.remove("is-invalid");
+
+}
+
+
+};
+
+productTradeMarkModelNo.onchange = async function () {
+
+
+
+  const getData = query(collection(db, "Product"),where("productTradeMark", "==", productTradeMarkSelectInput.value)
+  ,where("productTradeMarkSubModel", "==", productTardeMarkSubModelSelectInput.value),where("productTradeMarkModelNo", "==", productTradeMarkModelNo.value));
+
+  var ProductsTradeMarkModelNo = "";
+  const querySnapshot = await getDocs(getData);
+  querySnapshot.forEach((doc) => {
+
+
+    ProductsTradeMarkModelNo = doc.data().productTradeMarkModelNo;
+  console.log(ProductsTradeMarkModelNo);
+
+  
+});
+
+if (ProductsTradeMarkModelNo == productTradeMarkModelNo.value) {
+
+
+  alert("Bu model adı daha önce eklenmiş. Lütfen farklı bir model adı giriniz.");
+  productTradeMarkModelNo.classList.add("is-invalid");
+  productTradeMarkModelNo.value = "";
+
+
+} else {
+
+  productTradeMarkModelNo.classList.remove("is-invalid");
+
+}
+
+
+};
+
+
+productTradeMarkModelNo.onclick = function () {
+
+
+  if (productTradeMarkSelectInput.value == "0" || productTardeMarkSubModelSelectInput.value == "0") {
+
+
+    alert("Lütfen önce ürün markası ve alt modelini seciniz!")
+
+    if (productTradeMarkSelectInput.value == 0) {
+
+      productTradeMarkSelectInput.classList.add("is-invalid");
+
+    }
+
+    if (productTardeMarkSubModelSelectInput.value == 0) {
+
+      productTardeMarkSubModelSelectInput.classList.add("is-invalid");
+
+    }
+
+
+  } else {
+
+
+    productTradeMarkSelectInput.classList.remove("is-invalid");
+    productTardeMarkSubModelSelectInput.classList.remove("is-invalid");
+
+  
+  
+
+
+
+
+  }
+    
+
+
+
+
+}
+
+
+
+
+
+
+
+
 
 const products = document.querySelector(".productCard")
 
@@ -1028,9 +1154,8 @@ $("body").on("click", ".editBtn", async function () {
 
   snapshotimg1.forEach((doc) => {
 
-    console.log(doc.data());
-
     img1Preview.src = doc.data().productImgUrl;
+    imgUrl1 = doc.data().productImgUrl;
 
 
   })
@@ -1042,9 +1167,9 @@ $("body").on("click", ".editBtn", async function () {
 
   snapshotimg2.forEach((doc) => {
 
-    console.log(doc.data());
-
     img2Preview.src = doc.data().productImgUrl;
+    imgUrl2 = doc.data().productImgUrl;
+
 
 
   })
@@ -1055,9 +1180,8 @@ $("body").on("click", ".editBtn", async function () {
 
   snapshotimg3.forEach((doc) => {
 
-    console.log(doc.data());
-
     img3Preview.src = doc.data().productImgUrl;
+    imgUrl3 = doc.data().productImgUrl;
 
 
   })
@@ -1069,9 +1193,8 @@ $("body").on("click", ".editBtn", async function () {
 
   snapshotimg4.forEach((doc) => {
 
-    console.log(doc.data());
-
     img4Preview.src = doc.data().productImgUrl;
+    imgUrl4 = doc.data().productImgUrl;
 
 
   })
@@ -1082,9 +1205,8 @@ $("body").on("click", ".editBtn", async function () {
 
   snapshotimg5.forEach((doc) => {
 
-    console.log(doc.data());
-
     img5Preview.src = doc.data().productImgUrl;
+    imgUrl5 = doc.data().productImgUrl;
 
 
   })
@@ -1095,9 +1217,8 @@ $("body").on("click", ".editBtn", async function () {
 
   snapshotVideo.forEach((doc) => {
 
-    console.log(doc.data());
-
     videoPreview.src = doc.data().productImgUrl;
+    videoUrl = doc.data().productImgUrl;
 
 
   })
@@ -1269,6 +1390,8 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
 
   if (btnAddEditStatus == "AddProduct") {
 
+    
+
     if (productModelNoTextInput.value == "" || productCategorySelectInput.value == "0" ||
       productSizeCategorySelectInput.value == "0" || productEnvelopeSelectInput.value == "0" ||
       productTradeMarkSelectInput.value == "0" || productInvitationPrintTypeSelectInput.value == "0" || productEnvelopePrintTypeSelectInput.value == "0" ||
@@ -1436,6 +1559,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
         productWholeSalePriceInput.classList.remove("is-invalid");
 
       }
+      
 
 
 
@@ -1475,6 +1599,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
 
         } else {
 
+
           let storageRef1 = ref(storage, "productImages/" + imageFileName1);
 
           uploadBytes(storageRef1, imageFiles1).then((snapshot) => {
@@ -1487,7 +1612,9 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
 
               var stockAddInteger = parseInt(stockAddInput.value);
 
+            
               try {
+
 
                 const docRef = await addDoc(collection(db, "Product"), {
 
@@ -1522,7 +1649,11 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
 
                   productImgUrl1: image1Url,
 
+                  
+
                 });
+
+                console.log("ne oluyor")
 
                 try {
 
@@ -1678,6 +1809,8 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
 
                                                 console.log("Document written with ID: ", videoFileName1);
 
+                                                alert("Ürün başarı ile eklendi")
+
                                                 window.location.href = "products.html"
 
 
@@ -1771,7 +1904,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
       
       } else {
 
-        alert("Lütfen tema ekleyin");
+        alert("Lütfen tema ekleyin!");
         themeCheckList.classList.add("border-danger");
 
 
@@ -2134,7 +2267,8 @@ btnDeleteProduct.addEventListener("click", () => {
   deleteContainer.style.display = ""
   productContainer.style.display = "none"
 
-})
+
+});
 
 productDeleteCanceButton.addEventListener("click", () => {
 
@@ -2142,18 +2276,45 @@ productDeleteCanceButton.addEventListener("click", () => {
   productContainer.style.display = ""
 
 
-})
+});
 
 
 productDeleteDeleteButon.addEventListener("click", async () => {
 
+  deleteFileByURL(imgUrl1);
+  deleteFileByURL(imgUrl2);
+  deleteFileByURL(imgUrl3);
+  deleteFileByURL(imgUrl4);
+  deleteFileByURL(imgUrl5);
+  deleteFileByURL(videoUrl);
+
   await deleteDoc(doc(db, "Product", updateDocumentId));
+
+
+
+  
 
   window.location.reload();
 
 
-})
 
+
+});
+
+
+  
+async function deleteFileByURL(fileURL) {
+  try {
+      const storage = getStorage();
+      const fileRef = ref(storage, fileURL);
+
+      // Dosyayı silme
+      await deleteObject(fileRef);
+      console.log('Dosya başarıyla silindi.');
+  } catch (error) {
+      console.error('Dosya silinirken bir hata oluştu:', error);
+  }
+}
 
 
 btnProductAddCancel.addEventListener("click", () => {
@@ -2167,73 +2328,10 @@ btnProductAddCancel.addEventListener("click", () => {
 
   }
 
-})
-
-
-productModelNoTextInput.onchange = function () {
-
-  const q = query(collection(db, "Product"), where("productModelNo", "==", productModelNoTextInput.value));
-  const unsubscribe = onSnapshot(q, (querySnapshot) => {
-    const ProductsModelNoArray = [];
-    querySnapshot.forEach((doc) => {
-      ProductsModelNoArray.push(doc.data().productModelNo);
-
-    });
-
-    if (ProductsModelNoArray.length != 0) {
-
-
-      alert("Bu model adı daha önce eklenmiş. Lütfen farklı bir model adı giriniz.")
-      productModelNoTextInput.classList.add("is-invalid")
-      productModelNoTextInput.value = ""
-
-
-    } else {
-
-      productModelNoTextInput.classList.remove("is-invalid")
-
-
-    }
+});
 
 
 
-  });
-
-}
-
-productTradeMarkModelNo.onchange = function () {
-
-  const q = query(collection(db, "Product"), where("productModelNo", "==", productModelNoTextInput.value), where("productTradeMark", "==", productTradeMarkSelectInput.value), where("productTradeMarkSubModel", "==", productTardeMarkSubModelSelectInput.value));
-  const unsubscribe = onSnapshot(q, (querySnapshot) => {
-    const TaradeMarkModelNoArray = [];
-    querySnapshot.forEach((doc) => {
-      TaradeMarkModelNoArray.push(doc.data().productModelNo);
-
-    });
-
-    if (TaradeMarkModelNoArray.length != 0) {
-
-      alert("Bu ürün daha önce eklenmiş. Lütfen farklı bir ürün giriniz.")
-      productTradeMarkModelNo.classList.add("is-invalid")
-      productTradeMarkModelNo.value = ""
-
-
-
-
-
-    } else {
-
-      productTradeMarkModelNo.classList.remove("is-invalid")
-
-
-
-    }
-
-
-
-  });
-
-}
 
 
 btnLogout.addEventListener("click", () => {
@@ -2247,4 +2345,6 @@ btnLogout.addEventListener("click", () => {
 
 
 });
+
+
 
