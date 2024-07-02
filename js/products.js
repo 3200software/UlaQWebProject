@@ -2465,7 +2465,6 @@ productDeleteDeleteButon.addEventListener("click", async () => {
   deleteFileByURL(videoUrl);
   
 
-  await deleteDoc(doc(dp,"Product/" + updateDocumentId + "/img"));
   await deleteDoc(doc(db, "Product", updateDocumentId));
 
 
