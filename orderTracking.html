@@ -9,7 +9,13 @@
 
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+  <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <script type="module" src="js/orderTracking.js" defer></script>
   <link rel="stylesheet" href="css/orderTacking.css">
@@ -25,7 +31,7 @@
 
       <div> <img src="assets/274348852_320609883437173_4953649348556891409_n.jpg" alt="UlaQLogo" width="50px"
           height="50px" style="border-radius: 50px;"> </div>
-      <div class="offcanvas-title text-primary ms-4 h4"> UlaQ Management</div>
+      <div class="offcanvas-title text-primary ms-4 h4"> UlaQ Yönetim Paneli</div>
 
 
     </div>
@@ -45,6 +51,11 @@
 
         <a href="orderTracking.html" class="list-group-item list-group-item-action active">Sipariş Takip</a>
         <a href="products.html" class="list-group-item list-group-item-action">Ürünler</a>
+        <a href="questanswer.html" class="list-group-item list-group-item-action">Soru-Cevap</a>
+        <a
+        href="inv-writing.html"
+        class="list-group-item list-group-item-action"
+        >Davetiye Yazıları</a>
 
       </div>
 
@@ -129,30 +140,30 @@
 
 
     <div class="container">
-
-      <div class="row m-0 mt-2">
-
+      
+      <div class="border rounded-2 row pb-2 mt-2">
+      
         <div class="col">
 
-        <div class="h6 text-primary mt-3 mb-1 flex-fill"> Sipariş Kodu </div>
+           <div class="h6 text-primary mt-3 mb-1 flex-fill"> Sipariş Kodu </div>
         
-        <input type="text" class="form-control" id="orderCodeTextInput" placeholder="Sipariş Kodu">
-        
-        </div>
+          <input type="text" class="form-control" id="orderCodeTextInput" placeholder="Sipariş Kodu">
       
+      
+        </div>
       
         <div class="col">
           
           <div class="h6 text-primary mt-3 mb-1 flex-fill"> Sipariş Model No </div>
 
           <input type="text" class="form-control" id="orderModelNoTextView" placeholder="Sipariş Model No">
-
+      
         </div>
         
         <div class="col">
 
           <div class="h6 text-primary mt-3 mb-1 flex-fill"> Sipariş Adedi </div>
-          
+        
           <input type="text" class="form-control" id="orderPieceTextView" placeholder="Sipariş Adedi">
         
         </div>
@@ -160,211 +171,336 @@
         <div class="col">
 
           <div class="h6 text-primary mt-3 mb-1 pb-0 flex-fill"> Sipariş Durumu </div>
-
+        
           <select class="col   form-select" id="filterModelNoFormSelect" aria-label="Default select example">
 
-            <option value="0" selected>Sipariş Durumu</option>
-            <option value="1">Beklemede</option>
-            <option value="2">Onaylandı</option>
-            <option value="3">Tasarlandı</option>
-            <option value="4">Tasamrım Onayı Bekleniyor</option>
-            <option value="5">Tasarım Onaylandı</option>
-            <option value="6">Baskıda</option>
-            <option value="7">Üretimde</option>
-            <option value="8">Sevkiyat Bekliyor</option>
-            <option value="9">Kargolandı</option>
-            <option value="10">Teslim Edildi</option>
-            <option value="11">İptal Edildi</option>
+          <option value="0" selected>Sipariş Durumu</option>
+          <option value="1">Beklemede</option>
+          <option value="2">Onaylandı</option>
+          <option value="3">Tasarlandı</option>
+          <option value="4">Tasamrım Onayı Bekleniyor</option>
+          <option value="5">Tasarım Onaylandı</option>
+          <option value="6">Baskıda</option>
+          <option value="7">Üretimde</option>
+          <option value="8">Sevkiyat Bekliyor</option>
+          <option value="9">Kargolandı</option>
+          <option value="10">Teslim Edildi</option>
+          <option value="11">İptal Edildi</option>
 
-          </select>
-
-        </div>
-
-
-        <h5 class="h5 mt-4 text-primary" id="orderTrackingTitle">Davetiye Bilgileri</h5>
-
-       
-        <div class="border rounded-2 ">
-        
-          <div class="row mt-2">
-
-            <div class="col">
-              
-              <div class="h6 text-primary mt-1 mb-1 flex-fill" id="input1Title"> Gelin Adı </div>
-          
-              <input type="text" class="form-control" id="input1" placeholder="Gelin Adı">
-      
-            </div>
-          
-            <div class="col">
-
-              <div class="h6 text-primary mt-1 mb-1 flex-fill" id="input2Title"> Gelin Soyadı </div>
-              
-              <input type="text" class="form-control" id="input2" placeholder="Gelin Soyadı">
-            
-            </div>
-
-            <div class="col">
-            
-              <div class="h6 text-primary mt-1 mb-1 flex-fill" id="input3Title"> Damat Adı </div>
-              
-              <input type="text" class="form-control" id="input3" placeholder="Damat Adı">
-            
-            </div>
-
-            <div class="col">
-              
-              <div class="h6 text-primary mt-1 mb-1 flex-fill" id="input4Title"> Damat Soyadı </div>
-              
-              <input type="text" class="form-control" id="input4" placeholder="Damat Soyadı">
-            
-            </div>
-          
-          </div>
-
-    
-          <div class="row mb-3">
-    
-            <div class="col">
-          
-              <div class="h6 text-primary mt-3 mb-1 flex-fill" id="input5Title"> Gelini Ailesi </div>
-
-              <input type="text" class="form-control" id="input5" placeholder="Gelin Ailesi">
-            
-            </div>
-
-            <div class="col">
-              
-              <div class="h6 text-primary mt-3 mb-1 flex-fill" id="input6Title"> Damat Ailesi </div>
-  
-              <input type="text" class="form-control" id="input6" placeholder="Damat Ailesi">
-            
-            </div>
-          
-          </div>
-
-        </div>
-
-        
-      
-         
-      
+          </select>  
      
+        </div>
+    
+      </div>
       
-      <div class="border rounded-2 mt-2 ">
+      <h5 class="h5 mt-2 text-primary" id="orderTrackingTitle">Davetiye Bilgileri</h5>
 
-        <div class="row">
+      <div class="border rounded-2 row">
+        
+        <div class="row mt-2">
 
           <div class="col">
-
+              
+            <div class="h6 text-primary mt-1 mb-1 flex-fill" id="input1Title"> Gelin Adı </div>
+          
+            <input type="text" class="form-control" id="input1" placeholder="Gelin Adı">
+      
+          </div>
+          
+          
           <div class="col">
 
-            <div class="h6 text-primary mt-3 mb-1 flex-fill" > Davetiye Yazısı </div>
-  
-            <input type="text" class="form-control mb-2" id="invWrtingText" placeholder="Davetiye Yazısı" style="height: 118px;">
-  
+            <div class="h6 text-primary mt-1 mb-1 flex-fill" id="input2Title"> Gelin Soyadı </div>
+              
+            <input type="text" class="form-control" id="input2" placeholder="Gelin Soyadı">
+            
           </div>
 
           <div class="col">
             
-            <div class="h6 text-primary mt-3 mb-1 flex-fill">Save The Date Video URL </div>
-      
-            <input type="text" class="form-control" id="saveTehDateUrl" placeholder="Save The Date Video URL">
-      
+            <div class="h6 text-primary mt-1 mb-1 flex-fill" id="input3Title"> Damat Adı </div>
+              
+            <input type="text" class="form-control" id="input3" placeholder="Damat Adı">
+            
           </div>
 
           <div class="col">
               
-            <div class="h6 text-primary mt-3 mb-1 flex-fill">Dijital Kod</div>
-  
-            <input type="text" class="form-control" id="digitalCodeView" placeholder="Dijital Kod">
-          
-          </div>
-
-          <div class="col">
-
-            <div class="h6 text-primary mt-3 mb-1 flex-fill">QR Kod</div>
-  
-            <input type="text" class="form-control" id="qrCodeView" placeholder="QR Kod">
-
-          </div>
-
-        </div>
-      
-          <div class="col">
-
-         
-
-          <div class="m-5" id="qrcode">
-          
-            <div class="col m-2">
-        
-              <img src="assets/274348852_320609883437173_4953649348556891409_n.jpg" id="qrImageView" alt="" style="width: 150px; height: 150px;">
-          
-            </div>
-
+            <div class="h6 text-primary mt-1 mb-1 flex-fill" id="input4Title"> Damat Soyadı </div>
+              
+            <input type="text" class="form-control" id="input4" placeholder="Damat Soyadı">
             
           </div>
-
-           
-        
-          </div>
-        
+          
         </div>
 
-
-        
-        <div class="row">
-            
+    
+        <div class="row mb-3">
+    
           <div class="col">
+          
+            <div class="h6 text-primary mt-3 mb-1 flex-fill" id="input5Title"> Gelini Ailesi </div>
 
-              <div class="ms-3">
-                
-                <label class="fs-6 fw-light text">Vitrin Fotoğrafı</label>
-              
-              </div>
-
-              <div class="container d-flex">
-                
-                <input class="form-control mb-1" type="file" id="image1Input" accept="image/png, image/gif, image/jpeg">
-                
-                <img src="" alt="" width="150" height="100" id="img1Preview">
-              
-              </div>
+            <input type="text" class="form-control" id="input5" placeholder="Gelin Ailesi">
             
-            </div>
-
-            <div class="col">
-
-              <div class="ms-3">
-
-                <label class="fs-6 fw-light text">Video</label>
-              
-              </div>
-
-              <div class="container d-flex">
-
-                <input class="form-control mb-1" type="file" id="videoInput">
-
-                <video class="border border-radius" src="" id="videoPreview" alt="" width="150" height="100">
-
-              </div>
-
-            </div>
-
           </div>
+
+          <div class="col">
+              
+            <div class="h6 text-primary mt-3 mb-1 flex-fill" id="input6Title"> Damat Ailesi </div>
+  
+            <input type="text" class="form-control" id="input6" placeholder="Damat Ailesi">
+            
+          </div>
+          
+        </div>
 
       </div>
 
+
+      <div class="border rounded-2 mt-2 row">
+
+        <div class="row">
+
+          <div class="col">
+            
+            <div class="">
+
+              <div class="h6 text-primary mt-3 mb-1 flex-fill" > Davetiye Yazısı </div>
+
+              <input type="text" class="form-control mb-2" id="invWrtingText" placeholder="Davetiye Yazısı" style="height: 118px;">
+  
+
+            </div>
+
+            <div class="">
+            
+              <div class="h6 text-primary mt-3 mb-1 flex-fill">Save The Date Video URL </div>
+      
+              <input type="text" class="form-control" id="saveTheDateVideoUrl" placeholder="Save The Date Video URL">
+      
+            </div>
+
+            
+
+            <div class="col mb-2">
+
+              <div class="h6 text-primary mt-3 m-2  mb-1 flex-fill">Baskı Tipi</div>
+
+              <div class="row border rounded-2 ps-1 pe-1 m-1">
+
+                <div class="col text-bg-primary text-wrap mt-3 mb-3 ms-1 me-1 p-2 ps-4 rounded-2" id="printTypeDAvetiye">
+                  Davetiye
+                </div>
+
+                <div class="col text-bg-primary text-wrap mt-3 mb-3 ms-1 me-1 p-2 ps-4 rounded-2" id="printTypeEnvelope">
+                  Zarf
+                </div>
+
+              </div>
+  
+
+
+            </div>
+
+          </div>
+
+          <div class="col">
+
+            <div class="col">
+              
+              <div class="h6 text-primary mt-3 mb-1 flex-fill">Dijital Kod</div>
+  
+              <input type="text" class="form-control" id="digitalCodeView" placeholder="Dijital Kod">
+          
+            </div>
+
+            <div class="col mb-2">
+
+              <div class="h6 text-primary mt-3  mb-1 flex-fill">QR Kod</div>
+  
+              <input type="text" class="form-control" id="qrCodeView" placeholder="QR Kod">
+
+            </div>
+
+            <div class="m-5 " id="qrcode">
+          
+              <div class="col m-2 ">
+                                    
+                <img src="assets/274348852_320609883437173_4953649348556891409_n.jpg" id="qrImageView" alt="" style="width: 150px; height: 150px;">
+          
+                
+              </div>
+  
+              
+            </div>
+          
+          </div>
+
+        
+        </div>
+
       
 
+      </div>
+
+  
+      
+      <div class="row">
+
+        <label class="h4 text-primary mt-4">Müşteri Onayı</label>
+      
+        <div class="border rounded-2 ">
+          
+          <div class="row">
+  
+            <div class="col">
+
+              <div class="text-bg-primary text-wrap mt-3 mb-3 ms-1 me-1 p-2 ps-4 rounded-2" id="customerAproveReasonForRejectionText">
+              This text should wrap.
+            </div>
+            
+            <div class="d-flex">
+              
+              <input class="form-control mb-1" type="file" id="customerAproveImageInput" accept="image/png, image/gif, image/jpeg">
+              
+              <img class="ms-4" src="" alt="" width="300" height="100" id="customerAproveImagePreview">
+            
+            </div>
+  
+            <div class="row m-1">
+  
+              <button type="button" class="btn btn-danger" id="customerAproveButton">Onay İste</button>
+  
+            </div>
+  
+          </div>
+  
+        </div>
+    
+      </div>
+
+    
+      <label class="h4 text-primary mt-4">Teslimat</label>
+
+      <div class="border rounded-2 mb-5 row ">
+            
+        <div class="row">
+  
+          <div class="col">
+  
+            <div class="ms-3 row">
+  
+              <label class="h5 text-primary mt-1">Teslim Edilecek Kişi</label>
+  
+              <label class="mt-1 mb-1" id="tcIdentityNoText">Tc Kimlik No</label>
+  
+              <label class="mt-1 mb-1" id="nameSurnameText">Adı Soyadı</label>
+  
+              <label class="mt-1 mb-1" id="telNumText">Telefon Numarasıl</label>
+            
+            </div>
+          
+          </div>
+  
+          <div class="col">
+  
+            <div class="ms-3 row">
+  
+              <label class="h5 text-primary mt-1">Teslimat Adresi</label>
+  
+              <label class="mt-1 mb-1" id="adresInfoText">Açık Adres</label>
+  
+              <label class="mt-1 mb-1" id="dstrictProvinceInfoText">İlçe / İl</label>
+  
+            </div>
+          
+          </div>
+  
+        </div>
+      
+      </div>
+  
+      <div class="col mb-5">
+  
+        <div class="row">
+  
+          <label class="h5 text-primary mt-1">Kargo Bilgileri</label>
+
+          <div class="row border rounded-2 p-3">
+
+          <input type="text" class="col form-control ms-1 me-1" id="cargoCompanyText" placeholder="Kargo Firması">
+          <input type="text" class="col form-control ms-1 me-1" id="cargoCodeText" placeholder="Kargo Kodu">
+          <input type="text" class="col form-control ms-1 me-1" id="cargoUrlText" placeholder="Takip Url">
+
+        </div>
+
+        <button type="button" class="btn btn-danger" id="cargoAddButton" >Kargo Bilgilerini Gir</button>
+        
+        </div>
+      
+      </div>
+    
     </div>
+  </div>
+
+</div>
+
+ 
+
+
+  
+
+
+
 
   </div>
 
-  <script src="js/jquery-3.6.3.js"></script>
+  <div class="modal fade" id="aproveModal" tabindex="-1" aria-labelledby="aproveModal" aria-hidden="true">
+    <div class="modal-dialog  modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Bildirim gönder!!!</h5>
+        </div>
+        <div class="modal-body">
+
+          <p>Lütfen aşağıdaki mesajı kullanıcıya ait kanallara gönderin. Göndermeden bu pencereyi kesinlikle kapatmayın! </p>
+
+      
+          <p id="aproveMessage" style="display: none;"></p>
+          
+        </div>
+
+        <div class="modal-body col">
+          
+          <button type="button" class="btn btn-primary m-1" id="aproveFcmCopyButton">FCM Token</button>
+          <button type="button" class="btn btn-primary m-1" id="aproveMessageCopyButton">Mesaj</button>
+          <button type="button" class="btn btn-primary m-1" id="aproveWhatsappCopyButton">WhatsApp</button>
+          
+
+        </div>
+
+        <p class="ms-3 text-body-primary"  id="aproveMessageAlert"  style="display: none;"></p>
+       
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="aproveSendAndCloseButton">Kapat</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  </div>
+
 
   <script src="js/main.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 
 </body>

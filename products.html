@@ -24,7 +24,7 @@
       <div> <img src="assets/274348852_320609883437173_4953649348556891409_n.jpg" alt="UlaQLogo" width="50px"
           height="50px" style="border-radius: 50px;"> </div>
 
-      <div class="offcanvas-title text-primary ms-4 h4">UlaQ Management</div>
+      <div class="offcanvas-title text-primary ms-4 h4">UlaQ Yönetim Paneli</div>
 
     </div>
 
@@ -43,6 +43,12 @@
         <a href="orderTracking.html" class="list-group-item list-group-item-action">Sipariş Takip</a>
 
         <button href="products.html" id="productsPages" class="list-group-item list-group-item-action active">Ürünler</button>
+
+        <a href="questanswer.html" class="list-group-item list-group-item-action">Soru-Cevap</a>
+        <a
+        href="inv-writing.html"
+        class="list-group-item list-group-item-action"
+        >Davetiye Yazıları</a>
 
       </div>
 
@@ -240,26 +246,9 @@
 
 
 
+  
+
       <div class="row mt-2 mb-2">
-
-        <select class="form-select col me-1 " id="productColorCategorySelectInput" aria-label="Default select example">
-
-          <option value="0" selected>Renk</option>
-
-          <option value="1">Kırmızı</option>
-          <option value="2">Yeşil</option>
-          <option value="3">Mavi</option>
-          <option value="4">Sarı</option>
-          <option value="5">Siyah</option>
-          <option value="6">Beyaz</option>
-          <option value="7">Kahverengi</option>
-          <option value="8">Bej</option>
-          <option value="9">Turuncu</option>
-          <option value="10">Mor</option>
-          <option value="11">Pembe</option>
-          <option value="12">Gri</option>
-
-        </select>
 
         <select class="form-select col ms-1" id="productEnvelopeSelectInput" aria-label="Default select example">
 
@@ -270,11 +259,6 @@
           <option value="2">Zarfsız</option>
 
         </select>
-
-
-      </div>
-
-      <div class="row mt-2 mb-2">
 
         <select class="form-select col me-1" id="productInvitationPrintTypeSelectInput"
           aria-label="Default select example">
@@ -330,6 +314,125 @@
           <option value="10">Baskı Yok</option>
 
         </select>
+
+
+      </div>
+
+      <div class="row mt-2 mb-2">
+
+        <select class="form-select col me-1 " id="productColorSelectInput" aria-label="Default select example">
+
+          <option value="0" selected>Renk</option>
+
+          <option value="1">Kırmızı</option>
+          <option value="2">Yeşil</option>
+          <option value="3">Mavi</option>
+          <option value="4">Sarı</option>
+          <option value="5">Siyah</option>
+          <option value="6">Beyaz</option>
+          <option value="7">Kahverengi</option>
+          <option value="8">Bej</option>
+          <option value="9">Turuncu</option>
+          <option value="10">Mor</option>
+          <option value="11">Pembe</option>
+          <option value="12">Gri</option>
+
+        </select>
+
+      
+
+
+      </div>
+
+      <div class="row border p-1 mt-2 mb-2 rounded-2 " id="hueList">
+
+        <h5 class="text-primary border-bottom border-primary pb-1">Renk</h5>
+
+        <div class="row">
+
+
+          <div class="form-check ms-2 col">
+            <input class="form-check-input" type="checkbox" value="" id="checkWhite">
+            <label class="form-check-label" for="checkWhite">
+              Beyaz
+            </label>
+          </div>
+
+
+
+          <div class="form-check ms-2 col">
+            <input class="form-check-input" type="checkbox" value="" id="checkRed">
+            <label class="form-check-label" for="checkRed">
+              Kırmızı
+            </label>
+          </div>
+
+          <div class="form-check ms-2 col">
+            <input class="form-check-input" type="checkbox" value="" id="checkYellow">
+            <label class="form-check-label" for="checkYellow">
+              Sarı
+            </label>
+          </div>
+
+          <div class="form-check ms-2 col">
+            <input class="form-check-input" type="checkbox" value="" id="checkBlue">
+            <label class="form-check-label" for="checkBlue">
+              Mavi
+            </label>
+          </div>
+
+
+        </div>
+
+
+        <div class="row">
+
+
+          <div class="form-check ms-2 col">
+            <input class="form-check-input" type="checkbox" value="" id="checkBlack">
+            <label class="form-check-label" for="checkBlack">
+              Siyah
+            </label>
+          </div>
+
+
+             <div class="form-check ms-2 col">
+            <input class="form-check-input" type="checkbox" value="" id="checkPurple">
+            <label class="form-check-label" for="checkPurple">
+              Mor
+            </label>
+          </div>
+
+
+          <div class="form-check ms-2 col">
+            <input class="form-check-input" type="checkbox" value="" id="checkOrange">
+            <label class="form-check-label" for="checkOrange">
+              Turuncu
+            </label>
+          </div>
+
+          <div class="form-check ms-2 col">
+            <input class="form-check-input" type="checkbox" value="" id="checkGreen">
+            <label class="form-check-label" for="checkGreen">
+              Yeşil
+            </label>
+          </div>
+        
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
       </div>
