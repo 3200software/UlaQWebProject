@@ -76,6 +76,13 @@ const btnAddEditProductSuccess = document.getElementById(
 );
 const btnDeleteProduct = document.getElementById("deleteProductButton");
 
+const filterProductsModelNoInput = document.getElementById(
+  "filterProductsModelNoInput"
+);
+const filterProductsCategoryFormSelect = document.getElementById(
+  "filterProductsCategoryFormSelect"
+);
+
 let btnAddEditStatus = String;
 let updateDocumentId = String;
 
@@ -1072,6 +1079,85 @@ querySnapshot.forEach((doc) => {
   ];
 
   createProductsArray(productItem);
+});
+
+filterProductsCategoryFormSelect.addEventListener("change", async () => {
+  products.innerHTML = "";
+  filterProductsModelNoInput.value = "";
+  const getData = query(
+    collection(db, "Product"),
+    where(
+      "productCategory",
+      "==",
+      parseInt(filterProductsCategoryFormSelect.value)
+    )
+  );
+
+  const querySnapshot = await getDocs(getData);
+  querySnapshot.forEach((doc) => {
+    const firebaseDocId = doc.id;
+    const firebaseProductModelNo = doc.data().productModelNo;
+    const firebaseProductCategory = doc.data().productCategory;
+    const firebaseProductImgUrl1 = doc.data().productImgUrl1;
+
+    let productItem = [
+      firebaseDocId,
+      firebaseProductImgUrl1,
+      firebaseProductModelNo,
+      firebaseProductCategory,
+    ];
+
+    createProductsArray(productItem);
+  });
+});
+
+filterProductsModelNoInput.addEventListener("change", async () => {
+  products.innerHTML = "";
+
+  filterProductsCategoryFormSelect.value = "0";
+
+  if (filterProductsModelNoInput.value != "") {
+    const getData = query(
+      collection(db, "Product"),
+      where("productModelNo", "==", filterProductsModelNoInput.value)
+    );
+
+    const querySnapshot = await getDocs(getData);
+    querySnapshot.forEach((doc) => {
+      const firebaseDocId = doc.id;
+      const firebaseProductModelNo = doc.data().productModelNo;
+      const firebaseProductCategory = doc.data().productCategory;
+      const firebaseProductImgUrl1 = doc.data().productImgUrl1;
+
+      let productItem = [
+        firebaseDocId,
+        firebaseProductImgUrl1,
+        firebaseProductModelNo,
+        firebaseProductCategory,
+      ];
+
+      createProductsArray(productItem);
+    });
+  } else {
+    const getData = query(collection(db, "Product"));
+
+    const querySnapshot = await getDocs(getData);
+    querySnapshot.forEach((doc) => {
+      const firebaseDocId = doc.id;
+      const firebaseProductModelNo = doc.data().productModelNo;
+      const firebaseProductCategory = doc.data().productCategory;
+      const firebaseProductImgUrl1 = doc.data().productImgUrl1;
+
+      let productItem = [
+        firebaseDocId,
+        firebaseProductImgUrl1,
+        firebaseProductModelNo,
+        firebaseProductCategory,
+      ];
+
+      createProductsArray(productItem);
+    });
+  }
 });
 
 /*

@@ -93,15 +93,28 @@
 
       <div class="h4 m-2 p-1">Filtrele</div>
 
-      <input type="number" class="form-control col ms-3 mt-2 mb-2" id="filterModelNoInput" placeholder="Sipariş Kodu">
+      <input type="number" class="form-control col ms-3 mt-2 mb-2" id="orderCodeFilterInput" placeholder="Sipariş Kodu">
 
-      <select class="col m-2  form-select" id="filterModelNoFormSelect" aria-label="Default select example">
+      <select class="col m-2  form-select" id="organisationCategoryFilterFormSelect" aria-label="Default select example">
 
-        <option value="0" selected>Sipariş Durumu</option>
+        <option value="0" selected>Hepsi</option>
+        <option value="1">Düğün</option>
+        <option value="2">Nikah</option>
+        <option value="3">Nişan</option>
+        <option value="4">Kına</option>
+        <option value="5">Sünnet</option>
+   
+
+
+      </select>
+
+      <select class="col m-2  form-select" id="orderPhaseFilterFormSelect" aria-label="Default select example">
+
+        <option value="0" selected>Hepsi</option>
         <option value="1">Beklemede</option>
         <option value="2">Onaylandı</option>
         <option value="3">Tasarlandı</option>
-        <option value="4">Tasamrım Onayı Bekleniyor</option>
+        <option value="4">Tasarım Onayı Bekleniyor</option>
         <option value="5">Tasarım Onaylandı</option>
         <option value="6">Baskıda</option>
         <option value="7">Üretimde</option>
@@ -172,13 +185,13 @@
 
           <div class="h6 text-primary mt-3 mb-1 pb-0 flex-fill"> Sipariş Durumu </div>
         
-          <select class="col   form-select" id="filterModelNoFormSelect" aria-label="Default select example">
+          <select class="col   form-select" id="orderPhaseChangeFormSelect" aria-label="Default select example">
 
           <option value="0" selected>Sipariş Durumu</option>
           <option value="1">Beklemede</option>
           <option value="2">Onaylandı</option>
           <option value="3">Tasarlandı</option>
-          <option value="4">Tasamrım Onayı Bekleniyor</option>
+          <option value="4">Tasarım Onayı Bekleniyor</option>
           <option value="5">Tasarım Onaylandı</option>
           <option value="6">Baskıda</option>
           <option value="7">Üretimde</option>
@@ -289,7 +302,7 @@
 
               <div class="row border rounded-2 ps-1 pe-1 m-1">
 
-                <div class="col text-bg-primary text-wrap mt-3 mb-3 ms-1 me-1 p-2 ps-4 rounded-2" id="printTypeDAvetiye">
+                <div class="col text-bg-primary text-wrap mt-3 mb-3 ms-1 me-1 p-2 ps-4 rounded-2" id="printTypeinvitation">
                   Davetiye
                 </div>
 

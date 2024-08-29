@@ -107,6 +107,19 @@ let updateDocumentId = String;
 const btnLogout = document.getElementById("logoutButton");
 const backToordersButton = document.getElementById("backToordersButton");
 
+const orderCodeFilterInput = document.getElementById("orderCodeFilterInput");
+
+const orderPhaseFilterFormSelect = document.getElementById(
+  "orderPhaseFilterFormSelect"
+);
+const orderPhaseChangeFormSelect = document.getElementById(
+  "orderPhaseChangeFormSelect"
+);
+
+const organisationCategoryFilterFormSelect = document.getElementById(
+  "organisationCategoryFilterFormSelect"
+);
+
 const orderDetailContainer = document.getElementById("orderDetailContainer");
 const orderMainContainer = document.getElementById("orderMainContainer");
 const ordercodeTextView = document.getElementById("orderCodeTextInput");
@@ -130,6 +143,9 @@ const invWrtingText = document.getElementById("invWrtingText");
 const saveTheDateVideoUrl = document.getElementById("saveTheDateVideoUrl");
 const qrCodeView = document.getElementById("qrCodeView");
 const digitalCodeView = document.getElementById("digitalCodeView");
+
+const printTypeinvitation = document.getElementById("printTypeinvitation");
+const printTypeEnvelope = document.getElementById("printTypeEnvelope");
 
 const tcIdentityNoText = document.getElementById("tcIdentityNoText");
 const deliveryNameSurnameText = document.getElementById("nameSurnameText");
@@ -167,6 +183,18 @@ const customerAproveImagePreview = document.getElementById(
 
 var fcmTokenString;
 var telephoneNumberString;
+
+aproveMessageCopyButton.addEventListener("change", async function () {
+  try {
+    await navigator.clipboard.writeText(telephoneNumberString);
+    aproveMessageCopyButton.classList.remove("btn-primary");
+    aproveMessageCopyButton.classList.add("btn-danger");
+    aproveMessageAlert.style.display = "";
+    aproveMessageAlert.innerHTML = "Mesaj için telefon numarası kopyalandı.";
+  } catch (err) {
+    console.error("Metin kopyalanamadı: ", err);
+  }
+});
 
 aproveFcmCopyButton.addEventListener("click", async function () {
   try {
@@ -312,6 +340,186 @@ function createOrderssArray([
   
     `;
     products.innerHTML += proCode;
+  } else if (firebaseOrdersOrderPhase == "3") {
+    let orderPhaseStr = "Tasarlandı";
+
+    let proCode = `
+  
+    <div class="d-flex justify-content-between border rounded-2 m-1"> 
+          
+    <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrdersOrderID}</h6>
+  
+    <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrderNames}</h6>
+  
+    <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
+  
+    <button type="button" class="btn btn-danger editBtn m-2">${orderPhaseStr}</button>
+  
+  
+    </div>
+  
+    `;
+    products.innerHTML += proCode;
+  } else if (firebaseOrdersOrderPhase == "4") {
+    let orderPhaseStr = "TOB";
+
+    let proCode = `
+  
+    <div class="d-flex justify-content-between border rounded-2 m-1"> 
+          
+    <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrdersOrderID}</h6>
+  
+    <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrderNames}</h6>
+  
+    <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
+  
+    <button type="button" class="btn btn-danger editBtn m-2">${orderPhaseStr}</button>
+  
+  
+    </div>
+  
+    `;
+    products.innerHTML += proCode;
+  } else if (firebaseOrdersOrderPhase == "5") {
+    let orderPhaseStr = "Tasarım Onaylandı";
+
+    let proCode = `
+  
+    <div class="d-flex justify-content-between border rounded-2 m-1"> 
+          
+    <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrdersOrderID}</h6>
+  
+    <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrderNames}</h6>
+  
+    <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
+  
+    <button type="button" class="btn btn-danger editBtn m-2">${orderPhaseStr}</button>
+  
+  
+    </div>
+  
+    `;
+    products.innerHTML += proCode;
+  } else if (firebaseOrdersOrderPhase == "6") {
+    let orderPhaseStr = "Baskıda";
+
+    let proCode = `
+  
+    <div class="d-flex justify-content-between border rounded-2 m-1"> 
+          
+    <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrdersOrderID}</h6>
+  
+    <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrderNames}</h6>
+  
+    <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
+  
+    <button type="button" class="btn btn-danger editBtn m-2">${orderPhaseStr}</button>
+  
+  
+    </div>
+  
+    `;
+    products.innerHTML += proCode;
+  } else if (firebaseOrdersOrderPhase == "7") {
+    let orderPhaseStr = "Üretimde";
+
+    let proCode = `
+  
+    <div class="d-flex justify-content-between border rounded-2 m-1"> 
+          
+    <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrdersOrderID}</h6>
+  
+    <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrderNames}</h6>
+  
+    <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
+  
+    <button type="button" class="btn btn-danger editBtn m-2">${orderPhaseStr}</button>
+  
+  
+    </div>
+  
+    `;
+    products.innerHTML += proCode;
+  } else if (firebaseOrdersOrderPhase == "8") {
+    let orderPhaseStr = "Sevkiyat Bekliyor";
+
+    let proCode = `
+  
+    <div class="d-flex justify-content-between border rounded-2 m-1"> 
+          
+    <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrdersOrderID}</h6>
+  
+    <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrderNames}</h6>
+  
+    <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
+  
+    <button type="button" class="btn btn-danger editBtn m-2">${orderPhaseStr}</button>
+  
+  
+    </div>
+  
+    `;
+    products.innerHTML += proCode;
+  } else if (firebaseOrdersOrderPhase == "9") {
+    let orderPhaseStr = "Kargolandı";
+
+    let proCode = `
+  
+    <div class="d-flex justify-content-between border rounded-2 m-1"> 
+          
+    <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrdersOrderID}</h6>
+  
+    <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrderNames}</h6>
+  
+    <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
+  
+    <button type="button" class="btn btn-danger editBtn m-2">${orderPhaseStr}</button>
+  
+  
+    </div>
+  
+    `;
+    products.innerHTML += proCode;
+  } else if (firebaseOrdersOrderPhase == "10") {
+    let orderPhaseStr = "Teslim Edildi";
+
+    let proCode = `
+  
+    <div class="d-flex justify-content-between border rounded-2 m-1"> 
+          
+    <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrdersOrderID}</h6>
+  
+    <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrderNames}</h6>
+  
+    <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
+  
+    <button type="button" class="btn btn-danger editBtn m-2">${orderPhaseStr}</button>
+  
+  
+    </div>
+  
+    `;
+    products.innerHTML += proCode;
+  } else if (firebaseOrdersOrderPhase == "11") {
+    let orderPhaseStr = "İptal";
+
+    let proCode = `
+  
+    <div class="d-flex justify-content-between border rounded-2 m-1"> 
+          
+    <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrdersOrderID}</h6>
+  
+    <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrderNames}</h6>
+  
+    <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
+  
+    <button type="button" class="btn btn-danger editBtn m-2">${orderPhaseStr}</button>
+  
+  
+    </div>
+  
+    `;
+    products.innerHTML += proCode;
   }
 }
 
@@ -319,8 +527,6 @@ $("body").on("click", ".editBtn", async function () {
   var $key = $(this).data("keys");
 
   updateDocumentId = $key;
-
-  //btnAddEditStatus = "EditProduct"
 
   if (orderDetailContainer.style.display === "none") {
     orderDetailContainer.style.display = "";
@@ -384,6 +590,9 @@ $("body").on("click", ".editBtn", async function () {
     const firebaseOrdersOrderID = docs.data().orderID;
     const firebaseOrdersModelNo = docs.data().orderModelNo;
     const firebaseOrdersPiece = docs.data().orderPiece;
+    const firebaseOrderPhase = docs.data().orderPhase;
+
+    orderPhaseChangeFormSelect.value = firebaseOrderPhase;
 
     //skajhdaksda
 
@@ -489,6 +698,34 @@ $("body").on("click", ".editBtn", async function () {
 
       const firebaseSaveThedateUrl = docs.data().saveTheDateVideoUrl;
       saveTheDateVideoUrl.value = firebaseSaveThedateUrl;
+
+      const invPrintType = docs.data().orderInvitationPrintType;
+      const envPrintType = docs.data().orderEnvelopePrintType;
+      const foilprintType = docs.data().orderFoilPrintType;
+
+      if (invPrintType == "1") {
+        printTypeinvitation.innerHTML = "Davetiye - Ofset Baskı";
+      } else if (invPrintType == "2") {
+        if (foilprintType == "Gold") {
+          printTypeinvitation.innerHTML = "Davetiye - Varak Baskı(Altın)";
+        } else if (foilprintType == "Silver") {
+          printTypeinvitation.innerHTML = "Davetiye - Varak Baskı(Gümüş)";
+        }
+      } else if (invPrintType == "") {
+        printTypeinvitation.innerHTML = "Davetiye - Baskı Yok";
+      }
+
+      if (envPrintType == "1") {
+        printTypeEnvelope.innerHTML = "Zarf - Ofset Baskı";
+      } else if (envPrintType == "2") {
+        if (foilprintType == "Gold") {
+          printTypeEnvelope.innerHTML = "Zarf - Varak Baskı(Altın)";
+        } else if (foilprintType == "Silver") {
+          printTypeEnvelope.innerHTML = "Zarf - Varak Baskı(Gümüş)";
+        }
+      } else if (envPrintType == "") {
+        printTypeEnvelope.innerHTML = "Zarf - Baskı Yok";
+      }
 
       const firebaseDigitalCode = docs.data().digitalCode;
       digitalCodeView.value = firebaseDigitalCode;
@@ -673,6 +910,368 @@ cargoAddButton.addEventListener("click", async () => {
         orderCargoCompany: cargoCompanyTe.value,
         orderCargoNumber: cargoCodeText.value,
         orderCargoTrackUrl: cargoUrlText.value,
+      });
+    } catch (error) {}
+  }
+});
+
+orderCodeFilterInput.addEventListener("change", async () => {
+  products.innerHTML = "";
+
+  var orderIdInput = parseInt(orderCodeFilterInput.value);
+
+  orderPhaseFilterFormSelect.value = "0";
+  organisationCategoryFilterFormSelect.value = "0";
+
+  if (orderCodeFilterInput.value != "") {
+    const getDatas = query(
+      collection(db, "Orders"),
+      where("orderStatus", "==", "Order"),
+      where("orderID", "==", orderIdInput)
+    );
+    const querySnapshot = await getDocs(getDatas);
+    querySnapshot.forEach((doc) => {
+      var firebaseOrdersBrideName = "";
+      var firebaseOrdersGroomName = "";
+      var firebaseOrderNames = "";
+
+      var firebaseChildArray = [];
+
+      const firebaseOrdersDocId = doc.id;
+
+      const firebaseOrdersOrderID = doc.data().orderID;
+      const firebaseOrdersOrderPhase = doc.data().orderPhase;
+
+      const firebaseOrderCategory = doc.data().organisationCategory;
+
+      if (
+        firebaseOrderCategory == 1 ||
+        firebaseOrderCategory == 2 ||
+        firebaseOrderCategory == 3
+      ) {
+        firebaseOrdersBrideName = doc.data().brideName;
+        firebaseOrdersGroomName = doc.data().groomName;
+
+        firebaseOrderNames =
+          firebaseOrdersBrideName + " & " + firebaseOrdersGroomName;
+      } else if (firebaseOrderCategory == 4) {
+        firebaseOrdersBrideName = doc.data().brideName;
+        firebaseOrderNames = firebaseOrdersBrideName + " Gelin";
+      } else if (firebaseOrderCategory == 5) {
+        firebaseChildArray = doc.data().childNameArrayList;
+
+        firebaseOrderNames = firebaseChildArray.toString();
+      }
+
+      let ordersItem = [
+        firebaseOrdersDocId,
+        firebaseOrderNames,
+        firebaseOrdersOrderID,
+        firebaseOrdersOrderPhase,
+        firebaseOrderCategory,
+      ];
+
+      createOrderssArray(ordersItem);
+    });
+  } else {
+    const getDatas = query(
+      collection(db, "Orders"),
+      where("orderStatus", "==", "Order")
+    );
+    const querySnapshot = await getDocs(getDatas);
+    querySnapshot.forEach((doc) => {
+      var firebaseOrdersBrideName = "";
+      var firebaseOrdersGroomName = "";
+      var firebaseOrderNames = "";
+
+      var firebaseChildArray = [];
+
+      const firebaseOrdersDocId = doc.id;
+
+      const firebaseOrdersOrderID = doc.data().orderID;
+      const firebaseOrdersOrderPhase = doc.data().orderPhase;
+
+      const firebaseOrderCategory = doc.data().organisationCategory;
+
+      if (
+        firebaseOrderCategory == 1 ||
+        firebaseOrderCategory == 2 ||
+        firebaseOrderCategory == 3
+      ) {
+        firebaseOrdersBrideName = doc.data().brideName;
+        firebaseOrdersGroomName = doc.data().groomName;
+
+        firebaseOrderNames =
+          firebaseOrdersBrideName + " & " + firebaseOrdersGroomName;
+      } else if (firebaseOrderCategory == 4) {
+        firebaseOrdersBrideName = doc.data().brideName;
+        firebaseOrderNames = firebaseOrdersBrideName + " Gelin";
+      } else if (firebaseOrderCategory == 5) {
+        firebaseChildArray = doc.data().childNameArrayList;
+
+        firebaseOrderNames = firebaseChildArray.toString();
+      }
+
+      let ordersItem = [
+        firebaseOrdersDocId,
+        firebaseOrderNames,
+        firebaseOrdersOrderID,
+        firebaseOrdersOrderPhase,
+        firebaseOrderCategory,
+      ];
+
+      createOrderssArray(ordersItem);
+    });
+  }
+});
+
+orderPhaseFilterFormSelect.addEventListener("change", async () => {
+  var selectedPhase = parseInt(orderPhaseFilterFormSelect.value);
+
+  products.innerHTML = "";
+
+  if (organisationCategoryFilterFormSelect.value == "0") {
+    const getDatas = query(
+      collection(db, "Orders"),
+      where("orderStatus", "==", "Order"),
+      where("orderPhase", "==", selectedPhase)
+    );
+    const querySnapshot = await getDocs(getDatas);
+    querySnapshot.forEach((doc) => {
+      var firebaseOrdersBrideName = "";
+      var firebaseOrdersGroomName = "";
+      var firebaseOrderNames = "";
+
+      var firebaseChildArray = [];
+
+      const firebaseOrdersDocId = doc.id;
+
+      const firebaseOrdersOrderID = doc.data().orderID;
+      const firebaseOrdersOrderPhase = doc.data().orderPhase;
+
+      const firebaseOrderCategory = doc.data().organisationCategory;
+
+      if (
+        firebaseOrderCategory == 1 ||
+        firebaseOrderCategory == 2 ||
+        firebaseOrderCategory == 3
+      ) {
+        firebaseOrdersBrideName = doc.data().brideName;
+        firebaseOrdersGroomName = doc.data().groomName;
+
+        firebaseOrderNames =
+          firebaseOrdersBrideName + " & " + firebaseOrdersGroomName;
+      } else if (firebaseOrderCategory == 4) {
+        firebaseOrdersBrideName = doc.data().brideName;
+        firebaseOrderNames = firebaseOrdersBrideName + " Gelin";
+      } else if (firebaseOrderCategory == 5) {
+        firebaseChildArray = doc.data().childNameArrayList;
+
+        firebaseOrderNames = firebaseChildArray.toString();
+      }
+
+      let ordersItem = [
+        firebaseOrdersDocId,
+        firebaseOrderNames,
+        firebaseOrdersOrderID,
+        firebaseOrdersOrderPhase,
+        firebaseOrderCategory,
+      ];
+
+      createOrderssArray(ordersItem);
+    });
+  } else {
+    const getDatas = query(
+      collection(db, "Orders"),
+      where("orderStatus", "==", "Order"),
+      where("orderPhase", "==", selectedPhase),
+      where(
+        "organisationCategory",
+        "==",
+        parseInt(organisationCategoryFilterFormSelect.value)
+      )
+    );
+    const querySnapshot = await getDocs(getDatas);
+    querySnapshot.forEach((doc) => {
+      var firebaseOrdersBrideName = "";
+      var firebaseOrdersGroomName = "";
+      var firebaseOrderNames = "";
+
+      var firebaseChildArray = [];
+
+      const firebaseOrdersDocId = doc.id;
+
+      const firebaseOrdersOrderID = doc.data().orderID;
+      const firebaseOrdersOrderPhase = doc.data().orderPhase;
+
+      const firebaseOrderCategory = doc.data().organisationCategory;
+
+      if (
+        firebaseOrderCategory == 1 ||
+        firebaseOrderCategory == 2 ||
+        firebaseOrderCategory == 3
+      ) {
+        firebaseOrdersBrideName = doc.data().brideName;
+        firebaseOrdersGroomName = doc.data().groomName;
+
+        firebaseOrderNames =
+          firebaseOrdersBrideName + " & " + firebaseOrdersGroomName;
+      } else if (firebaseOrderCategory == 4) {
+        firebaseOrdersBrideName = doc.data().brideName;
+        firebaseOrderNames = firebaseOrdersBrideName + " Gelin";
+      } else if (firebaseOrderCategory == 5) {
+        firebaseChildArray = doc.data().childNameArrayList;
+
+        firebaseOrderNames = firebaseChildArray.toString();
+      }
+
+      let ordersItem = [
+        firebaseOrdersDocId,
+        firebaseOrderNames,
+        firebaseOrdersOrderID,
+        firebaseOrdersOrderPhase,
+        firebaseOrderCategory,
+      ];
+
+      createOrderssArray(ordersItem);
+    });
+  }
+});
+
+organisationCategoryFilterFormSelect.addEventListener("change", async () => {
+  var selectedOrganisation = parseInt(
+    organisationCategoryFilterFormSelect.value
+  );
+
+  products.innerHTML = "";
+
+  if (orderPhaseFilterFormSelect.value == "0") {
+    const getDatas = query(
+      collection(db, "Orders"),
+      where("orderStatus", "==", "Order"),
+      where("organisationCategory", "==", selectedOrganisation)
+    );
+    const querySnapshot = await getDocs(getDatas);
+    querySnapshot.forEach((doc) => {
+      var firebaseOrdersBrideName = "";
+      var firebaseOrdersGroomName = "";
+      var firebaseOrderNames = "";
+
+      var firebaseChildArray = [];
+
+      const firebaseOrdersDocId = doc.id;
+
+      const firebaseOrdersOrderID = doc.data().orderID;
+      const firebaseOrdersOrderPhase = doc.data().orderPhase;
+
+      const firebaseOrderCategory = doc.data().organisationCategory;
+
+      if (
+        firebaseOrderCategory == 1 ||
+        firebaseOrderCategory == 2 ||
+        firebaseOrderCategory == 3
+      ) {
+        firebaseOrdersBrideName = doc.data().brideName;
+        firebaseOrdersGroomName = doc.data().groomName;
+
+        firebaseOrderNames =
+          firebaseOrdersBrideName + " & " + firebaseOrdersGroomName;
+      } else if (firebaseOrderCategory == 4) {
+        firebaseOrdersBrideName = doc.data().brideName;
+        firebaseOrderNames = firebaseOrdersBrideName + " Gelin";
+      } else if (firebaseOrderCategory == 5) {
+        firebaseChildArray = doc.data().childNameArrayList;
+
+        firebaseOrderNames = firebaseChildArray.toString();
+      }
+
+      let ordersItem = [
+        firebaseOrdersDocId,
+        firebaseOrderNames,
+        firebaseOrdersOrderID,
+        firebaseOrdersOrderPhase,
+        firebaseOrderCategory,
+      ];
+
+      createOrderssArray(ordersItem);
+    });
+  } else {
+    const getDatas = query(
+      collection(db, "Orders"),
+      where("orderStatus", "==", "Order"),
+      where("organisationCategory", "==", selectedOrganisation),
+      where("orderPhase", "==", parseInt(orderPhaseFilterFormSelect.value))
+    );
+    const querySnapshot = await getDocs(getDatas);
+    querySnapshot.forEach((doc) => {
+      var firebaseOrdersBrideName = "";
+      var firebaseOrdersGroomName = "";
+      var firebaseOrderNames = "";
+
+      var firebaseChildArray = [];
+
+      const firebaseOrdersDocId = doc.id;
+
+      const firebaseOrdersOrderID = doc.data().orderID;
+      const firebaseOrdersOrderPhase = doc.data().orderPhase;
+
+      const firebaseOrderCategory = doc.data().organisationCategory;
+
+      if (
+        firebaseOrderCategory == 1 ||
+        firebaseOrderCategory == 2 ||
+        firebaseOrderCategory == 3
+      ) {
+        firebaseOrdersBrideName = doc.data().brideName;
+        firebaseOrdersGroomName = doc.data().groomName;
+
+        firebaseOrderNames =
+          firebaseOrdersBrideName + " & " + firebaseOrdersGroomName;
+      } else if (firebaseOrderCategory == 4) {
+        firebaseOrdersBrideName = doc.data().brideName;
+        firebaseOrderNames = firebaseOrdersBrideName + " Gelin";
+      } else if (firebaseOrderCategory == 5) {
+        firebaseChildArray = doc.data().childNameArrayList;
+
+        firebaseOrderNames = firebaseChildArray.toString();
+      }
+
+      let ordersItem = [
+        firebaseOrdersDocId,
+        firebaseOrderNames,
+        firebaseOrdersOrderID,
+        firebaseOrdersOrderPhase,
+        firebaseOrderCategory,
+      ];
+
+      createOrderssArray(ordersItem);
+    });
+  }
+});
+
+var orderphaseOld;
+
+orderPhaseChangeFormSelect.addEventListener("click", async () => {
+  orderphaseOld = orderPhaseChangeFormSelect.value;
+});
+
+orderPhaseChangeFormSelect.addEventListener("change", async () => {
+  var orderPhaseNew = orderPhaseChangeFormSelect.value;
+
+  if (orderPhaseNew < orderphaseOld) {
+    alert(
+      "Bir önceki aşamaya dönmek yönetici izni gerektirir. Lütfen yönetici ile iletişime geçin!"
+    );
+
+    orderPhaseChangeFormSelect.value = orderphaseOld;
+  } else {
+    const date = new Date();
+
+    try {
+      const updateRef = doc(db, "Orders", updateDocumentId);
+
+      await updateDoc(updateRef, {
+        orderPhase: parseInt(orderPhaseNew),
       });
     } catch (error) {}
   }

@@ -46,8 +46,6 @@ const db = getFirestore(firebaseapp);
 
 const products = document.querySelector(".qaCard");
 
-let proCode;
-
 function createQaArray([
   firebaseQaDocId,
   firebaseQaQuestion,
