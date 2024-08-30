@@ -775,6 +775,8 @@ $("body").on("click", ".editBtn", async function () {
     const firebaseProductProfit = docs.data().productProfit;
     firebaseProductImgUrl1 = docs.data().productImgUrl1;
 
+    console.log("url  " + firebaseProductImgUrl1);
+
     productModelNoTextInput.value = firebaseProductModelNo;
     productCategorySelectInput.value = firebaseProductCategory;
     productSizeCategorySelectInput.value = firebaseProductSizeCategory;
@@ -1905,6 +1907,7 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
     }
   } else if (btnAddEditStatus == "EditProduct") {
     let imgUrl = String;
+    let imgurlEdit = String;
 
     if (stockAddInput.value != "") {
       var newStock =
@@ -1921,216 +1924,256 @@ btnAddEditProductSuccess.addEventListener("click", async () => {
       let storageRef1 = ref(storage, "productImages/" + imageFileName1);
       uploadBytes(storageRef1, imageFiles1).then((snapshot) => {
         getDownloadURL(ref(storage, "productImages/" + imageFileName1)).then(
-          async (url) => {
-            imgUrl = url;
+          async (urls) => {
+            imgurlEdit = urls;
+
+            try {
+              const updateRef = doc(db, "Product", updateDocumentId);
+
+              await updateDoc(updateRef, {
+                productModelNo: productModelNoTextInput.value,
+                productTradeMarkModelNo: productTradeMarkModelNo.value,
+                productCategory: parseInt(productCategorySelectInput.value),
+                productTheme: checkThemeArrayList,
+                productSizeCategory: productSizeCategorySelectInput.value,
+                productTradeMarkSubModel:
+                  productTardeMarkSubModelSelectInput.value,
+                productCampaignCode: productCampaignCodeTextInput.value,
+                productWidth: productSizeWidthTextInput.value,
+                productHeight: productSizeHeightTextInput.value,
+                productColor: productColorSelectInput.value,
+                productHue: checkHueArrayList,
+                productEnvelope: productEnvelopeSelectInput.value,
+                productTradeMark: productTradeMarkSelectInput.value,
+                productInvitationPrintType:
+                  productInvitationPrintTypeSelectInput.value,
+                productEnvelopePrintType:
+                  productEnvelopePrintTypeSelectInput.value,
+                productProperties: checkProductPropertiesArrayList,
+                productUpdateDate: Timestamp.fromDate(new Date(date)),
+                productStock: newStock,
+
+                productPrice: parseFloat(productPriceInput.value),
+                productWholeSalePrice: parseFloat(
+                  productWholeSalePriceInput.value
+                ),
+                productProfitRate: parseFloat(productProfitRateInput.value),
+                productProfit: parseFloat(productProfitInput.value),
+                productSalesQuantity: 0,
+
+                productImgUrl1: imgurlEdit,
+              });
+              if (imageFiles1 != null) {
+                try {
+                  const q = query(
+                    collection(db, "Product", updateDocumentId, "img"),
+                    where("no", "==", 1)
+                  );
+
+                  const querySnapshot = await getDocs(q);
+
+                  querySnapshot.forEach((doc) => {
+                    const updateRef = doc.ref;
+
+                    updateDoc(updateRef, {
+                      productImgUrl: imgurlEdit,
+                    });
+
+                    console.log("Document written with ID: ", doc.id);
+                  });
+                } catch (e) {
+                  console.error("Error adding document: ", e);
+                }
+              }
+
+              if (imageFiles2 != null) {
+                let imageEditUrl2 = "";
+                let storageRef2 = ref(
+                  storage,
+                  "productImages/" + imageFileName2
+                );
+                uploadBytes(storageRef2, imageFiles2).then((snapshot) => {
+                  getDownloadURL(
+                    ref(storage, "productImages/" + imageFileName2)
+                  ).then(async (url) => {
+                    imageEditUrl2 = url;
+
+                    try {
+                      const q = query(
+                        collection(db, "Product", updateDocumentId, "img"),
+                        where("no", "==", 2)
+                      );
+
+                      const querySnapshot = await getDocs(q);
+
+                      querySnapshot.forEach((doc) => {
+                        const updateRef = doc.ref;
+
+                        updateDoc(updateRef, {
+                          productImgUrl: imageEditUrl2,
+                        });
+
+                        console.log("Document written with ID: ", doc.id);
+                      });
+                    } catch (e) {
+                      console.error("Error adding document: ", e);
+                    }
+                  });
+                });
+              }
+
+              if (imageFiles3 != null) {
+                let imageEditUrl3 = "";
+
+                let storageRef3 = ref(
+                  storage,
+                  "productImages/" + imageFileName3
+                );
+                uploadBytes(storageRef3, imageFiles3).then((snapshot) => {
+                  getDownloadURL(
+                    ref(storage, "productImages/" + imageFileName3)
+                  ).then(async (url) => {
+                    imageEditUrl3 = url;
+
+                    try {
+                      const q = query(
+                        collection(db, "Product", updateDocumentId, "img"),
+                        where("no", "==", 3)
+                      );
+
+                      const querySnapshot = await getDocs(q);
+
+                      querySnapshot.forEach((doc) => {
+                        const updateRef = doc.ref;
+
+                        updateDoc(updateRef, {
+                          productImgUrl: imageEditUrl3,
+                        });
+
+                        console.log("Document written with ID: ", doc.id);
+                      });
+                    } catch (e) {
+                      console.error("Error adding document: ", e);
+                    }
+                  });
+                });
+              }
+
+              if (imageFiles4 != null) {
+                let imageEditUrl4 = "";
+                let storageRef4 = ref(
+                  storage,
+                  "productImages/" + imageFileName4
+                );
+                uploadBytes(storageRef4, imageFiles4).then((snapshot) => {
+                  getDownloadURL(
+                    ref(storage, "productImages/" + imageFileName4)
+                  ).then(async (url) => {
+                    imageEditUrl4 = url;
+
+                    try {
+                      const q = query(
+                        collection(db, "Product", updateDocumentId, "img"),
+                        where("no", "==", 4)
+                      );
+
+                      const querySnapshot = await getDocs(q);
+
+                      querySnapshot.forEach((doc) => {
+                        const updateRef = doc.ref;
+
+                        updateDoc(updateRef, {
+                          productImgUrl: imageEditUrl4,
+                        });
+
+                        console.log("Document written with ID: ", doc.id);
+                      });
+                    } catch (e) {
+                      console.error("Error adding document: ", e);
+                    }
+                  });
+                });
+              }
+
+              if (imageFiles5 != null) {
+                let imageEditUrl5 = "";
+                let storageRef5 = ref(
+                  storage,
+                  "productImages/" + imageFileName5
+                );
+                uploadBytes(storageRef5, imageFiles5).then((snapshot) => {
+                  getDownloadURL(
+                    ref(storage, "productImages/" + imageFileName5)
+                  ).then(async (url) => {
+                    imageEditUrl5 = url;
+
+                    try {
+                      const q = query(
+                        collection(db, "Product", updateDocumentId, "img"),
+                        where("no", "==", 5)
+                      );
+
+                      const querySnapshot = await getDocs(q);
+
+                      querySnapshot.forEach((doc) => {
+                        const updateRef = doc.ref;
+
+                        updateDoc(updateRef, {
+                          productImgUrl: imageEditUrl5,
+                        });
+
+                        console.log("Document written with ID: ", doc.id);
+                      });
+                    } catch (e) {
+                      console.error("Error adding document: ", e);
+                    }
+                  });
+                });
+              }
+
+              if (videoFiles1 != null) {
+                let videoEditUrl = "";
+                let storageRef6 = ref(
+                  storage,
+                  "productImages/" + videoFileName1
+                );
+                uploadBytes(storageRef6, videoFiles1).then((snapshot) => {
+                  getDownloadURL(
+                    ref(storage, "productImages/" + videoFileName1)
+                  ).then(async (url) => {
+                    videoEditUrl = url;
+
+                    try {
+                      const q = query(
+                        collection(db, "Product", updateDocumentId, "img"),
+                        where("no", "==", 6)
+                      );
+
+                      const querySnapshot = await getDocs(q);
+
+                      querySnapshot.forEach((doc) => {
+                        const updateRef = doc.ref;
+
+                        updateDoc(updateRef, {
+                          productImgUrl: videoEditUrl,
+                        });
+
+                        console.log("Document written with ID: ", doc.id);
+                      });
+                    } catch (e) {
+                      console.error("Error adding document: ", e);
+                    }
+                  });
+                });
+              }
+            } catch (e) {
+              console.error("Error adding document: ", e);
+            }
+
+            window.location.reload();
           }
         );
       });
-    }
-
-    try {
-      const updateRef = doc(db, "Product", updateDocumentId);
-
-      await updateDoc(updateRef, {
-        productModelNo: productModelNoTextInput.value,
-        productTradeMarkModelNo: productTradeMarkModelNo.value,
-        productCategory: parseInt(productCategorySelectInput.value),
-        productTheme: checkThemeArrayList,
-        productSizeCategory: productSizeCategorySelectInput.value,
-        productTradeMarkSubModel: productTardeMarkSubModelSelectInput.value,
-        productCampaignCode: productCampaignCodeTextInput.value,
-        productWidth: productSizeWidthTextInput.value,
-        productHeight: productSizeHeightTextInput.value,
-        productColor: productColorSelectInput.value,
-        productHue: checkHueArrayList,
-        productEnvelope: productEnvelopeSelectInput.value,
-        productTradeMark: productTradeMarkSelectInput.value,
-        productInvitationPrintType: productInvitationPrintTypeSelectInput.value,
-        productEnvelopePrintType: productEnvelopePrintTypeSelectInput.value,
-        productProperties: checkProductPropertiesArrayList,
-        productUpdateDate: Timestamp.fromDate(new Date(date)),
-        productStock: newStock,
-
-        productPrice: parseFloat(productPriceInput.value),
-        productWholeSalePrice: parseFloat(productWholeSalePriceInput.value),
-        productProfitRate: parseFloat(productProfitRateInput.value),
-        productProfit: parseFloat(productProfitInput.value),
-        productSalesQuantity: 0,
-
-        productImgUrl1: imgUrl,
-      });
-
-      if (imageFiles1 != null) {
-        let storageRef1 = ref(storage, "productImages/" + imageFileName1);
-        uploadBytes(storageRef1, imageFiles1).then((snapshot) => {
-          getDownloadURL(ref(storage, "productImages/" + imageFileName1)).then(
-            async (url) => {
-              image1Url = url;
-
-              try {
-                const updateRef = doc(
-                  collection(db, "Product", updateDocumentId, "img"),
-                  where("no", "==", 4)
-                );
-
-                await updateDoc(updateRef, {
-                  productImgUrl: image1Url,
-                });
-
-                console.log("Document written with ID: ", docRef.id);
-              } catch (e) {
-                console.error("Error adding document: ", e);
-              }
-            }
-          );
-        });
-      }
-
-      if (imageFiles2 != null) {
-        let storageRef2 = ref(storage, "productImages/" + imageFileName2);
-        uploadBytes(storageRef2, imageFiles2).then((snapshot) => {
-          getDownloadURL(ref(storage, "productImages/" + imageFileName2)).then(
-            async (url) => {
-              image2Url = url;
-
-              try {
-                const updateRef = doc(
-                  db,
-                  "Product",
-                  updateDocumentId,
-                  "img",
-                  where("no", "==", 2)
-                );
-
-                await updateDoc(updateRef, {
-                  productImgUrl: image2Url,
-                });
-
-                console.log("Document written with ID: ", docRef.id);
-              } catch (e) {
-                console.error("Error adding document: ", e);
-              }
-            }
-          );
-        });
-      }
-
-      if (imageFiles3 != null) {
-        let storageRef3 = ref(storage, "productImages/" + imageFileName3);
-        uploadBytes(storageRef3, imageFiles3).then((snapshot) => {
-          getDownloadURL(ref(storage, "productImages/" + imageFileName3)).then(
-            async (url) => {
-              image3Url = url;
-
-              try {
-                const updateRef = doc(
-                  db,
-                  "Product",
-                  updateDocumentId,
-                  "img",
-                  where("no", "==", 3)
-                );
-
-                await updateDoc(updateRef, {
-                  productImgUrl: image3Url,
-                });
-
-                console.log("Document written with ID: ", docRef.id);
-              } catch (e) {
-                console.error("Error adding document: ", e);
-              }
-            }
-          );
-        });
-      }
-
-      if (imageFiles4 != null) {
-        let storageRef4 = ref(storage, "productImages/" + imageFileName4);
-        uploadBytes(storageRef4, imageFiles4).then((snapshot) => {
-          getDownloadURL(ref(storage, "productImages/" + imageFileName4)).then(
-            async (url) => {
-              image4Url = url;
-
-              try {
-                const updateRef = doc(
-                  collection(db, "Product", updateDocumentId, "img"),
-                  where("no", "==", 4)
-                );
-
-                await updateDoc(updateRef, {
-                  productImgUrl: image4Url,
-                });
-
-                console.log("Document written with ID: ", docRef.id);
-              } catch (e) {
-                console.error("Error adding document: ", e);
-              }
-            }
-          );
-        });
-      }
-
-      if (imageFiles5 != null) {
-        let storageRef5 = ref(storage, "productImages/" + imageFileName5);
-        uploadBytes(storageRef5, imageFiles5).then((snapshot) => {
-          getDownloadURL(ref(storage, "productImages/" + imageFileName5)).then(
-            async (url) => {
-              image5Url = url;
-
-              try {
-                const updateRef = doc(
-                  db,
-                  "Product",
-                  updateDocumentId,
-                  "img",
-                  where("no", "==", 5)
-                );
-
-                await updateDoc(updateRef, {
-                  productImgUrl: image5Url,
-                });
-
-                console.log("Document written with ID: ", docRef.id);
-              } catch (e) {
-                console.error("Error adding document: ", e);
-              }
-            }
-          );
-        });
-      }
-
-      if (videoFiles1 != null) {
-        let storageRef6 = ref(storage, "productImages/" + videoFileName1);
-        uploadBytes(storageRef6, videoFiles1).then((snapshot) => {
-          getDownloadURL(ref(storage, "productImages/" + videoFileName1)).then(
-            async (url) => {
-              videoUrl1 = url;
-
-              try {
-                const updateRef = doc(
-                  db,
-                  "Product",
-                  updateDocumentId,
-                  "img",
-                  where("no", "==", 1)
-                );
-
-                await updateDoc(updateRef, {
-                  productImgUrl: videoUrl1,
-                });
-
-                console.log("Document written with ID: ", docRef.id);
-              } catch (e) {
-                console.error("Error adding document: ", e);
-              }
-            }
-          );
-        });
-      }
-
-      window.location.reload();
-    } catch (e) {
-      console.error("Error adding document: ", e);
     }
   }
 });

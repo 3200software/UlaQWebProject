@@ -110,7 +110,7 @@ $("#invWritngSendButton").on("click", async function () {
       const updateRef = doc(db, "InvitationWriting", invWritingDocumentId);
 
       await updateDoc(updateRef, {
-        category: invWritingType,
+        category: parseInt(invWritingType),
         invWriting: $("#invWritngInput").val(),
         addDate: date,
       });
@@ -122,7 +122,7 @@ $("#invWritngSendButton").on("click", async function () {
   } else if (sendButtonstatus == "Add") {
     try {
       const docRef = await addDoc(collection(db, "InvitationWriting"), {
-        category: invWritingType,
+        category: parseInt(invWritingType),
         invWriting: $("#invWritngInput").val(),
         addDate: date,
         mostPopular: 0,
