@@ -535,7 +535,7 @@ $("body").on("click", ".editBtn", async function () {
 
   const docRefIA = query(
     collection(db, "Orders", updateDocumentId, "InvestmentApproval"),
-    orderBy("addDate", "desc"),
+    orderBy("addDate", "asc"),
     limit(1)
   );
 
@@ -668,8 +668,20 @@ $("body").on("click", ".editBtn", async function () {
       const firebaseGromSurName = docs.data().groomSurName;
       const firebaseBrideFamily = docs.data().brideFamily;
       const firebaseGroomFamily = docs.data().groomFamily;
+      const firebasechildrenInfo = docs.data().childrenInfo;
+
+      if (firebasechildrenInfo == true) {
+        $("#childrenInfotext").css("display", "none");
+      } else {
+        $("#childrenInfotext").css("display", "");
+      }
     } else if (firebaseOrganisationCategory == 4) {
       const firebaseBrideName = docs.data().brideName;
+      if (firebasechildrenInfo == true) {
+        $("#childrenInfotext").css("display", "none");
+      } else {
+        $("#childrenInfotext").css("display", "");
+      }
     } else if (firebaseOrganisationCategory == 5) {
       var childArray = [];
 
