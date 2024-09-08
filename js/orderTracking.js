@@ -171,15 +171,17 @@ const aproveWhatsappCopyButton = document.getElementById(
 );
 const aproveMessageAlert = document.getElementById("aproveMessageAlert");
 
-const customerAproveReasonForRejectionText = document.getElementById(
-  "customerAproveReasonForRejectionText"
+const designAproveReasonForRejectionText = document.getElementById(
+  "designAproveReasonForRejectionText"
 );
-const customerAproveImageInput = document.getElementById(
-  "customerAproveImageInput"
+const designAproveImageInput = document.getElementById(
+  "designAproveImageInput"
 );
-const customerAproveImagePreview = document.getElementById(
-  "customerAproveImagePreview"
+const designAproveImagePreview = document.getElementById(
+  "designAproveImagePreview"
 );
+
+const designAproveButton = document.getElementById("designAproveButton");
 
 var fcmTokenString;
 var telephoneNumberString;
@@ -232,36 +234,36 @@ aproveWhatsappCopyButton.addEventListener("click", async function () {
   }
 });
 
-customerAproveButton.addEventListener("click", function () {
-  var customerAproveImageFiles = customerAproveImageInput.files[0];
+designAproveButton.addEventListener("click", function () {
+  var designAproveImageFiles = designAproveImageInput.files[0];
 
-  var customerAproveImageFileName = "asd";
+  var designAproveImageFileName = "asd";
 
-  var customerAproveImageFileUrl;
+  var designAproveImageFileUrl;
 
-  if (customerAproveImageFiles == null) {
+  if (designAproveImageFiles == null) {
     alert("Lütfen onay için fotoğraf ekleyin!");
   } else {
-    let storageRefCustomerAprove = ref(
+    let storageRefDesignAprove = ref(
       storage,
-      "customerAproveImage/" + customerAproveImageFileName
+      "designAproveImage/" + designAproveImageFileName
     );
 
-    uploadBytes(storageRefCustomerAprove, customerAproveImageFiles).then(
+    uploadBytes(storageRefDesignAprove, designAproveImageFiles).then(
       (snapshot) => {
         getDownloadURL(
-          ref(storage, "customerAproveImage/" + customerAproveImageFileName)
+          ref(storage, "designAproveImage/" + designAproveImageFileName)
         ).then(async (url) => {
-          customerAproveImageFileUrl = url;
+          designAproveImageFileUrl = url;
 
           var date = new Date();
 
           try {
             const docRef = await addDoc(
-              collection(db, "Orders", updateDocumentId, "InvestmentApproval"),
+              collection(db, "Orders", updateDocumentId, "DesignApproval"),
               {
                 imageUrl: url,
-                investmentApprovalStatus: "0",
+                aproveStatus: "0",
                 addDate: date,
                 reasonForRejection: "",
                 answerDate: date,
@@ -270,7 +272,6 @@ customerAproveButton.addEventListener("click", function () {
 
             const $aproveModal = $("#aproveModal");
 
-            // Modal'ı açma komutunu çalıştırın
             $aproveModal.modal("show");
           } catch (e) {}
         });
@@ -534,7 +535,7 @@ $("body").on("click", ".editBtn", async function () {
   }
 
   const docRefIA = query(
-    collection(db, "Orders", updateDocumentId, "InvestmentApproval"),
+    collection(db, "Orders", updateDocumentId, "DesignApproval"),
     orderBy("addDate", "asc"),
     limit(1)
   );
@@ -544,40 +545,37 @@ $("body").on("click", ".editBtn", async function () {
     const latestDoc = querySnapshot.docs[0];
 
     const firebaseInvAprovalImg = latestDoc.data().imageUrl;
-    const firebaseInvestmentAprovalStatus =
-      latestDoc.data().investmentApprovalStatus;
+    const firebaseDesignAprovalStatus = latestDoc.data().aproveStatus;
     const firebaseInvestmentAprovalAddDate = latestDoc.data().addDate;
-    const firebaseInvestmentApprovalReasonForRejection =
+    const firebaseDesignApprovalReasonForRejection =
       latestDoc.data().reasonForRejection;
     const firebaseInvetmentApprovalAnswerDate = latestDoc.data().answerDate;
 
-    customerAproveImagePreview.src = firebaseInvAprovalImg;
-    customerAproveReasonForRejectionText.innerHTML =
-      firebaseInvestmentApprovalReasonForRejection;
+    designAproveImagePreview.src = firebaseInvAprovalImg;
 
-    console.log(firebaseInvestmentAprovalStatus);
+    console.log(firebaseDesignAprovalStatus + "  sas");
 
-    if (firebaseInvestmentAprovalStatus == "0") {
-      customerAproveReasonForRejectionText.style.display = "none";
-    } else if (firebaseInvestmentAprovalStatus == "1") {
-      customerAproveReasonForRejectionText.style.display = "";
-      customerAproveReasonForRejectionText.classList.remove("text-bg-primary");
-      customerAproveReasonForRejectionText.classList.add("text-bg-warning");
-      customerAproveReasonForRejectionText.innerHTML = "Onay Bekleniyor";
-      customerAproveReasonForRejectionText.style.color = "black";
-    } else if (firebaseInvestmentAprovalStatus == "2") {
-      customerAproveReasonForRejectionText.classList.remove("text-bg-primary");
-      customerAproveReasonForRejectionText.classList.add("text-bg-danger");
-      customerAproveReasonForRejectionText.innerHTML =
-        "Red - " + firebaseInvestmentApprovalReasonForRejection;
-      customerAproveReasonForRejectionText.style.color = "white";
-    } else if (firebaseInvestmentAprovalStatus == "3") {
-      customerAproveReasonForRejectionText.classList.remove("text-bg-primary");
-      customerAproveReasonForRejectionText.classList.add("text-bg-success");
-      customerAproveReasonForRejectionText.innerHTML = "Onaylandı";
-      customerAproveReasonForRejectionText.style.color = "white";
-      customerAproveButton.disabled = true;
-      customerAproveButton.style.display = "none";
+    if (firebaseDesignAprovalStatus == "0") {
+    } else if (firebaseDesignAprovalStatus == "1") {
+      designAproveReasonForRejectionText.style.display = "";
+      designAproveReasonForRejectionText.classList.remove("text-bg-primary");
+      designAproveReasonForRejectionText.classList.add("text-bg-warning");
+      designAproveReasonForRejectionText.innerHTML = "Onay Bekleniyor";
+      designAproveReasonForRejectionText.style.color = "black";
+    } else if (firebaseDesignAprovalStatus == "2") {
+      designAproveReasonForRejectionText.style.display = "";
+      designAproveReasonForRejectionText.classList.remove("text-bg-primary");
+      designAproveReasonForRejectionText.classList.add("text-bg-danger");
+      designAproveReasonForRejectionText.innerHTML =
+        "Red - " + firebaseDesignApprovalReasonForRejection;
+      designAproveReasonForRejectionText.style.color = "white";
+    } else if (firebaseDesignAprovalStatus == "3") {
+      designAproveReasonForRejectionText.style.display = "";
+      designAproveReasonForRejectionText.classList.remove("text-bg-primary");
+      designAproveReasonForRejectionText.classList.add("text-bg-success");
+      designAproveReasonForRejectionText.innerHTML = "Onaylandı";
+      designAproveReasonForRejectionText.style.color = "white";
+      designAproveReasonForRejectionText.disabled = true;
     }
   });
 
