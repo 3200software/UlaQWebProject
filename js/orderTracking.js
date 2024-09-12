@@ -155,6 +155,10 @@ const districtProvinceInfoText = document.getElementById(
   "dstrictProvinceInfoText"
 );
 
+const arPhotoImageInput = document.getElementById("arPhotoImageInput");
+const arPhotoImagePreview = document.getElementById("arPhotoImagePreview");
+const arphotobutton = document.getElementById("arphotobutton");
+
 const cargoCompanyTe = document.getElementById("cargoCompanyText");
 const cargoCodeText = document.getElementById("cargoCodeText");
 const cargoUrlText = document.getElementById("cargoUrlText");
@@ -237,7 +241,10 @@ aproveWhatsappCopyButton.addEventListener("click", async function () {
 designAproveButton.addEventListener("click", function () {
   var designAproveImageFiles = designAproveImageInput.files[0];
 
-  var designAproveImageFileName = "asd";
+  let randomFourDigit = Math.floor(1000 + Math.random() * 9000);
+
+  var designAproveImageFileName =
+    ordercodeTextView.value + " - " + randomFourDigit;
 
   var designAproveImageFileUrl;
 
@@ -263,7 +270,7 @@ designAproveButton.addEventListener("click", function () {
               collection(db, "Orders", updateDocumentId, "DesignApproval"),
               {
                 imageUrl: url,
-                aproveStatus: "0",
+                aproveStatus: "1",
                 addDate: date,
                 reasonForRejection: "",
                 answerDate: date,
@@ -278,6 +285,38 @@ designAproveButton.addEventListener("click", function () {
       }
     );
   }
+});
+
+arphotobutton.addEventListener("click", async function () {
+  var arImageFiles = arPhotoImageInput.files[0];
+  var folderName = ordercodeTextView.value + "/";
+
+  var arImageFileName = ordercodeTextView.value + "- arPhoto";
+
+  if (arImageFiles == null) {
+    alert("Lütfen AR fotografı ekleyin!");
+  }
+
+  let storageRefArphoto = ref(storage, folderName + arImageFileName);
+
+  uploadBytes(storageRefArphoto, arImageFiles).then((snapshot) => {
+    getDownloadURL(ref(storage, folderName + arImageFileName)).then(
+      async (url) => {
+        console.log("url " + url);
+        try {
+          const updateRef = doc(db, "Orders", updateDocumentId);
+
+          await updateDoc(updateRef, {
+            invitationImageUrl: url,
+          });
+
+          alert("Ar fotoğrafı eklendi!");
+        } catch (error) {
+          alert("Ar fotoğrafı eklenmedi!");
+        }
+      }
+    );
+  });
 });
 
 btnLogout.addEventListener("click", () => {
@@ -312,9 +351,11 @@ function createOrderssArray([
 
     <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrderNames}</h6>
 
-    <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
+
 
     <button type="button" class="btn btn-primary editBtn m-2">${orderPhaseStr}</button>
+
+        <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
 
 
     </div>
@@ -332,9 +373,11 @@ function createOrderssArray([
   
     <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrderNames}</h6>
   
-    <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
+  
   
     <button type="button" class="btn btn-danger editBtn m-2">${orderPhaseStr}</button>
+
+      <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
   
   
     </div>
@@ -352,9 +395,9 @@ function createOrderssArray([
   
     <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrderNames}</h6>
   
-    <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
-  
     <button type="button" class="btn btn-danger editBtn m-2">${orderPhaseStr}</button>
+    
+    <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
   
   
     </div>
@@ -372,10 +415,9 @@ function createOrderssArray([
   
     <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrderNames}</h6>
   
-    <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
-  
     <button type="button" class="btn btn-danger editBtn m-2">${orderPhaseStr}</button>
   
+    <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
   
     </div>
   
@@ -392,9 +434,11 @@ function createOrderssArray([
   
     <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrderNames}</h6>
   
-    <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
+   
   
     <button type="button" class="btn btn-danger editBtn m-2">${orderPhaseStr}</button>
+
+     <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
   
   
     </div>
@@ -412,9 +456,11 @@ function createOrderssArray([
   
     <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrderNames}</h6>
   
-    <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
+   
   
     <button type="button" class="btn btn-danger editBtn m-2">${orderPhaseStr}</button>
+
+     <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
   
   
     </div>
@@ -432,9 +478,11 @@ function createOrderssArray([
   
     <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrderNames}</h6>
   
-    <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
+
   
     <button type="button" class="btn btn-danger editBtn m-2">${orderPhaseStr}</button>
+
+        <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
   
   
     </div>
@@ -452,9 +500,11 @@ function createOrderssArray([
   
     <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrderNames}</h6>
   
-    <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
   
     <button type="button" class="btn btn-danger editBtn m-2">${orderPhaseStr}</button>
+
+
+    <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
   
   
     </div>
@@ -472,9 +522,11 @@ function createOrderssArray([
   
     <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrderNames}</h6>
   
-    <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
   
     <button type="button" class="btn btn-danger editBtn m-2">${orderPhaseStr}</button>
+
+
+    <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
   
   
     </div>
@@ -492,9 +544,11 @@ function createOrderssArray([
   
     <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrderNames}</h6>
   
-    <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
   
     <button type="button" class="btn btn-danger editBtn m-2">${orderPhaseStr}</button>
+
+
+    <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
   
   
     </div>
@@ -512,9 +566,11 @@ function createOrderssArray([
   
     <h6 class="m-2 p-1" style="padding: 1%;">${firebaseOrderNames}</h6>
   
-    <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
+   
   
     <button type="button" class="btn btn-danger editBtn m-2">${orderPhaseStr}</button>
+
+     <button type="button" data-keys=${firebaseOrdersDocId} class="btn btn-primary editBtn m-2">Düzenle</button>
   
   
     </div>
@@ -536,7 +592,7 @@ $("body").on("click", ".editBtn", async function () {
 
   const docRefIA = query(
     collection(db, "Orders", updateDocumentId, "DesignApproval"),
-    orderBy("addDate", "asc"),
+    orderBy("addDate", "desc"),
     limit(1)
   );
 
@@ -576,6 +632,8 @@ $("body").on("click", ".editBtn", async function () {
       designAproveReasonForRejectionText.innerHTML = "Onaylandı";
       designAproveReasonForRejectionText.style.color = "white";
       designAproveReasonForRejectionText.disabled = true;
+
+      designAproveButton.style.display = "none";
     }
   });
 
@@ -591,6 +649,10 @@ $("body").on("click", ".editBtn", async function () {
     const firebaseOrderPhase = docs.data().orderPhase;
 
     orderPhaseChangeFormSelect.value = firebaseOrderPhase;
+
+    const firebaseinvitationImageUrl = docs.data().invitationImageUrl;
+
+    arPhotoImagePreview.src = firebaseinvitationImageUrl;
 
     //skajhdaksda
 
@@ -669,16 +731,16 @@ $("body").on("click", ".editBtn", async function () {
       const firebasechildrenInfo = docs.data().childrenInfo;
 
       if (firebasechildrenInfo == true) {
-        $("#childrenInfotext").css("display", "none");
-      } else {
         $("#childrenInfotext").css("display", "");
+      } else {
+        $("#childrenInfotext").css("display", "none");
       }
     } else if (firebaseOrganisationCategory == 4) {
       const firebaseBrideName = docs.data().brideName;
       if (firebasechildrenInfo == true) {
-        $("#childrenInfotext").css("display", "none");
-      } else {
         $("#childrenInfotext").css("display", "");
+      } else {
+        $("#childrenInfotext").css("display", "none");
       }
     } else if (firebaseOrganisationCategory == 5) {
       var childArray = [];
