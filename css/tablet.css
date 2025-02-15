@@ -1,0 +1,25 @@
+/* Tablet screen (min-width: 577px and max-width: 768px) */
+@media only screen and (min-width: 577px) and (max-width: 768px) {
+  #aproveMessageCopyButton {
+    font-size: 14px; /* Slightly bigger font for tablets */
+    padding: 12px 20px; /* Adjusted padding */
+    width: 90%; /* Keep width close to full screen */
+    margin: 5px 0;
+  }
+
+  /* General body adjustments for tablet */
+  body {
+    font-size: 16px;
+    padding: 15px;
+  }
+
+  /* Button layout for tablet */
+  .btn {
+    width: 90%; /* Ensure buttons are well sized */
+  }
+
+  /* Modal adjustments */
+  .modal-dialog {
+    max-width: 85%; /* Adjust modal for tablet */
+  }
+}

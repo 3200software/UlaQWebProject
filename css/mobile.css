@@ -1,0 +1,25 @@
+/* Mobile screen (max-width: 576px) */
+@media only screen and (max-width: 576px) {
+  #aproveMessageCopyButton {
+    font-size: 12px; /* Button font size adjusted */
+    padding: 10px 15px; /* Button padding adjusted */
+    width: 100%; /* Full width for better touch interaction */
+    margin: 5px 0; /* Adjusted margin */
+  }
+
+  /* General body adjustments for mobile */
+  body {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  /* Button layout for mobile */
+  .btn {
+    width: 100%; /* Ensure buttons are full width */
+  }
+
+  /* Modal adjustments */
+  .modal-dialog {
+    max-width: 95%; /* Make modals fit within screen */
+  }
+}

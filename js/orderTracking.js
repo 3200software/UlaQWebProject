@@ -728,20 +728,29 @@ $("body").on("click", ".editBtn", async function () {
       const firebaseGromSurName = docs.data().groomSurName;
       const firebaseBrideFamily = docs.data().brideFamily;
       const firebaseGroomFamily = docs.data().groomFamily;
-      const firebasechildrenInfo = docs.data().childrenInfo;
 
-      if (firebasechildrenInfo == true) {
-        $("#childrenInfotext").css("display", "");
-      } else {
-        $("#childrenInfotext").css("display", "none");
-      }
+      input1.value = firebaseBrideName;
+      input2.value = firebasebrideSurname;
+      input3.value = firebaseGroomName;
+      input4.value = firebaseGromSurName;
+      input5.value = firebaseBrideFamily;
+      input6.value = firebaseGroomFamily;
     } else if (firebaseOrganisationCategory == 4) {
       const firebaseBrideName = docs.data().brideName;
-      if (firebasechildrenInfo == true) {
-        $("#childrenInfotext").css("display", "");
-      } else {
-        $("#childrenInfotext").css("display", "none");
-      }
+      input1.value = firebaseBrideName;
+
+      input2.style.display = "none";
+      input2Title.style.display = "none";
+      input3.style.display = "none";
+      input3Title.style.display = "none";
+      input4.style.display = "none";
+      input4Title.style.display = "none";
+
+      input5.style.display = "none";
+      input5Title.style.display = "none";
+
+      input6.style.display = "none";
+      input6Title.style.display = "none";
     } else if (firebaseOrganisationCategory == 5) {
       var childArray = [];
 
@@ -765,48 +774,6 @@ $("body").on("click", ".editBtn", async function () {
       input4Title.innerHTML = "Soyadı";
       input4.value = firebasesurname;
 
-      const firebaseInvwriting = docs.data().invitationWriting;
-      invWrtingText.value = firebaseInvwriting;
-
-      const firebaseSaveThedateUrl = docs.data().saveTheDateVideoUrl;
-      saveTheDateVideoUrl.value = firebaseSaveThedateUrl;
-
-      const invPrintType = docs.data().orderInvitationPrintType;
-      const envPrintType = docs.data().orderEnvelopePrintType;
-      const foilprintType = docs.data().orderFoilPrintType;
-
-      if (invPrintType == "1") {
-        printTypeinvitation.innerHTML = "Davetiye - Ofset Baskı";
-      } else if (invPrintType == "2") {
-        if (foilprintType == "Gold") {
-          printTypeinvitation.innerHTML = "Davetiye - Varak Baskı(Altın)";
-        } else if (foilprintType == "Silver") {
-          printTypeinvitation.innerHTML = "Davetiye - Varak Baskı(Gümüş)";
-        }
-      } else if (invPrintType == "") {
-        printTypeinvitation.innerHTML = "Davetiye - Baskı Yok";
-      }
-
-      if (envPrintType == "1") {
-        printTypeEnvelope.innerHTML = "Zarf - Ofset Baskı";
-      } else if (envPrintType == "2") {
-        if (foilprintType == "Gold") {
-          printTypeEnvelope.innerHTML = "Zarf - Varak Baskı(Altın)";
-        } else if (foilprintType == "Silver") {
-          printTypeEnvelope.innerHTML = "Zarf - Varak Baskı(Gümüş)";
-        }
-      } else if (envPrintType == "") {
-        printTypeEnvelope.innerHTML = "Zarf - Baskı Yok";
-      }
-
-      const firebaseDigitalCode = docs.data().digitalCode;
-      digitalCodeView.value = firebaseDigitalCode;
-
-      const firebaseQrCode = docs.data().QRCode;
-      qrCodeView.value = firebaseQrCode;
-
-      generateQRCode(firebaseQrCode);
-
       const getData = query(
         collection(db, "Orders", updateDocumentId, "Childs"),
         orderBy("childNumber", "asc")
@@ -823,6 +790,55 @@ $("body").on("click", ".editBtn", async function () {
 
       console.log(doc.id, " => ", childArray);
     }
+    const firebasechildrenInfo = docs.data().childrenInfo;
+
+    if (firebasechildrenInfo == true) {
+      $("#childrenInfotext").css("display", "");
+    } else {
+      $("#childrenInfotext").css("display", "none");
+    }
+
+    const firebaseInvwriting = docs.data().invitationWriting;
+    invWrtingText.value = firebaseInvwriting;
+
+    const firebaseSaveThedateUrl = docs.data().saveTheDateVideoUrl;
+    saveTheDateVideoUrl.value = firebaseSaveThedateUrl;
+
+    const invPrintType = docs.data().orderInvitationPrintType;
+    const envPrintType = docs.data().orderEnvelopePrintType;
+    const foilprintType = docs.data().orderFoilPrintType;
+
+    if (invPrintType == "1") {
+      printTypeinvitation.innerHTML = "Davetiye - Ofset Baskı";
+    } else if (invPrintType == "2") {
+      if (foilprintType == "Gold") {
+        printTypeinvitation.innerHTML = "Davetiye - Varak Baskı(Altın)";
+      } else if (foilprintType == "Silver") {
+        printTypeinvitation.innerHTML = "Davetiye - Varak Baskı(Gümüş)";
+      }
+    } else if (invPrintType == "") {
+      printTypeinvitation.innerHTML = "Davetiye - Baskı Yok";
+    }
+
+    if (envPrintType == "1") {
+      printTypeEnvelope.innerHTML = "Zarf - Ofset Baskı";
+    } else if (envPrintType == "2") {
+      if (foilprintType == "Gold") {
+        printTypeEnvelope.innerHTML = "Zarf - Varak Baskı(Altın)";
+      } else if (foilprintType == "Silver") {
+        printTypeEnvelope.innerHTML = "Zarf - Varak Baskı(Gümüş)";
+      }
+    } else if (envPrintType == "") {
+      printTypeEnvelope.innerHTML = "Zarf - Baskı Yok";
+    }
+
+    const firebaseDigitalCode = docs.data().digitalCode;
+    digitalCodeView.value = firebaseDigitalCode;
+
+    const firebaseQrCode = docs.data().QRCode;
+    qrCodeView.value = firebaseQrCode;
+
+    generateQRCode(firebaseQrCode);
 
     function generateQRCode(firebaseQrCodess) {
       console.log(firebaseQrCodess);
