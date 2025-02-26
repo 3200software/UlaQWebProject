@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>UlaQ Davetiye Yönlendirme</title>
+    <script>
+      function redirect() {
+        var userAgent = navigator.userAgent.toLowerCase();
+        var isAndroid = userAgent.indexOf("android") > -1;
+        var isIOS = /iphone|ipad|ipod/.test(userAgent);
+
+        // URL'den sipariş ID'sini al
+        var orderId = window.location.pathname.replace("/qrcontrol/", "");
+
+        if (isAndroid || isIOS) {
+          if (isAndroid) {
+            // Android için intent URL'i düzeltildi
+            var intentUrl =
+              "intent://" +
+              window.location.host +
+              window.location.pathname +
+              "#Intent;" +
+              "scheme=https;" +
+              "package=com.software3200.invitationiq;" +
+              "S.browser_fallback_url=https://play.google.com/store/apps/details?id=com.software3200.invitationiq;" +
+              "end";
+
+            window.location.href = intentUrl;
+          } else {
+            // iOS için App Store
+            window.location.href =
+              "https://apps.apple.com/app/ulaq-davetiye/idXXXXXXXXX";
+          }
+        } else {
+          // Mobil değilse web sitesine yönlendir
+          window.location.href =
+            "https://ulaqdavetiye.com.tr/siparis/" + orderId;
+        }
+      }
+    </script>
+  </head>
+  <body onload="redirect()">
+    <h1>UlaQ Davetiye'ye Yönlendiriliyorsunuz...</h1>
+    <p>Eğer otomatik yönlendirilmezseniz lütfen bekleyin...</p>
+  </body>
+</html>
