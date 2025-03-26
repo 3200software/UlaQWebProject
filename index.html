@@ -1,60 +1,1060 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--
+ÖNEMLİ: 
+1. Google Play ve App Store logoları için:
+   - Google Play logosu: assets/badges/google-play.png
+   - App Store logosu: assets/badges/app-store.png
+   Bu logoları internetten bulabilirsiniz:
+   - Google Play Badge: https://play.google.com/intl/en_us/badges/
+   - App Store Badge: https://developer.apple.com/app-store/marketing/guidelines/
+   
+2. Davetiye örnek görseli için:
+   - Dosya yolu: assets/davetiye-ornek.jpg
+   
+3. Bu görselleri yükledikten sonra, "Hemen Başlayın" butonunun altında görüneceklerdir.
+-->
+<html lang="tr">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-
+    <title>UlaQ Davetiye</title>
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
-      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
-      crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <style>
+      :root {
+        --purple-dark: #4c1d95;
+        --purple: #7c3aed;
+        --purple-light: #8b5cf6;
+        --orange: #ed9b5b;
+        --orange-light: #eba062;
+        --white: #ffffff;
+      }
 
-    <script type="module" src="js/index.js"></script>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: var(--purple-dark);
+        color: var(--white);
+        line-height: 1.6;
+      }
+
+      a {
+        color: var(--orange);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      a:hover {
+        color: var(--orange-light);
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+
+      /* Global Section Styles */
+      section {
+        scroll-margin-top: 120px; /* header yüksekliği + ekstra boşluk */
+      }
+
+      /* Header Styles */
+      header {
+        background-color: var(--orange-light);
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+      }
+
+      .logo img {
+        height: 80px;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+      }
+
+      .nav-links li {
+        margin-left: 30px;
+      }
+
+      .nav-links a {
+        color: var(--purple-dark);
+        font-weight: 500;
+        transition: color 0.3s;
+        position: relative;
+      }
+
+      .nav-links a:hover {
+        color: var(--purple-dark);
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -4px;
+        left: 50%;
+        background-color: var(--purple-dark);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      .menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: var(--purple-dark);
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      .close-btn {
+        display: none;
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(
+          135deg,
+          var(--purple) 0%,
+          var(--purple-dark) 100%
+        );
+        padding: 160px 0 100px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url("assets/pattern.png");
+        opacity: 0.05;
+      }
+
+      .hero-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+      }
+
+      .hero-text {
+        flex: 0 0 50%;
+      }
+
+      .hero-text h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 20px;
+        color: var(--white);
+      }
+
+      .hero-text p {
+        font-size: 1.25rem;
+        margin-bottom: 30px;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 15px 30px;
+        background-color: var(--orange);
+        color: var(--white);
+        border-radius: 50px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4);
+      }
+
+      .btn:hover {
+        background-color: var(--orange-light);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(249, 115, 22, 0.5);
+      }
+
+      .btn .hero-image {
+        flex: 0 0 45%;
+        position: relative;
+      }
+
+      .hero-image img {
+        width: 100%;
+        border-radius: 2px;
+        /* box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        */
+        transform: rotate(2deg);
+        transition: transform 0.5s;
+      }
+
+      .hero-image img:hover {
+        transform: rotate(20deg) scale(1.02);
+      }
+
+      /* About Section */
+      .about {
+        background-color: var(--purple);
+        padding: 100px 0;
+        position: relative;
+      }
+
+      .about-content {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 40px;
+        color: var(--orange);
+        position: relative;
+        display: inline-block;
+      }
+
+      .section-title::after {
+        content: "";
+        width: 100px;
+        height: 4px;
+        background: var(--orange);
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 2px;
+      }
+
+      .about-card {
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        padding: 40px;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .about-card p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 20px;
+      }
+
+      /* Features Section */
+      .features {
+        background-color: var(--purple-dark);
+        padding: 100px 0;
+        overflow: hidden;
+      }
+
+      .features-title {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .features-slider {
+        width: 100%;
+        padding: 20px 0;
+      }
+
+      .swiper-slide {
+        width: 300px;
+        height: auto;
+      }
+
+      .feature-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        padding: 30px;
+        transition: transform 0.3s, box-shadow 0.3s;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        height: 100%;
+        min-height: 400px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        justify-content: space-between;
+      }
+
+      .feature-card .btn {
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        border-color: var(--orange);
+      }
+
+      .swiper-button-next,
+      .swiper-button-prev {
+        color: var(--orange);
+      }
+
+      .swiper-pagination-bullet {
+        background: var(--orange);
+      }
+
+      .swiper-pagination-bullet-active {
+        background: var(--orange);
+      }
+
+      .feature-icon {
+        width: 60px;
+
+        font-size: 40px;
+        margin: 0 auto 20px;
+        color: var(--orange);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .feature-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .feature-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: var(--orange);
+        text-align: center;
+      }
+
+      .feature-card ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        text-align: center;
+      }
+
+      .feature-card li {
+        margin-bottom: 15px;
+        line-height: 1.6;
+        color: var(--white);
+      }
+
+      .feature-card li:last-child {
+        margin-bottom: 0;
+      }
+
+      /* Contact Section */
+      .contact {
+        background-color: var(--purple-dark);
+        padding: 100px 0;
+      }
+
+      .contact-form {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .form-group {
+        margin-bottom: 25px;
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 15px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background-color: rgba(255, 255, 255, 0.05);
+        color: var(--white);
+        font-family: "Poppins", sans-serif;
+        transition: all 0.3s;
+      }
+
+      .form-control:focus {
+        outline: none;
+        border-color: var(--orange);
+        box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.3);
+      }
+
+      .form-label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: var(--orange-light);
+      }
+
+      textarea.form-control {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      /* Footer */
+      .footer {
+        background-color: var(--orange-light);
+        padding: 70px 0 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        margin-bottom: 50px;
+      }
+
+      .footer-logo img {
+        height: 60px;
+        margin-bottom: 15px;
+      }
+
+      .footer-logo p {
+        color: var(--purple-dark);
+        font-size: 0.9rem;
+      }
+
+      .footer-links h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+        color: var(--purple-dark);
+      }
+
+      .footer-links ul {
+        list-style: none;
+        color: var(--purple-dark);
+      }
+
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+
+      .footer-links a {
+        color: var(--purple-dark);
+        transition: color 0.3s;
+      }
+
+      .footer-links a:hover {
+        color: var(--purple-light);
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 15px;
+      }
+
+      .social-icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        transition: all 0.3s;
+        color: var(--white);
+        font-size: 1.2rem;
+      }
+
+      .social-icon:hover {
+        background-color: var(--orange);
+        transform: translateY(-3px);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid var(--purple-dark);
+      }
+
+      .footer-bottom p {
+        color: var(--purple-dark);
+        font-size: 0.9rem;
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 992px) {
+        .hero-content {
+          flex-direction: column;
+        }
+
+        .hero-text,
+        .hero-image {
+          flex: 0 0 100%;
+        }
+
+        .hero-text {
+          margin-bottom: 40px;
+          text-align: center;
+        }
+
+        .hero-text h1 {
+          font-size: 2.8rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        section {
+          scroll-margin-top: 100px; /* Mobil için daha küçük margin */
+        }
+        .nav-links {
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100vh;
+          background-color: var(--purple);
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          z-index: 1000;
+        }
+
+        .nav-links.active {
+          display: flex;
+        }
+
+        .nav-links li {
+          margin: 20px 0;
+        }
+
+        .nav-links a {
+          color: var(--white);
+          font-size: 1.5rem;
+        }
+
+        .nav-links a:hover {
+          color: var(--orange);
+        }
+
+        .menu-btn {
+          display: block;
+          z-index: 1001;
+        }
+
+        .close-btn {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          background: none;
+          border: none;
+          color: var(--white);
+          font-size: 24px;
+          cursor: pointer;
+          display: none;
+        }
+
+        .close-btn.active {
+          display: block;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .hero-text h1 {
+          font-size: 2.2rem;
+        }
+
+        .features-slider {
+          padding: 0;
+        }
+
+        .swiper-slide {
+          width: 100%;
+        }
+      }
+
+      /* App Store Section */
+      .app-store-section {
+        background-color: var(--purple);
+        padding: 80px 0;
+        text-align: center;
+      }
+
+      .app-store-content {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .app-store-text {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.2rem;
+        margin-bottom: 40px;
+      }
+
+      .app-buttons-container {
+        display: flex;
+        justify-content: center;
+      }
+
+      /* App Store Buttons */
+      .app-buttons {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        margin-top: 25px;
+      }
+
+      .app-btn {
+        width: 300px;
+        height: 180px;
+        transition: transform 0.3s;
+        position: relative;
+        background-color: rgba(243, 242, 242, 0.832);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .app-btn img {
+        width: 100%;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(221, 210, 210, 0.87);
+      }
+
+      .app-btn:hover {
+        transform: translateY(-5px);
+      }
+
+      .app-store {
+        position: relative;
+        opacity: 0.85;
+      }
+
+      .coming-soon {
+        position: absolute;
+        bottom: -20px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--orange-light);
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 5px 0;
+        border-radius: 0 0 12px 12px;
+      }
+
+      /* Placeholder styles for missing images */
+      .app-btn:empty::before {
+        content: "Google Play";
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      .app-store:empty::before {
+        content: "App Store";
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      .app-btn img:not([src]),
+      .app-btn img[src=""] {
+        display: none;
+      }
+
+      @media (max-width: 768px) {
+        .app-buttons {
+          flex-direction: column;
+          align-items: center;
+          gap: 40px;
+        }
+
+        .app-btn {
+          width: 160px;
+        }
+      }
+    </style>
   </head>
-
   <body>
-    <form
-      class="container m-10 mt-5 w-25 border rounded p-3 d-flex flex-column justify-content-center"
-    >
-      <img
-        src="assets/274348852_320609883437173_4953649348556891409_n.jpg"
-        class="img-thumbnail w-50 mb-5 mt-5 border border-primary rounded-circle"
-        alt="UlaQLogo"
-        style="margin: auto"
-      />
-
-      <div
-        class="text-primary h2 mb-5"
-        style="margin: auto; text-align: center"
-      >
-        ManagementBoard
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <nav>
+          <div class="logo">
+            <img src="assets/logo.png" alt="UlaQ Davetiye" />
+          </div>
+          <ul class="nav-links">
+            <button class="close-btn">&times;</button>
+            <li><a href="#home">Ana Sayfa</a></li>
+            <li><a href="about.html">Biz Kimiz?</a></li>
+            <li><a href="#features">Özelliklerimiz</a></li>
+            <li><a href="#how-it-works">Nasıl Çalışır?</a></li>
+            <li><a href="#contact">İletişim</a></li>
+          </ul>
+          <button class="menu-btn">≡</button>
+        </nav>
       </div>
+    </header>
 
-      <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Email</label>
-        <input
-          type="email"
-          class="form-control"
-          id="InputEmail1"
-          aria-describedby="emailHelp"
-        />
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1>
+              UlaQ Davetiye ile klasik davetiye geleneğini, modern teknolojinin
+              gücüyle birleştiriyoruz.
+            </h1>
+            <p>
+              UlaQ Davetiye ile özel anlarınızı unutulmaz kılın. Şıklık ve
+              teknoloji bir arada!
+            </p>
+            <a href="#app-store-section" class="btn">Hemen Başlayın</a>
+          </div>
+          <div class="hero-image">
+            <img src="assets/davetiye-ornek.jpg" alt="Davetiye Örneği" />
+          </div>
+        </div>
       </div>
-      <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Şifre</label>
-        <input type="password" class="form-control" id="InputPassword1" />
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+      <div class="container">
+        <div class="about-content">
+          <h2 class="section-title">UlaQ Davetiye Nedir?</h2>
+          <div class="about-card">
+            <p>
+              UlaQ Davetiye, özel anlarınızı unutulmaz kılmak için tasarlanmış
+              yenilikçi bir davetiye platformudur. Sadece bir davetiye değil,
+              aynı zamanda sihirli dokunuşlarla zenginleştirilmiş bir deneyim
+              sunar. Fiziksel davetiyelerinize dijital özellikler ekleyerek
+              etkinliklerinizi daha etkileyici ve interaktif hale getirir.
+            </p>
+            <p>
+              Davetiyenizi oluşturun, satın alın ve sevdiklerinize ulaştırın.
+              UlaQ Davetiye ile klasik davetiye geleneğini, modern teknolojinin
+              gücüyle birleştiriyoruz.
+            </p>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <button type="submit" class="btn btn-primary" id="loginButton">
-        Giriş Yap
-      </button>
+    <!-- Features Section -->
+    <section id="features" class="features">
+      <div class="container">
+        <div class="features-title">
+          <h2 class="section-title">Yenilikçi Özelliklerimiz</h2>
+        </div>
+        <div class="swiper features-slider">
+          <div class="swiper-wrapper">
+            <!-- Fiziksel Davetiyeler & QR Kod -->
+            <div class="swiper-slide">
+              <div class="feature-card">
+                <div>
+                  <img
+                    class="feature-icon"
+                    src="assets/badges/inivitation@4x.png"
+                  />
+                  <h3 class="feature-title">Fiziksel Davetiyeler & QR Kod</h3>
+                  <ul>
+                    <li>
+                      Satın aldığınız davetiyelere özel karekod (QR Kod) eklenir
+                    </li>
+                    <li>
+                      Davetlileriniz bu kodu telefonlarıyla okutarak etkinliğe
+                      özel dijital içeriklere erişebilir
+                    </li>
+                  </ul>
+                </div>
+                <a href="features.html#qr-kod" class="btn">Detaylı Bilgi</a>
+              </div>
+            </div>
 
-      <a href="privacypolicy.html">Gizlilik Politikası </a>
-    </form>
+            <!-- Sihirli Davetiye -->
+            <div class="swiper-slide">
+              <div class="feature-card">
+                <div>
+                  <img class="feature-icon" src="assets/badges/ar@4x.png" />
+                  <h3 class="feature-title">Sihirli Davetiye</h3>
+                  <ul>
+                    <li>
+                      Davetiyeniz, sadece bir kağıt parçası olmaktan çıkar
+                    </li>
+                    <li>
+                      QR kodu okutan davetliler, özel olarak eklediğiniz videoyu
+                      izleyebilir
+                    </li>
+                  </ul>
+                </div>
+                <a href="features.html#sihirli-davetiye" class="btn"
+                  >Detaylı Bilgi</a
+                >
+              </div>
+            </div>
 
-    <script src="js/main.js"></script>
+            <!-- Lütfen Cevap Veriniz -->
+            <div class="swiper-slide">
+              <div class="feature-card">
+                <div>
+                  <img class="feature-icon" src="assets/badges/lcv@4x.png" />
+                  <h3 class="feature-title">Lütfen Cevap Veriniz</h3>
+                  <ul>
+                    <li>LCV: Davetliler, katılım durumlarını bildirebilir</li>
+                  </ul>
+                </div>
+                <a href="features.html#lcv" class="btn">Detaylı Bilgi</a>
+              </div>
+            </div>
+
+            <!-- Harita -->
+            <div class="swiper-slide">
+              <div class="feature-card">
+                <div>
+                  <img class="feature-icon" src="assets/badges/map@4x.png" />
+                  <h3 class="feature-title">Harita</h3>
+                  <ul>
+                    <li>
+                      Harita: Davetliler, karekodu okutarak doğrudan yol tarifi
+                      alabilir
+                    </li>
+                  </ul>
+                </div>
+                <a href="features.html#harita" class="btn">Detaylı Bilgi</a>
+              </div>
+            </div>
+
+            <!-- Davet Kutum -->
+            <div class="swiper-slide">
+              <div class="feature-card">
+                <div>
+                  <img class="feature-icon" src="assets/badges/invbox@4x.png" />
+                  <h3 class="feature-title">Davet Kutum</h3>
+                  <ul>
+                    <li>
+                      Artık davetiyeler sadece fiziksel değil, dijital olarak da
+                      saklanabilir
+                    </li>
+                    <li>
+                      Kullanıcılar, tüm davetiyelerini tek bir yerden takip
+                      edebilirler
+                    </li>
+                  </ul>
+                </div>
+                <a href="features.html#davet-kutum" class="btn"
+                  >Detaylı Bilgi</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- App Store Section -->
+    <section class="app-store-section">
+      <div class="container">
+        <div class="app-store-content" id="app-store-section">
+          <h2 class="section-title">Mobil Uygulamamızı İndirin</h2>
+          <p class="app-store-text">
+            UlaQ Davetiye uygulamasını indirerek davetiyelerinizi kolayca satın
+            alın, yönetin ve takip edin.
+          </p>
+          <div class="app-buttons-container">
+            <div class="app-buttons">
+              <a
+                href="https://play.google.com/store"
+                target="_blank"
+                class="app-btn"
+              >
+                <img
+                  src="assets/badges/Google-Play-Logo.png"
+                  alt="Google Play'den İndirin"
+                />
+              </a>
+              <div class="app-btn app-store">
+                <img
+                  src="assets/badges/App_Store_(iOS).svg.png"
+                  alt="App Store'dan İndirin"
+                />
+                <div class="coming-soon">Çok Yakında</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="features-title">
+          <h2 class="section-title">İletişime Geçin</h2>
+        </div>
+        <div class="contact-form">
+          <form>
+            <div class="form-group">
+              <label class="form-label" for="name">Adınız Soyadınız</label>
+              <input type="text" class="form-control" id="name" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">E-posta Adresiniz</label>
+              <input type="email" class="form-control" id="email" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="message">Mesajınız</label>
+              <textarea class="form-control" id="message" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn">Gönder</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <img src="assets/logo.png" alt="UlaQ Davetiye" />
+            <p>Modern davetiye deneyimini keşfedin.</p>
+          </div>
+          <div class="footer-links">
+            <h4>Hızlı Bağlantılar</h4>
+            <ul>
+              <li><a href="#home">Ana Sayfa</a></li>
+              <li><a href="#about">Biz Kimiz?</a></li>
+              <li><a href="#features">Özelliklerimiz</a></li>
+              <li><a href="#contact">İletişim</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>İletişim</h4>
+            <ul>
+              <li>info@ulaq.com</li>
+              <li>+90 (555) 123 45 67</li>
+              <li>Erzurum, Türkiye</li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Bizi Takip Edin</h4>
+            <div class="social-icons">
+              <a href="#" class="social-icon">f</a>
+              <a href="#" class="social-icon">t</a>
+              <a href="#" class="social-icon">in</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 UlaQ Davetiye. Tüm hakları saklıdır.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+      // Swiper initialization
+      const swiper = new Swiper(".features-slider", {
+        slidesPerView: "auto",
+        spaceBetween: 30,
+        centeredSlides: true,
+        loop: true,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        breakpoints: {
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 30,
+          },
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 30,
+          },
+        },
+      });
+
+      // Mobile menu toggle
+      const menuBtn = document.querySelector(".menu-btn");
+      const closeBtn = document.querySelector(".close-btn");
+      const navLinks = document.querySelector(".nav-links");
+
+      function toggleMenu() {
+        navLinks.classList.toggle("active");
+        closeBtn.classList.toggle("active");
+        document.body.style.overflow = navLinks.classList.contains("active")
+          ? "hidden"
+          : "";
+      }
+
+      menuBtn.addEventListener("click", toggleMenu);
+      closeBtn.addEventListener("click", toggleMenu);
+
+      // Close menu when clicking on a link
+      document.querySelectorAll(".nav-links a").forEach((link) => {
+        link.addEventListener("click", () => {
+          if (navLinks.classList.contains("active")) {
+            toggleMenu();
+          }
+        });
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+    </script>
   </body>
 </html>

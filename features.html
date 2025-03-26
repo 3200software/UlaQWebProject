@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Özelliklerimiz - UlaQ Davetiye</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --purple-dark: #4c1d95;
+        --purple: #7c3aed;
+        --purple-light: #8b5cf6;
+        --orange: #ed9b5b;
+        --orange-light: #eba062;
+        --white: #ffffff;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: var(--purple-dark);
+        color: var(--white);
+        line-height: 1.6;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+
+      /* Header Styles */
+      header {
+        background-color: var(--orange-light);
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+      }
+
+      .logo {
+        height: 80px;
+      }
+
+      .logo img {
+        height: 100%;
+        width: auto;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 40px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-links li {
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-links a {
+        color: var(--purple-dark);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1.2rem;
+        position: relative;
+        padding: 5px 0;
+      }
+
+      .nav-links a:hover {
+        color: var(--purple-dark);
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 50%;
+        background-color: var(--purple-dark);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      .menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: var(--purple-dark);
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      .close-btn {
+        display: none;
+      }
+
+      @media (max-width: 768px) {
+        .menu-btn {
+          display: block;
+        }
+
+        .nav-links {
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100vh;
+          background-color: var(--purple);
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          z-index: 1000;
+        }
+
+        .nav-links.active {
+          display: flex;
+        }
+
+        .nav-links a {
+          color: var(--white);
+          font-size: 1.5rem;
+        }
+
+        .close-btn.active {
+          display: block;
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          background: none;
+          border: none;
+          color: var(--white);
+          font-size: 24px;
+          cursor: pointer;
+        }
+      }
+
+      /* Footer */
+      footer {
+        background-color: var(--orange-light);
+        padding: 70px 0 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        margin-bottom: 50px;
+      }
+
+      .footer-logo img {
+        height: 60px;
+        margin-bottom: 15px;
+      }
+
+      .footer-logo p {
+        color: var(--purple-dark);
+        font-size: 0.9rem;
+      }
+
+      .footer-links h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+        color: var(--purple-dark);
+      }
+
+      .footer-links ul {
+        list-style: none;
+        color: var(--purple-dark);
+      }
+
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+
+      .footer-links a {
+        color: var(--purple-dark);
+        transition: color 0.3s;
+      }
+
+      .footer-links a:hover {
+        color: var(--purple-light);
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 15px;
+      }
+
+      .social-icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        transition: all 0.3s;
+        color: var(--white);
+        font-size: 1.2rem;
+      }
+
+      .social-icon:hover {
+        background-color: var(--orange);
+        transform: translateY(-3px);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid var(--purple-dark);
+      }
+
+      .footer-bottom p {
+        color: var(--purple-dark);
+        font-size: 0.9rem;
+      }
+
+      /* Feature Detail Section */
+      .feature-section {
+        padding: 120px 0 80px;
+        position: relative;
+      }
+
+      .feature-section:first-child {
+        padding-top: 160px;
+      }
+
+      .feature-section:nth-child(even) {
+        background-color: var(--purple);
+      }
+
+      .feature-detail-content {
+        display: flex;
+        align-items: center;
+        gap: 60px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .feature-section:nth-child(even) .feature-detail-content {
+        flex-direction: row-reverse;
+      }
+
+      .feature-icon-large {
+        width: 50%;
+        flex-shrink: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .feature-icon-large img {
+        width: 200px;
+        height: auto;
+        object-fit: contain;
+      }
+
+      .feature-info {
+        flex: 1;
+        width: 50%;
+      }
+
+      .feature-title {
+        font-size: 2.5rem;
+        color: var(--orange);
+        margin-bottom: 30px;
+      }
+
+      .feature-description {
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+        color: var(--white);
+      }
+
+      .feature-list {
+        list-style: none;
+        margin-bottom: 30px;
+      }
+
+      .feature-list li {
+        margin-bottom: 15px;
+        padding-left: 25px;
+        position: relative;
+        color: var(--white);
+      }
+
+      .feature-list li::before {
+        content: "•";
+        color: var(--orange);
+        font-size: 1.5rem;
+        position: absolute;
+        left: 0;
+        top: -2px;
+      }
+
+      .feature-buttons {
+        display: flex;
+        gap: 20px;
+      }
+
+      .feature-button {
+        display: inline-block;
+        padding: 15px 30px;
+        border-radius: 50px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .feature-button.primary {
+        background-color: var(--orange);
+        color: var(--white);
+      }
+
+      .feature-button.secondary {
+        background-color: transparent;
+        color: var(--orange);
+        border: 2px solid var(--orange);
+      }
+
+      .feature-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      @media (max-width: 768px) {
+        .feature-section {
+          padding: 100px 0 60px;
+        }
+
+        .feature-section:first-child {
+          padding-top: 140px;
+        }
+
+        .feature-detail-content {
+          flex-direction: column !important;
+          text-align: center;
+          padding: 0 20px;
+        }
+
+        .feature-icon-large {
+          width: 100%;
+          padding: 0;
+        }
+
+        .feature-icon-large img {
+          width: 150px;
+        }
+
+        .feature-info {
+          width: 100%;
+        }
+
+        .feature-list li {
+          padding-left: 0;
+        }
+
+        .feature-list li::before {
+          display: none;
+        }
+
+        .feature-buttons {
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <nav>
+          <div class="logo">
+            <img src="assets/logo.png" alt="UlaQ Davetiye" />
+          </div>
+          <ul class="nav-links">
+            <button class="close-btn">&times;</button>
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="about.html">Biz Kimiz?</a></li>
+            <li><a href="index.html#features">Özelliklerimiz</a></li>
+            <li><a href="index.html#how-it-works">Nasıl Çalışır?</a></li>
+            <li><a href="index.html#contact">İletişim</a></li>
+          </ul>
+          <button class="menu-btn">≡</button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Feature Details -->
+    <!-- QR Kod -->
+    <section id="qr-kod" class="feature-section">
+      <div class="container">
+        <div class="feature-detail-content">
+          <div class="feature-icon-large">
+            <img src="assets/badges/inivitation@4x.png" alt="QR Kod Özelliği" />
+          </div>
+          <div class="feature-info">
+            <h2 class="feature-title">
+              Fiziksel Davetiyeler & QR Kod Entegrasyonu
+            </h2>
+            <p class="feature-description">
+              UlaQ Davetiye, geleneksel davetiyeleri dijital çağın imkanlarıyla
+              buluşturan yenilikçi bir çözümdür. Satın aldığınız her davetiyeye
+              özel bir QR kod (Karekod) eklenir. Bu QR kod, davetiyelerinize
+              sadece bir kağıt parçası değil, zengin ve etkileşimli bir deneyim
+              sunar!
+            </p>
+            <ul class="feature-list">
+              <li>Davetiyelerinize özel QR kod eklenir</li>
+              <li>
+                Davetliler telefonlarıyla QR kodu okutarak dijital içeriklere
+                erişebilir
+              </li>
+              <li>Etkinlik detaylarına anında erişim sağlanır</li>
+              <li>Kolay ve hızlı kullanım</li>
+            </ul>
+            <div class="feature-buttons">
+              <a href="how-it-works.html#qr-kod" class="feature-button primary"
+                >Nasıl Çalışır?</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sihirli Davetiye -->
+    <section id="sihirli-davetiye" class="feature-section">
+      <div class="container">
+        <div class="feature-detail-content">
+          <div class="feature-icon-large">
+            <img src="assets/badges/ar@4x.png" alt="Sihirli Davetiye" />
+          </div>
+          <div class="feature-info">
+            <h2 class="feature-title">
+              Sihirli Davetiye (Artırılmış Gerçeklik - AR)
+            </h2>
+            <p class="feature-description">
+              UlaQ Davetiye'nin en büyüleyici özelliklerinden biri olan Sihirli
+              Davetiye, geleneksel davetiyeleri bir sanat eserine ve etkileşimli
+              bir deneyime dönüştürüyor!
+            </p>
+            <p class="feature-description">
+              Davetiyeniz, klasik bir kağıt davetiyeden çok daha fazlası! QR
+              kodu okutan davetlileriniz, özel olarak eklediğiniz videoyu
+              artırılmış gerçeklik (AR) teknolojisiyle izleyerek etkinliğinizin
+              atmosferini önceden hisseder.
+            </p>
+            <div class="feature-buttons">
+              <a
+                href="how-it-works.html#sihirli-davetiye"
+                class="feature-button primary"
+                >Nasıl Çalışır?</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LCV -->
+    <section id="lcv" class="feature-section">
+      <div class="container">
+        <div class="feature-detail-content">
+          <div class="feature-icon-large">
+            <img src="assets/badges/lcv@4x.png" alt="LCV Özelliği" />
+          </div>
+          <div class="feature-info">
+            <h2 class="feature-title">Lütfen Cevap Veriniz (LCV)</h2>
+            <p class="feature-description">
+              UlaQ Davetiye'nin LCV özelliği ile organizasyonunuzu çok daha
+              kolay planlayabilirsiniz.
+            </p>
+            <ul class="feature-list">
+              <li>
+                Bireysel & Organizasyon Bazlı Katılım: Davetliler, sadece genel
+                davet katılım durumunu değil, her bir organizasyona ayrı ayrı
+                katılıp katılmayacaklarını belirtebilir.
+              </li>
+              <li>
+                Örneğin; nikaha katılıp, düğün yemeğine katılmayacağını
+                bildirebilir.
+              </li>
+              <li>
+                Kişi Sayısı Belirleme: Davetliler, davetinize kaç kişiyle
+                katılacaklarını belirterek planlamanızı kolaylaştırır.
+              </li>
+              <li>
+                Böylece yemek, masa düzeni ve genel hazırlıklar daha verimli
+                şekilde yapılabilir.
+              </li>
+            </ul>
+            <div class="feature-buttons">
+              <a href="how-it-works.html#lcv" class="feature-button primary"
+                >Nasıl Çalışır?</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Harita -->
+    <section id="harita" class="feature-section">
+      <div class="container">
+        <div class="feature-detail-content">
+          <div class="feature-icon-large">
+            <img src="assets/badges/map@4x.png" alt="Harita Özelliği" />
+          </div>
+          <div class="feature-info">
+            <h2 class="feature-title">
+              Harita Özelliği - Etkinlik Lokasyonuna Kolay Erişim
+            </h2>
+            <p class="feature-description">
+              UlaQ Davetiye'nin Harita Özelliği, davetlilerinizin etkinliğinize
+              ulaşmasını kolaylaştırmak için tasarlandı. Bu özellik sayesinde,
+              davetlileriniz etkinlik yerinin konumunu hızla öğrenebilir ve
+              direkt olarak yol tarifi alabilir.
+            </p>
+            <div class="feature-buttons">
+              <a href="how-it-works.html#harita" class="feature-button primary"
+                >Nasıl Çalışır?</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Davet Kutum -->
+    <section id="davet-kutum" class="feature-section">
+      <div class="container">
+        <div class="feature-detail-content">
+          <div class="feature-icon-large">
+            <img src="assets/badges/invbox@4x.png" alt="Davet Kutum" />
+          </div>
+          <div class="feature-info">
+            <h2 class="feature-title">
+              Davet Kutum Özelliği - Tüm Davetler Tek Bir Yerde!
+            </h2>
+            <p class="feature-description">
+              UlaQ Davetiye'nin "Davet Kutum" özelliği, davetiyelerinizi dijital
+              ortamda güvenle saklamanızı ve her zaman kolayca erişmenizi
+              sağlar. Bu özellik sayesinde, davetiyeler sadece fiziksel değil,
+              dijital olarak da saklanabilir ve takip edilebilir.
+            </p>
+            <div class="feature-buttons">
+              <a
+                href="how-it-works.html#davet-kutum"
+                class="feature-button primary"
+                >Nasıl Çalışır?</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <img src="assets/logo.png" alt="UlaQ Davetiye" />
+            <p>Modern davetiye deneyimini keşfedin.</p>
+          </div>
+          <div class="footer-links">
+            <h4>Hızlı Bağlantılar</h4>
+            <ul>
+              <li><a href="index.html">Ana Sayfa</a></li>
+              <li><a href="about.html">Biz Kimiz?</a></li>
+              <li><a href="index.html#features">Özelliklerimiz</a></li>
+              <li><a href="index.html#contact">İletişim</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>İletişim</h4>
+            <ul>
+              <li>info@ulaq.com</li>
+              <li>+90 (555) 123 45 67</li>
+              <li>Erzurum, Türkiye</li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Bizi Takip Edin</h4>
+            <div class="social-icons">
+              <a href="#" class="social-icon">f</a>
+              <a href="#" class="social-icon">t</a>
+              <a href="#" class="social-icon">in</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 UlaQ Davetiye. Tüm hakları saklıdır.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile menu toggle
+      const menuBtn = document.querySelector(".menu-btn");
+      const closeBtn = document.querySelector(".close-btn");
+      const navLinks = document.querySelector(".nav-links");
+
+      function toggleMenu() {
+        navLinks.classList.toggle("active");
+        closeBtn.classList.toggle("active");
+        document.body.style.overflow = navLinks.classList.contains("active")
+          ? "hidden"
+          : "";
+      }
+
+      menuBtn.addEventListener("click", toggleMenu);
+      closeBtn.addEventListener("click", toggleMenu);
+
+      document.querySelectorAll(".nav-links a").forEach((link) => {
+        link.addEventListener("click", () => {
+          if (navLinks.classList.contains("active")) {
+            toggleMenu();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

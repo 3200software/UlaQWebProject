@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Biz Kimiz? - UlaQ Davetiye</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --purple-dark: #4c1d95;
+        --purple: #7c3aed;
+        --purple-light: #8b5cf6;
+        --orange: #ed9b5b;
+        --orange-light: #eba062;
+        --white: #ffffff;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: var(--purple-dark);
+        color: var(--white);
+        line-height: 1.6;
+      }
+
+      /* Header Styles */
+      header {
+        background-color: var(--orange-light);
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+      }
+
+      .logo {
+        height: 80px;
+      }
+
+      .logo img {
+        height: 100%;
+        width: auto;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 40px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-links li {
+        margin: 0;
+        padding: 0;
+      }
+
+      .nav-links a {
+        color: var(--purple-dark);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 1.2rem;
+        position: relative;
+        padding: 5px 0;
+      }
+
+      .nav-links a:hover {
+        color: var(--purple-dark);
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 50%;
+        background-color: var(--purple-dark);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      .menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: var(--purple-dark);
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      .close-btn {
+        display: none;
+      }
+
+      @media (max-width: 768px) {
+        .menu-btn {
+          display: block;
+        }
+
+        .nav-links {
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100vh;
+          background-color: var(--purple);
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          z-index: 1000;
+        }
+
+        .nav-links.active {
+          display: flex;
+        }
+
+        .nav-links a {
+          color: var(--white);
+          font-size: 1.5rem;
+        }
+
+        .close-btn.active {
+          display: block;
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          background: none;
+          border: none;
+          color: var(--white);
+          font-size: 24px;
+          cursor: pointer;
+        }
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+
+      /* Story Section */
+      .story-section {
+        padding: 160px 0 80px;
+        background: linear-gradient(
+          135deg,
+          var(--purple) 0%,
+          var(--purple-dark) 100%
+        );
+      }
+
+      .story-container {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        margin-bottom: 100px;
+      }
+
+      .story-image {
+        flex: 0 0 45%;
+        position: relative;
+      }
+
+      .story-image img {
+        width: 100%;
+        border-radius: 20px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .story-content {
+        flex: 0 0 55%;
+      }
+
+      .story-title {
+        font-size: 2.5rem;
+        color: var(--orange);
+        margin-bottom: 30px;
+        position: relative;
+      }
+
+      .story-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 100px;
+        height: 4px;
+        background: var(--orange);
+        border-radius: 2px;
+      }
+
+      .story-text {
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+      }
+
+      /* Mission & Vision Section */
+      .mission-vision {
+        padding: 80px 0;
+        background-color: var(--purple);
+      }
+
+      .mission-vision-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 50px;
+      }
+
+      .mission-card,
+      .vision-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        padding: 40px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: transform 0.3s;
+      }
+
+      .mission-card:hover,
+      .vision-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .card-icon {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 30px;
+      }
+
+      .card-title {
+        font-size: 1.8rem;
+        color: var(--orange);
+        margin-bottom: 20px;
+      }
+
+      /* Values Section */
+      .values-section {
+        padding: 80px 0;
+        background-color: var(--purple-dark);
+      }
+
+      .values-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        margin-top: 50px;
+      }
+
+      .value-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        padding: 30px;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: transform 0.3s;
+      }
+
+      .value-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .value-icon {
+        font-size: 2.5rem;
+        color: var(--orange);
+        margin-bottom: 20px;
+      }
+
+      .value-title {
+        font-size: 1.4rem;
+        color: var(--orange);
+        margin-bottom: 15px;
+      }
+
+      /* Journey Section */
+      .journey-section {
+        padding: 80px 0;
+        background: linear-gradient(
+          135deg,
+          var(--purple-dark) 0%,
+          var(--purple) 100%
+        );
+      }
+
+      .journey-content {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .journey-icon {
+        font-size: 3rem;
+        color: var(--orange);
+        margin-bottom: 30px;
+      }
+
+      @media (max-width: 992px) {
+        .story-container {
+          flex-direction: column;
+        }
+
+        .mission-vision-container {
+          grid-template-columns: 1fr;
+        }
+
+        .values-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .values-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .story-title {
+          font-size: 2rem;
+        }
+      }
+
+      /* Footer */
+      footer {
+        background-color: var(--orange-light);
+        padding: 70px 0 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        margin-bottom: 50px;
+      }
+
+      .footer-logo img {
+        height: 60px;
+        margin-bottom: 15px;
+      }
+
+      .footer-logo p {
+        color: var(--purple-dark);
+        font-size: 0.9rem;
+      }
+
+      .footer-links h4 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+        color: var(--purple-dark);
+      }
+
+      .footer-links ul {
+        list-style: none;
+        color: var(--purple-dark);
+      }
+
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+
+      .footer-links a {
+        color: var(--purple-dark);
+        transition: color 0.3s;
+      }
+
+      .footer-links a:hover {
+        color: var(--purple-light);
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 15px;
+      }
+
+      .social-icon {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        transition: all 0.3s;
+        color: var(--white);
+        font-size: 1.2rem;
+      }
+
+      .social-icon:hover {
+        background-color: var(--orange);
+        transform: translateY(-3px);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid var(--purple-dark);
+      }
+
+      .footer-bottom p {
+        color: var(--purple-dark);
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="container">
+        <nav>
+          <div class="logo">
+            <img src="assets/logo.png" alt="UlaQ Davetiye" />
+          </div>
+          <ul class="nav-links">
+            <button class="close-btn">&times;</button>
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="about.html">Biz Kimiz?</a></li>
+            <li><a href="index.html#features">Özelliklerimiz</a></li>
+            <li><a href="index.html#how-it-works">Nasıl Çalışır?</a></li>
+            <li><a href="index.html#contact">İletişim</a></li>
+          </ul>
+          <button class="menu-btn">≡</button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Story Section -->
+    <section class="story-section">
+      <div class="container">
+        <div class="story-container">
+          <div class="story-image">
+            <img src="assets/story.jpg" alt="UlaQ Davetiye'nin Doğuşu" />
+          </div>
+          <div class="story-content">
+            <h1 class="story-title">
+              UlaQ Davetiye'nin Doğuşu: Bir Fikirden Bir Markaya
+            </h1>
+            <p class="story-text">
+              Her şey, bir köşeye atılan davetiyeleri fark etmemle başladı.
+              Özenle seçilen, bastırılan ve dağıtılan davetiyeler, birkaç dakika
+              incelendikten sonra ya unutuluyor ya da kayboluyordu.
+            </p>
+            <p class="story-text">
+              Mobil uygulama geliştirme sürecimde bir proje ararken, fiziksel
+              davetiyeleri teknolojiyle buluşturma fikri beni heyecanlandırdı.
+              Başlangıçta yalnızca artırılmış gerçeklik (AR) ile davetiyeleri
+              hareketlendirmek istedim. Ancak proje geliştikçe, yalnızca
+              görselliği değil, davetiye sahiplerine ve misafirlere gerçek bir
+              değer katan bir sistem kurmam gerektiğini fark ettim.
+            </p>
+            <p class="story-text">
+              İşte bu yüzden LCV, Davet Kutum, Harita gibi özellikleri de
+              ekledim. Artık davet sahipleri yalnızca bir davetiye göndermiyor,
+              misafirleriyle sürekli iletişimde kalabiliyor, organizasyonlarını
+              daha iyi yönetebiliyor ve davetlilerine unutulmaz bir deneyim
+              sunabiliyordu.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section class="mission-vision">
+      <div class="container">
+        <div class="mission-vision-container">
+          <div class="mission-card">
+            <img
+              src="assets/badges/mission.png"
+              alt="Misyonumuz"
+              class="card-icon"
+            />
+            <h2 class="card-title">Misyonumuz: Davetiyelere Hayat Vermek</h2>
+            <p>
+              UlaQ Davetiye olarak fiziksel davetiyenin duygusal değerini
+              korurken, ona yeni bir boyut kazandırıyoruz. Bir davetiye sadece
+              bilgi içeren bir kâğıt değil, aynı zamanda bir anıdır, bir
+              deneyimdir.
+            </p>
+          </div>
+          <div class="vision-card">
+            <img
+              src="assets/badges/vision.png"
+              alt="Vizyonumuz"
+              class="card-icon"
+            />
+            <h2 class="card-title">
+              Vizyonumuz: Davet Kültürünü Yeniden Tanımlamak
+            </h2>
+            <p>
+              Gelecekte, UlaQ Davetiye'yi yalnızca düğün, sünnet, nişan gibi
+              etkinlikler için değil, kurumsal etkinliklerden öğrenci
+              topluluklarına kadar herkesin kullandığı bir platform haline
+              getirmeyi hedefliyoruz.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+      <div class="container">
+        <h2 class="story-title">
+          Değerlerimiz: İnovasyon, Kolaylık ve Etkileyicilik
+        </h2>
+        <div class="values-grid">
+          <div class="value-card">
+            <img
+              src="assets/badges/innovation.png"
+              alt="İnovasyon"
+              class="card-icon"
+            />
+            <h3 class="value-title">İnovasyon</h3>
+            <p>
+              Teknolojiyi etkin kullanarak, sıradan bir davetiyeyi etkileşimli
+              bir deneyime dönüştürüyoruz.
+            </p>
+          </div>
+          <div class="value-card">
+            <img
+              src="assets/badges/ease.png"
+              alt="Kolaylık"
+              class="card-icon"
+            />
+            <h3 class="value-title">Kolaylık</h3>
+            <p>
+              Organizasyon sahiplerine ve davetlilere zaman kazandıran akıllı
+              çözümler sunuyoruz.
+            </p>
+          </div>
+          <div class="value-card">
+            <img
+              src="assets/badges/sustainability.png"
+              alt="Sürdürülebilirlik"
+              class="card-icon"
+            />
+            <h3 class="value-title">Etkileyicilik</h3>
+            <p>
+              Davetlilerin kendilerini özel hissetmesini sağlayan ve etkinliğin
+              ruhunu önceden yaşatan bir deneyim sunuyoruz.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey Section -->
+    <section class="journey-section">
+      <div class="container">
+        <div class="journey-content">
+          <img
+            src="assets/badges/journey.png"
+            alt="UlaQ'ın Yolculuğu"
+            class="card-icon"
+          />
+          <h2 class="story-title">UlaQ Davetiye'nin Yolculuğu</h2>
+          <p class="story-text">
+            Bu proje, yalnızca bir uygulama geliştirme sürecinden çok daha
+            fazlasıydı. Bir girişimcinin ilk büyük adımı, insanların
+            davetiyelere bakışını değiştiren bir yenilik ve davet sahiplerine
+            gerçek bir değer katan bir dönüşüm.
+          </p>
+          <p class="story-text">
+            Ve şimdi UlaQ Davetiye, her daveti unutulmaz bir deneyime
+            dönüştürmek için burada! 🚀
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-logo">
+            <img src="assets/logo.png" alt="UlaQ Davetiye" />
+            <p>Modern davetiye deneyimini keşfedin.</p>
+          </div>
+          <div class="footer-links">
+            <h4>Hızlı Bağlantılar</h4>
+            <ul>
+              <li><a href="index.html">Ana Sayfa</a></li>
+              <li><a href="about.html">Biz Kimiz?</a></li>
+              <li><a href="index.html#features">Özelliklerimiz</a></li>
+              <li><a href="index.html#contact">İletişim</a></li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>İletişim</h4>
+            <ul>
+              <li>info@ulaq.com</li>
+              <li>+90 (555) 123 45 67</li>
+              <li>Erzurum, Türkiye</li>
+            </ul>
+          </div>
+          <div class="footer-links">
+            <h4>Bizi Takip Edin</h4>
+            <div class="social-icons">
+              <a href="#" class="social-icon">f</a>
+              <a href="#" class="social-icon">t</a>
+              <a href="#" class="social-icon">in</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 UlaQ Davetiye. Tüm hakları saklıdır.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Font Awesome for social icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <script>
+      // Mobile menu toggle
+      const menuBtn = document.querySelector(".menu-btn");
+      const closeBtn = document.querySelector(".close-btn");
+      const navLinks = document.querySelector(".nav-links");
+
+      function toggleMenu() {
+        navLinks.classList.toggle("active");
+        closeBtn.classList.toggle("active");
+        document.body.style.overflow = navLinks.classList.contains("active")
+          ? "hidden"
+          : "";
+      }
+
+      menuBtn.addEventListener("click", toggleMenu);
+      closeBtn.addEventListener("click", toggleMenu);
+
+      document.querySelectorAll(".nav-links a").forEach((link) => {
+        link.addEventListener("click", () => {
+          if (navLinks.classList.contains("active")) {
+            toggleMenu();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
