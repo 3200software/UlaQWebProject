@@ -3,11 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Önbellek kontrolü için meta tag'ler -->
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
     <title>Biz Kimiz? - UlaQ Davetiye</title>
+    <!-- CSS dosyalarına versiyon numarası ekleme -->
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <!-- Font Awesome için versiyon numarası ekleme -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css?v=1.0.0"
+    />
+
+    <!-- Resim URL'lerine versiyon numarası ekleme -->
+    <script>
+      // Resimlere versiyon numarası ekleyen fonksiyon
+      function addVersionToImages() {
+        const version = new Date().getTime(); // Timestamp'i versiyon olarak kullan
+        const images = document.getElementsByTagName("img");
+
+        for (let img of images) {
+          if (img.src.includes("assets/")) {
+            img.src = img.src + "?v=" + version;
+          }
+        }
+      }
+
+      // Sayfa yüklendiğinde çalıştır
+      window.addEventListener("load", addVersionToImages);
+    </script>
+
     <style>
       :root {
         --purple-dark: #4c1d95;
@@ -48,35 +81,25 @@
         padding: 20px 0;
       }
 
-      .logo {
-        height: 80px;
-      }
-
       .logo img {
-        height: 100%;
-        width: auto;
+        height: 80px;
       }
 
       .nav-links {
         display: flex;
-        gap: 40px;
         list-style: none;
-        margin: 0;
-        padding: 0;
       }
 
       .nav-links li {
-        margin: 0;
-        padding: 0;
+        margin-left: 30px;
       }
 
       .nav-links a {
         color: var(--purple-dark);
-        text-decoration: none;
         font-weight: 500;
-        font-size: 1.2rem;
+        transition: color 0.3s;
         position: relative;
-        padding: 5px 0;
+        text-decoration: none;
       }
 
       .nav-links a:hover {
@@ -88,7 +111,7 @@
         position: absolute;
         width: 0;
         height: 2px;
-        bottom: 0;
+        bottom: -4px;
         left: 50%;
         background-color: var(--purple-dark);
         transition: all 0.3s ease;
@@ -97,6 +120,14 @@
 
       .nav-links a:hover::after {
         width: 100%;
+      }
+
+      .nav-links a.active {
+        color: var(--purple-dark);
+      }
+
+      .nav-links a.active::after {
+        width: 0;
       }
 
       .menu-btn {
@@ -433,8 +464,8 @@
             <button class="close-btn">&times;</button>
             <li><a href="index.html">Ana Sayfa</a></li>
             <li><a href="about.html">Biz Kimiz?</a></li>
-            <li><a href="index.html#features">Özelliklerimiz</a></li>
-            <li><a href="index.html#how-it-works">Nasıl Çalışır?</a></li>
+            <li><a href="features.html">Özelliklerimiz</a></li>
+            <li><a href="how-it-works.html">Nasıl Çalışır?</a></li>
             <li><a href="index.html#contact">İletişim</a></li>
           </ul>
           <button class="menu-btn">≡</button>
@@ -446,9 +477,14 @@
     <section class="story-section">
       <div class="container">
         <div class="story-container">
-          <div class="story-image">
-            <img src="assets/story.jpg" alt="UlaQ Davetiye'nin Doğuşu" />
+          <!--
+          
+            <div class="story-image">
+            <img src="assets/badges/" alt="UlaQ Davetiye'nin Doğuşu" />
           </div>
+          
+          -->
+
           <div class="story-content">
             <h1 class="story-title">
               UlaQ Davetiye'nin Doğuşu: Bir Fikirden Bir Markaya
@@ -483,11 +519,13 @@
       <div class="container">
         <div class="mission-vision-container">
           <div class="mission-card">
+            <!--
             <img
               src="assets/badges/mission.png"
               alt="Misyonumuz"
               class="card-icon"
             />
+            -->
             <h2 class="card-title">Misyonumuz: Davetiyelere Hayat Vermek</h2>
             <p>
               UlaQ Davetiye olarak fiziksel davetiyenin duygusal değerini
@@ -497,11 +535,13 @@
             </p>
           </div>
           <div class="vision-card">
+            <!--
             <img
               src="assets/badges/vision.png"
               alt="Vizyonumuz"
               class="card-icon"
             />
+            -->
             <h2 class="card-title">
               Vizyonumuz: Davet Kültürünü Yeniden Tanımlamak
             </h2>
@@ -519,16 +559,20 @@
     <!-- Values Section -->
     <section class="values-section">
       <div class="container">
+        <!--
         <h2 class="story-title">
           Değerlerimiz: İnovasyon, Kolaylık ve Etkileyicilik
         </h2>
+        -->
         <div class="values-grid">
           <div class="value-card">
+            <!--
             <img
               src="assets/badges/innovation.png"
               alt="İnovasyon"
               class="card-icon"
             />
+            -->
             <h3 class="value-title">İnovasyon</h3>
             <p>
               Teknolojiyi etkin kullanarak, sıradan bir davetiyeyi etkileşimli
@@ -536,11 +580,13 @@
             </p>
           </div>
           <div class="value-card">
+            <!--
             <img
               src="assets/badges/ease.png"
               alt="Kolaylık"
               class="card-icon"
             />
+            -->
             <h3 class="value-title">Kolaylık</h3>
             <p>
               Organizasyon sahiplerine ve davetlilere zaman kazandıran akıllı
@@ -548,11 +594,13 @@
             </p>
           </div>
           <div class="value-card">
+            <!--
             <img
               src="assets/badges/sustainability.png"
               alt="Sürdürülebilirlik"
               class="card-icon"
             />
+            -->
             <h3 class="value-title">Etkileyicilik</h3>
             <p>
               Davetlilerin kendilerini özel hissetmesini sağlayan ve etkinliğin
@@ -567,11 +615,13 @@
     <section class="journey-section">
       <div class="container">
         <div class="journey-content">
+          <!--
           <img
             src="assets/badges/journey.png"
             alt="UlaQ'ın Yolculuğu"
             class="card-icon"
           />
+          -->
           <h2 class="story-title">UlaQ Davetiye'nin Yolculuğu</h2>
           <p class="story-text">
             Bu proje, yalnızca bir uygulama geliştirme sürecinden çok daha
@@ -627,11 +677,8 @@
       </div>
     </footer>
 
-    <!-- Font Awesome for social icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
+    <!-- Cache Buster Script -->
+    <script src="js/cache-buster.js"></script>
 
     <script>
       // Mobile menu toggle

@@ -4,7 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <!-- Önbellek kontrolü için meta tag'ler -->
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>UlaQ Yönetim Paneli</title>
 
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
@@ -13,48 +20,169 @@
       crossorigin="anonymous"
     />
 
+    <style>
+      :root {
+        --purple-dark: #4c1d95;
+        --purple: #7c3aed;
+        --orange: #ed9b5b;
+        --orange-light: #eba062;
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, var(--purple-dark), var(--purple));
+        padding: 20px;
+      }
+
+      .login-container {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+        padding: 40px;
+        width: 100%;
+        max-width: 450px;
+      }
+
+      .logo-container {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto 30px;
+        position: relative;
+      }
+
+      .logo-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border: 3px solid var(--orange);
+        padding: 5px;
+        border-radius: 50%;
+        background: white;
+        transition: transform 0.3s ease;
+      }
+
+      .logo-container img:hover {
+        transform: scale(1.05);
+      }
+
+      .panel-title {
+        color: var(--purple-dark);
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 1.8rem;
+      }
+
+      .form-label {
+        color: var(--purple-dark);
+        font-weight: 500;
+      }
+
+      .form-control {
+        border: 2px solid #e2e8f0;
+        padding: 12px;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+      }
+
+      .form-control:focus {
+        border-color: var(--orange);
+        box-shadow: 0 0 0 3px rgba(237, 155, 91, 0.2);
+      }
+
+      .btn-primary {
+        background-color: var(--orange);
+        border: none;
+        padding: 12px;
+        border-radius: 10px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--orange-light);
+        transform: translateY(-2px);
+      }
+
+      .privacy-link {
+        text-align: center;
+        display: block;
+        color: var(--purple);
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: color 0.3s ease;
+      }
+
+      .privacy-link:hover {
+        color: var(--purple-dark);
+      }
+
+      @media (max-width: 576px) {
+        .login-container {
+          padding: 30px 20px;
+        }
+
+        .logo-container {
+          width: 120px;
+          height: 120px;
+        }
+
+        .panel-title {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+
     <script type="module" src="js/admnpnllgn.js"></script>
   </head>
 
   <body>
-    <form
-      class="container m-10 mt-5 w-25 border rounded p-3 d-flex flex-column justify-content-center"
-    >
-      <img
-        src="assets/274348852_320609883437173_4953649348556891409_n.jpg"
-        class="img-thumbnail w-50 mb-5 mt-5 border border-primary rounded-circle"
-        alt="UlaQLogo"
-        style="margin: auto"
-      />
-
-      <div
-        class="text-primary h2 mb-5"
-        style="margin: auto; text-align: center"
-      >
-        ManagementBoard
+    <form class="login-container">
+      <div class="logo-container">
+        <img src="assets/logo.png" alt="UlaQLogo" />
       </div>
 
-      <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Email</label>
+      <h1 class="panel-title">Yönetim Paneli</h1>
+
+      <div class="mb-4">
+        <label for="InputEmail1" class="form-label">E-posta Adresi</label>
         <input
           type="email"
           class="form-control"
           id="InputEmail1"
           aria-describedby="emailHelp"
+          placeholder="ornek@ulaq.com"
         />
       </div>
-      <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Şifre</label>
-        <input type="password" class="form-control" id="InputPassword1" />
+
+      <div class="mb-4">
+        <label for="InputPassword1" class="form-label">Şifre</label>
+        <input
+          type="password"
+          class="form-control"
+          id="InputPassword1"
+          placeholder="••••••••"
+        />
       </div>
 
       <button type="submit" class="btn btn-primary" id="loginButton">
         Giriş Yap
       </button>
 
-      <a href="privacypolicy.html">Gizlilik Politikası </a>
+      <a href="privacypolicy.html" class="privacy-link">Gizlilik Politikası</a>
     </form>
 
-    <script src="js/main.js"></script>
+    <!-- Cache Buster Script -->
+    <script src="js/cache-buster.js"></script>
+
+    <script>
+      // ... rest of the existing code ...
+    </script>
   </body>
 </html>

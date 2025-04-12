@@ -64,7 +64,7 @@ btnlogin.addEventListener("click", function (evets) {
           UsersInfo.forEach((doc) => {
             const usersInfo = doc.data().userType;
 
-            if (usersInfo == "1") {
+            if (usersInfo == "2") {
               console.log("giris yapıldı");
 
               window.location.href = "dashboard.html";

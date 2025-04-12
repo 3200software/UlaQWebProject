@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mesajlar - ULAQ</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">
+          <a href="index.html">
+            <img src="images/logo.png" alt="ULAQ Logo" />
+          </a>
+        </div>
+        <ul class="nav-links">
+          <li><a href="index.html">Ana Sayfa</a></li>
+          <li><a href="about.html">Hakkımızda</a></li>
+          <li><a href="features.html">Özellikler</a></li>
+          <li><a href="ordertracking.html">Sipariş Takibi</a></li>
+          <li><a href="messages.html" class="active">Mesajlar</a></li>
+        </ul>
+        <div class="menu-btn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="close-btn">
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="messages-section">
+        <div class="container">
+          <h1>Mesajlar</h1>
+          <div class="messages-container">
+            <div class="messages-header">
+              <div class="search-box">
+                <input
+                  type="text"
+                  id="messageSearch"
+                  placeholder="Mesaj ara..."
+                />
+              </div>
+              <div class="filter-box">
+                <select id="messageFilter">
+                  <option value="all">Tümü</option>
+                  <option value="new">Yeni</option>
+                  <option value="read">Okunmuş</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="messages-list" id="messagesList">
+              <!-- Mesajlar JavaScript ile buraya eklenecek -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>Hızlı Bağlantılar</h3>
+            <ul>
+              <li><a href="index.html">Ana Sayfa</a></li>
+              <li><a href="about.html">Hakkımızda</a></li>
+              <li><a href="features.html">Özellikler</a></li>
+              <li><a href="ordertracking.html">Sipariş Takibi</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>İletişim</h3>
+            <p>info@ulaq.com</p>
+          </div>
+          <div class="footer-section">
+            <h3>Bizi Takip Edin</h3>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/your-kit-code.js"></script>
+    <script type="module" src="js/messages.js"></script>
+  </body>
+</html>

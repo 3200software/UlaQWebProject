@@ -17,6 +17,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Önbellek kontrolü için meta tag'ler -->
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <title>UlaQ Davetiye</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
@@ -106,6 +113,7 @@
         font-weight: 500;
         transition: color 0.3s;
         position: relative;
+        text-decoration: none;
       }
 
       .nav-links a:hover {
@@ -126,6 +134,14 @@
 
       .nav-links a:hover::after {
         width: 100%;
+      }
+
+      .nav-links a.active {
+        color: var(--purple-dark);
+      }
+
+      .nav-links a.active::after {
+        width: 0;
       }
 
       .menu-btn {
@@ -720,8 +736,8 @@
             <button class="close-btn">&times;</button>
             <li><a href="#home">Ana Sayfa</a></li>
             <li><a href="about.html">Biz Kimiz?</a></li>
-            <li><a href="#features">Özelliklerimiz</a></li>
-            <li><a href="#how-it-works">Nasıl Çalışır?</a></li>
+            <li><a href="features.html">Özelliklerimiz</a></li>
+            <li><a href="how-it-works.html">Nasıl Çalışır?</a></li>
             <li><a href="#contact">İletişim</a></li>
           </ul>
           <button class="menu-btn">≡</button>
@@ -928,22 +944,35 @@
         <div class="features-title">
           <h2 class="section-title">İletişime Geçin</h2>
         </div>
-        <div class="contact-form">
-          <form>
-            <div class="form-group">
-              <label class="form-label" for="name">Adınız Soyadınız</label>
-              <input type="text" class="form-control" id="name" />
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="email">E-posta Adresiniz</label>
-              <input type="email" class="form-control" id="email" />
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="message">Mesajınız</label>
-              <textarea class="form-control" id="message" rows="4"></textarea>
-            </div>
-            <button type="submit" class="btn">Gönder</button>
-          </form>
+        <div class="contact-section">
+          <div class="contact-form">
+            <form>
+              <div class="form-group">
+                <label class="form-label" for="name">Adınız Soyadınız</label>
+                <input type="text" class="form-control" id="name" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="email">E-posta Adresiniz</label>
+                <input type="email" class="form-control" id="email" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="phone"
+                  >Telefon (Opsiyonel)</label
+                >
+                <input type="tel" class="form-control" id="phone" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="message">Mesajınız</label>
+                <textarea
+                  class="form-control"
+                  id="message"
+                  rows="4"
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="btn">Gönder</button>
+            </form>
+          </div>
         </div>
       </div>
     </section>
@@ -1056,5 +1085,11 @@
         });
       });
     </script>
+
+    <!-- Cache Buster Script -->
+    <script src="js/cache-buster.js"></script>
+
+    <!-- Form handling script -->
+    <script type="module" src="js/index.js"></script>
   </body>
 </html>

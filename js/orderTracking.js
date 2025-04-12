@@ -30,7 +30,8 @@ import {
   getToken,
 } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-messaging.js";
 
-const firebaseapp = initializeApp({
+// Firebase yapılandırması
+const firebaseConfig = {
   apiKey: "AIzaSyAgAbd8gSa5cH8t8dPPkkGUV_hsrr4K_Lo",
   authDomain: "ulaq-1e47e.firebaseapp.com",
   projectId: "ulaq-1e47e",
@@ -38,11 +39,13 @@ const firebaseapp = initializeApp({
   messagingSenderId: "790902980229",
   appId: "1:790902980229:web:871d392c9b1aad25fb33ec",
   measurementId: "G-E0J48THPNY",
-});
+};
 
-const auth = getAuth(firebaseapp);
-const storage = getStorage(firebaseapp);
-const db = getFirestore(firebaseapp);
+// Firebase'i başlat
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
 
 /* const messaging = getMessaging.messaging;
 
@@ -94,10 +97,12 @@ function sendNotification() {
 
 */
 
+// Oturum durumunu kontrol et
 onAuthStateChanged(auth, (user) => {
-  if (user != null) {
-    console.log("logged in");
+  if (user) {
+    console.log("Kullanıcı giriş yaptı:", user.email);
   } else {
+    console.log("Kullanıcı giriş yapmadı");
     window.location.href = "index.html";
   }
 });
@@ -322,9 +327,12 @@ arphotobutton.addEventListener("click", async function () {
 btnLogout.addEventListener("click", () => {
   signOut(auth)
     .then(() => {
+      console.log("Kullanıcı çıkış yaptı");
       window.location.href = "index.html";
     })
-    .catch((error) => {});
+    .catch((error) => {
+      console.error("Çıkış yapma hatası:", error);
+    });
 });
 
 backToordersButton.addEventListener("click", () => {

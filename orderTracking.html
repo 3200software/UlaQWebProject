@@ -2,9 +2,13 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Önbellek kontrolü için meta tag'ler -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>Sipariş Takip</title>
 
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
@@ -38,7 +42,7 @@
 
     <div class="offcanvas-header d-flex justify-content-start" style="margin-top: 2%;">
 
-      <div> <img src="assets/274348852_320609883437173_4953649348556891409_n.jpg" alt="UlaQLogo" width="50px"
+      <div> <img src="assets/logo.png" alt="UlaQLogo" width="50px"
           height="50px" style="border-radius: 50px;"> </div>
       <div class="offcanvas-title text-primary ms-4 h4"> UlaQ Yönetim Paneli</div>
 
@@ -556,6 +560,8 @@
   <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+  <!-- Cache Buster Script -->
+  <script src="js/cache-buster.js"></script>
 
 </body>
 
