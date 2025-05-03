@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sözleşmeler | UlaQ</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/sozlesmeler.css" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <main class="sozlesmeler-container" style="padding-bottom: 80px">
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          margin: 2rem auto;
+          max-width: 600px;
+        "
+      >
+        <img
+          src="assets/logo.png"
+          alt="UlaQ Davetiye Logo"
+          style="width: 100px; height: auto; margin-bottom: 1rem"
+        />
+        <h2
+          style="
+            color: #6b46c1;
+            font-weight: 600;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+          "
+        >
+          Duygularınız bizde, güvenceniz burada.
+        </h2>
+        <p style="color: #4a5568; font-size: 0.875rem; line-height: 1.5">
+          UlaQ Davetiye olarak hem davetiyenizi hem de haklarınızı
+          önemsiyoruz.<br />
+          Aşağıda yer alan sözleşmeler; sizi, davetlilerinizi ve hizmet
+          sürecimizi korumak için hazırlandı.
+        </p>
+      </div>
+
+      <h1 class="text-xl font-bold text-center">Sözleşmeler ve Belgeler</h1>
+      <p class="description text-center mb-6">
+        Aşağıdaki sözleşme ve belgeleri inceleyebilirsiniz.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
+        <button class="contract-btn" onclick="showContract('mesafeli-satis')">
+          <i class="fas fa-file-contract"></i>
+          <span>Mesafeli Satış Sözleşmesi</span>
+        </button>
+
+        <button class="contract-btn" onclick="showContract('on-bilgilendirme')">
+          <i class="fas fa-info-circle"></i>
+          <span>Ön Bilgilendirme Formu</span>
+        </button>
+
+        <button class="contract-btn" onclick="showContract('kvkk')">
+          <i class="fas fa-shield-alt"></i>
+          <span>KVKK Aydınlatma Metni</span>
+        </button>
+
+        <button class="contract-btn" onclick="showContract('gizlilik')">
+          <i class="fas fa-user-shield"></i>
+          <span>Gizlilik Politikası</span>
+        </button>
+
+        <button class="contract-btn" onclick="showContract('kullanim')">
+          <i class="fas fa-book"></i>
+          <span>Kullanım Koşulları</span>
+        </button>
+
+        <button class="contract-btn" onclick="showContract('cerez')">
+          <i class="fas fa-cookie-bite"></i>
+          <span>Çerez Politikası</span>
+        </button>
+
+        <button class="contract-btn" onclick="showContract('iade')">
+          <i class="fas fa-undo-alt"></i>
+          <span>İade – İptal Politikası</span>
+        </button>
+
+        <button class="contract-btn" onclick="showContract('reklam')">
+          <i class="fas fa-ad"></i>
+          <span>Reklam İzleme Politikası</span>
+        </button>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      style="
+        background-color: #44337a;
+        color: white;
+        padding: 1rem 0;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        text-align: center;
+      "
+    >
+      <div style="max-width: 600px; margin: 0 auto">
+        <p style="font-size: 0.875rem; margin: 0">
+          © 2024 UlaQ Davetiye. Tüm hakları saklıdır.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="contractModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modalTitle"></h2>
+          <span class="close-modal">&times;</span>
+        </div>
+        <div class="modal-body" id="modalContent">
+          <!-- İçerik JavaScript ile doldurulacak -->
+        </div>
+      </div>
+    </div>
+
+    <script src="js/sozlesmeler.js"></script>
+  </body>
+</html>
