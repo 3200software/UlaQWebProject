@@ -1,0 +1,54 @@
+.contact-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.contact-info,
+.contact-form {
+  width: 48%; /* Ekranı yaklaşık yarı yarıya böler */
+}
+
+.contact-info {
+  color: #fff; /* Tema rengine göre düzenle */
+}
+
+.contact-form {
+  background-color: rgba(255, 255, 255, 0.05); /* opsiyonel arka plan */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.info-item {
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.info-item i {
+  font-size: 2rem;
+  color: var(--orange);
+  margin-bottom: 1rem;
+}
+
+.info-item h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+  color: var(--orange-light);
+}
+
+.info-item p {
+  color: var(--white);
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .contact-info,
+  .contact-form {
+    width: 100%; /* Mobilde dikey hizalama */
+  }
+}

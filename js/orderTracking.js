@@ -991,24 +991,144 @@ querySnapshot.forEach((doc) => {
   createOrderssArray(ordersItem);
 });
 
-cargoAddButton.addEventListener("click", async () => {
-  if (
-    cargoCompanyTe.value == "" ||
-    cargoCodeText.value == "" ||
-    cargoUrlText.value == ""
-  ) {
-    alert("Lütfen Kargo bilgilerinin tamamını giriniz");
-  } else {
-    try {
-      const updateRef = doc(db, "Orders", updateDocumentId);
+const shippingBoxModal = new bootstrap.Modal(
+  document.getElementById("shippingBoxModal")
+);
+const listPricesButton = document.getElementById("listPricesButton");
+const closeModalButton = document.querySelector('[data-bs-dismiss="modal"]');
 
-      await updateDoc(updateRef, {
-        orderCargoCompany: cargoCompanyTe.value,
-        orderCargoNumber: cargoCodeText.value,
-        orderCargoTrackUrl: cargoUrlText.value,
-      });
-    } catch (error) {}
+// Modal'ı açmak için event listener
+cargoAddButton.addEventListener("click", () => {
+  shippingBoxModal.show();
+});
+
+// Kapat düğmesi için event listener
+closeModalButton.addEventListener("click", () => {
+  shippingBoxModal.hide();
+});
+
+// Kargo firmalarını getiren fonksiyon
+async function getCargoCompanies() {
+  try {
+    const response = await fetch("https://basitkargo.com/api/handlers", {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer 5EECC914-F656-4FE5-96C4-42363E5BEEE6",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Kargo firmaları alınamadı");
+    }
+
+    const companies = await response.json();
+    return companies;
+  } catch (error) {
+    console.error("Hata:", error);
+    alert("Kargo firmaları alınırken bir hata oluştu");
+    return [];
   }
+}
+
+// Fiyat listesini getiren fonksiyon
+async function getPriceList(packageInfo) {
+  try {
+    const response = await fetch(
+      "https://basitkargo.com/api/handlers/fee/packages",
+      {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer 5EECC914-F656-4FE5-96C4-42363E5BEEE6",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify([packageInfo]),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Fiyat listesi alınamadı");
+    }
+
+    const prices = await response.json();
+    return prices;
+  } catch (error) {
+    console.error("Hata:", error);
+    alert("Fiyat listesi alınırken bir hata oluştu");
+    return [];
+  }
+}
+
+// Fiyat listesini gösteren fonksiyon
+function displayPriceList(prices, companies) {
+  const modalBody = document.querySelector("#shippingBoxModal .modal-body");
+  const priceListDiv = document.createElement("div");
+  priceListDiv.className = "mt-3";
+  priceListDiv.innerHTML = '<h6 class="text-primary">Kargo Fiyatları:</h6>';
+
+  const priceTable = document.createElement("table");
+  priceTable.className = "table table-striped";
+  priceTable.innerHTML = `
+    <thead>
+      <tr>
+        <th>Kargo Firması</th>
+        <th>Desi/Kg</th>
+        <th>Fiyat (TL)</th>
+      </tr>
+    </thead>
+    <tbody>
+  `;
+
+  prices.forEach((price) => {
+    const company = companies.find((c) => c.code === price.handlerCode);
+    priceTable.innerHTML += `
+      <tr>
+        <td>${company ? company.name : price.handlerCode}</td>
+        <td>${price.desiKg}</td>
+        <td>${price.price.toFixed(2)}</td>
+      </tr>
+    `;
+  });
+
+  priceTable.innerHTML += "</tbody>";
+  priceListDiv.appendChild(priceTable);
+
+  // Eğer önceki bir fiyat listesi varsa kaldır
+  const existingPriceList = modalBody.querySelector(".mt-3");
+  if (existingPriceList) {
+    existingPriceList.remove();
+  }
+
+  modalBody.appendChild(priceListDiv);
+}
+
+// ListPricesButton için event listener
+listPricesButton.addEventListener("click", async () => {
+  const height = document.getElementById("boxHeight").value;
+  const width = document.getElementById("boxWidth").value;
+  const depth = document.getElementById("boxDepth").value;
+  const weight = document.getElementById("boxWeight").value;
+
+  if (!height || !width || !depth || !weight) {
+    alert("Lütfen tüm kargo koli bilgilerini giriniz");
+    return;
+  }
+
+  // Kargo firmalarını al
+  const companies = await getCargoCompanies();
+
+  // Paket bilgilerini hazırla
+  const packageInfo = {
+    height: height,
+    width: width,
+    depth: depth,
+    weight: weight,
+  };
+
+  // Fiyat listesini al
+  const prices = await getPriceList(packageInfo);
+
+  // Fiyat listesini göster
+  displayPriceList(prices, companies);
 });
 
 orderCodeFilterInput.addEventListener("change", async () => {

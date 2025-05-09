@@ -548,6 +548,41 @@
     </div>
   </div>
 
+  <div class="modal fade" id="shippingBoxModal" tabindex="-1" aria-labelledby="shippingBoxModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="shippingBoxModalLabel">Kargo Koli Bilgileri</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="shippingBoxForm">
+            <div class="mb-3">
+              <label for="boxHeight" class="form-label">Yükseklik (cm)</label>
+              <input type="number" class="form-control" id="boxHeight" required>
+            </div>
+            <div class="mb-3">
+              <label for="boxWidth" class="form-label">Genişlik (cm)</label>
+              <input type="number" class="form-control" id="boxWidth" required>
+            </div>
+            <div class="mb-3">
+              <label for="boxDepth" class="form-label">Derinlik (cm)</label>
+              <input type="number" class="form-control" id="boxDepth" required>
+            </div>
+            <div class="mb-3">
+              <label for="boxWeight" class="form-label">Ağırlık (kg)</label>
+              <input type="number" class="form-control" id="boxWeight" step="0.1" required>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+          <button type="button" class="btn btn-primary" id="listPricesButton">Fiyat Listele</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 
 
