@@ -3,41 +3,45 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Inv-writing</title>
+    <title>Davetiye Yazıları - UlaQ</title>
 
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
-      crossorigin="anonymous"
     />
-
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="css/styles.css" rel="stylesheet" />
     <script type="module" src="js/inv-writing.js" defer></script>
-    <link rel="stylesheet" href="css/inw-writin.css" />
   </head>
   <body>
+    <!-- Mobil Menü Toggle Butonu -->
+    <button class="menu-toggle d-lg-none" id="menuToggle">
+      <i class="bi bi-list"></i>
+    </button>
+
+    <!-- Side Menu -->
     <div
-      class="offcanvas offcanvas-danger offcanvas-start show"
+      class="offcanvas offcanvas-danger offcanvas-start"
       data-bs-backdrop="false"
       id="managemetntSideMenu"
-      style="width: 20%"
     >
-      <div
-        class="offcanvas-header d-flex justify-content-start"
-        style="margin-top: 2%"
-      >
-        <div>
+      <div class="offcanvas-header">
+        <div class="logo-container">
           <img
             src="assets/274348852_320609883437173_4953649348556891409_n.jpg"
             alt="UlaQLogo"
-            width="50px"
-            height="50px"
-            style="border-radius: 50px"
           />
+          <div class="offcanvas-title ms-3">UlaQ Yönetim Paneli</div>
         </div>
-        <div class="offcanvas-title text-primary ms-4 h4">
-          UlaQ Yönetim Paneli
-        </div>
+        <button
+          type="button"
+          class="btn-close d-lg-none"
+          id="closeMenu"
+          aria-label="Close"
+        ></button>
       </div>
 
       <div class="offcanvas-body d-flex align-items-top flex-column">
@@ -71,10 +75,9 @@
         </div>
 
         <div class="list-group">
-          <a href="users.html" class="list-group-item list-group-item-action">
-            Kullanıcılar
-          </a>
-
+          <a href="users.html" class="list-group-item list-group-item-action"
+            >Kullanıcılar</a
+          >
           <button
             class="list-group-item list-group-item-action bg-danger text-white"
             id="logoutButton"
@@ -85,50 +88,50 @@
       </div>
     </div>
 
-    <div
-      class="container"
-      id="invWritngMainContainer"
-      style="margin-left: 22%; margin-top: 1%"
-    >
-      <div
-        class="containerTitle d-flex justify-content-between border-bottom border-primary"
-      >
-        <div class="h3 text-primary m-3 pb-0 flex-fill">Davetiye Yazıları</div>
+    <!-- Main Content Area -->
+    <div class="content-area">
+      <div class="container-fluid p-0">
+        <!-- Header Section -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h2 class="text-primary mb-0">Davetiye Yazıları</h2>
+          <button id="addInvWritngButton" class="btn btn-primary">
+            <i class="bi bi-plus-lg me-2"></i>Yeni Yazı Ekle
+          </button>
+        </div>
 
-        <button
-          id="addInvWritngButton"
-          type="button"
-          class="btn btn-primary m-2"
-        >
-          Yeni Yazı Ekle
-        </button>
-      </div>
+        <!-- Filter Section -->
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <h5 class="mb-0">Filtrele</h5>
+              </div>
+              <div class="col">
+                <select class="form-select" id="inwWritingFilterSelect">
+                  <option value="0" selected>Hepsi</option>
+                  <option value="1">Düğün</option>
+                  <option value="2">Nikah</option>
+                  <option value="3">Nişan</option>
+                  <option value="4">Kına Gecesi</option>
+                  <option value="5">Sünnet</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
 
-      <div
-        class="d-flex mt-3 border border-primary rounded-2"
-        id="filterContainer"
-      >
-        <div class="h4 m-2 p-1">Filtrele</div>
-
-        <select
-          class="col m-2 form-select"
-          id="inwWritingFilterSelect"
-          aria-label="Default select example"
-        >
-          <option value="0" selected>Hepsi</option>
-          <option value="1">Düğün</option>
-          <option value="2">Nikah</option>
-          <option value="3">Nişan</option>
-          <option value="4">Kına Gecesi</option>
-          <option value="5">Sünnet</option>
-        </select>
-      </div>
-
-      <div class="container mt-3" id="mainContainerBody">
-        <div class="invWritingCard row"></div>
+        <!-- Content Section -->
+        <div class="card">
+          <div class="card-body">
+            <div class="invWritingCard row g-4" id="mainContainerBody">
+              <!-- Cards will be dynamically added here -->
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
+    <!-- Modal -->
     <div
       class="modal fade"
       id="inv-writingModal"
@@ -137,37 +140,51 @@
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Yeni Yazı Ekle</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
           </div>
           <div class="modal-body">
-            <select
-              class="col m-2 form-select"
-              id="inv-writingModalSelect"
-              aria-label="Default select example"
-            >
-              <option value="1" selected>Düğün</option>
-              <option value="2">Nikah</option>
-              <option value="3">Nişan</option>
-              <option value="4">Kına Gecesi</option>
-              <option value="5">Sünnet</option>
-            </select>
-
-            <input
-              type="text"
-              class="form-control col ms-2 mt-4 mb-2 me-3"
-              id="invWritngInput"
-              placeholder="Yazıyı buraya Ekle!"
-              style="height: 150px"
-            />
+            <div class="mb-4">
+              <label class="form-label">Yazı Kategorisi</label>
+              <select class="form-select" id="inv-writingModalSelect">
+                <option value="1" selected>Düğün</option>
+                <option value="2">Nikah</option>
+                <option value="3">Nişan</option>
+                <option value="4">Kına Gecesi</option>
+                <option value="5">Sünnet</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Davetiye Yazısı</label>
+              <textarea
+                class="form-control"
+                id="invWritngInput"
+                rows="6"
+                placeholder="Yazıyı buraya ekleyin..."
+              ></textarea>
+            </div>
           </div>
           <div class="modal-footer">
             <button
+              id="invWritngDeleteButton"
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >
+              Sil
+            </button>
+            <button
               type="button"
               class="btn btn-secondary"
-              data-dismiss="modal"
+              data-bs-dismiss="modal"
             >
               Vazgeç
             </button>
@@ -183,9 +200,58 @@
       </div>
     </div>
 
+    <!-- Scripts -->
     <script src="js/main.js"></script>
-
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Mobil menü toggle işlevi
+      document.addEventListener("DOMContentLoaded", function () {
+        const menuToggle = document.getElementById("menuToggle");
+        const closeMenu = document.getElementById("closeMenu");
+        const sideMenu = document.getElementById("managemetntSideMenu");
+        const body = document.body;
+
+        // Menüyü aç
+        menuToggle.addEventListener("click", function () {
+          sideMenu.classList.add("show");
+          body.classList.add("menu-open");
+        });
+
+        // Menüyü kapat
+        closeMenu.addEventListener("click", function () {
+          sideMenu.classList.remove("show");
+          body.classList.remove("menu-open");
+        });
+
+        // Sayfa yüklendiğinde ekran genişliğine göre menüyü ayarla
+        function handleResize() {
+          if (window.innerWidth >= 992) {
+            sideMenu.classList.add("show");
+            body.classList.remove("menu-open");
+          } else {
+            sideMenu.classList.remove("show");
+            body.classList.remove("menu-open");
+          }
+        }
+
+        // Sayfa yüklendiğinde ve resize olduğunda kontrol et
+        handleResize();
+        window.addEventListener("resize", handleResize);
+
+        // Menü dışına tıklandığında menüyü kapat
+        document.addEventListener("click", function (event) {
+          if (
+            window.innerWidth < 992 &&
+            !sideMenu.contains(event.target) &&
+            !menuToggle.contains(event.target) &&
+            sideMenu.classList.contains("show")
+          ) {
+            sideMenu.classList.remove("show");
+            body.classList.remove("menu-open");
+          }
+        });
+      });
+    </script>
   </body>
 </html>

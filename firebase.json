@@ -1,6 +1,17 @@
 {
   "hosting": {
     "public": ".",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [
+      {
+        "source": "/__/functions/getCargoCompanies",
+        "function": "getCargoCompanies"
+      },
+      { "source": "/__/functions/getPriceList", "function": "getPriceList" },
+      { "source": "**", "destination": "/index.html" }
+    ]
+  },
+  "functions": {
+    "source": "functions"
   }
 }

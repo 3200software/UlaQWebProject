@@ -1007,20 +1007,13 @@ closeModalButton.addEventListener("click", () => {
   shippingBoxModal.hide();
 });
 
-// Kargo firmalarını getiren fonksiyon
+// Kargo firmalarını getiren fonksiyon (Firebase Functions üzerinden)
 async function getCargoCompanies() {
   try {
-    const response = await fetch("https://basitkargo.com/api/handlers", {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer 5EECC914-F656-4FE5-96C4-42363E5BEEE6",
-      },
-    });
-
+    const response = await fetch("/__/functions/getCargoCompanies");
     if (!response.ok) {
       throw new Error("Kargo firmaları alınamadı");
     }
-
     const companies = await response.json();
     return companies;
   } catch (error) {
@@ -1030,25 +1023,19 @@ async function getCargoCompanies() {
   }
 }
 
-// Fiyat listesini getiren fonksiyon
+// Fiyat listesini getiren fonksiyon (Firebase Functions üzerinden)
 async function getPriceList(packageInfo) {
   try {
-    const response = await fetch(
-      "https://basitkargo.com/api/handlers/fee/packages",
-      {
-        method: "POST",
-        headers: {
-          Authorization: "Bearer 5EECC914-F656-4FE5-96C4-42363E5BEEE6",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify([packageInfo]),
-      }
-    );
-
+    const response = await fetch("/__/functions/getPriceList", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(packageInfo),
+    });
     if (!response.ok) {
       throw new Error("Fiyat listesi alınamadı");
     }
-
     const prices = await response.json();
     return prices;
   } catch (error) {
